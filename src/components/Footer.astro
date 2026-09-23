@@ -1,0 +1,62 @@
+---
+// Footer.astro — Pie de Página Neumórfico Cinematográfico
+---
+
+<footer class="mt-auto border-t border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-[var(--neu-flat)] py-12">
+  <div class="app-container">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+      
+      <!-- Marca -->
+      <div class="md:col-span-1">
+        <div class="text-lg font-black tracking-tight text-[var(--text-main)] font-['Outfit'] mb-2">
+          Play<span class="text-[var(--primary)]">Match</span>
+        </div>
+        <p class="text-xs text-[var(--text-muted)] leading-relaxed max-w-xs">
+          Plataforma de emparejamiento social asistido y gestión de torneos amateur para la comunidad de jugadores en Chile.
+        </p>
+        <div class="mt-4 text-[11px] text-[var(--text-muted)] font-mono">
+          Desarrollado bajo los lineamientos técnicos de <strong>VoxTi Labs</strong>.
+        </div>
+      </div>
+
+      <!-- Navegación -->
+      <div>
+        <h5 class="text-xs font-bold uppercase tracking-wider text-[var(--text-main)] mb-3">Navegación</h5>
+        <ul class="flex flex-col gap-2 text-xs text-[var(--text-muted)]">
+          <li><a href="#playersSection" class="hover:text-[var(--text-main)] transition-colors">Compañeros Disponibles</a></li>
+          <li><a href="#tourneysSection" class="hover:text-[var(--text-main)] transition-colors">Torneos &amp; Llaves</a></li>
+          <li><a href="#aboutSection" class="hover:text-[var(--text-main)] transition-colors">Fundamentos de Ingeniería</a></li>
+        </ul>
+      </div>
+
+      <!-- Repositorio -->
+      <div>
+        <h5 class="text-xs font-bold uppercase tracking-wider text-[var(--text-main)] mb-3">Repositorio</h5>
+        <ul class="flex flex-col gap-2 text-xs text-[var(--text-muted)]">
+          <li><a href="https://github.com/voxtilabs/PlayMatch" target="_blank" rel="noopener" class="text-[var(--primary)] hover:underline">GitHub Oficial</a></li>
+          <li><a href="https://github.com/voxtilabs/PlayMatch/blob/main/docs/SPEC.md" target="_blank" rel="noopener" class="hover:text-[var(--text-main)] transition-colors">Especificación SPEC-001</a></li>
+          <li><a href="https://github.com/voxtilabs/PlayMatch/blob/main/docs/ISSUES.md" target="_blank" rel="noopener" class="hover:text-[var(--text-main)] transition-colors">Catálogo de 16 Issues</a></li>
+          <li><a href="https://github.com/voxtilabs/PlayMatch/blob/main/docs/BRANDING_DESIGN.md" target="_blank" rel="noopener" class="hover:text-[var(--text-main)] transition-colors">Manual de Diseño Pulso</a></li>
+        </ul>
+      </div>
+
+      <!-- Académico -->
+      <div>
+        <h5 class="text-xs font-bold uppercase tracking-wider text-[var(--text-main)] mb-3">Académico</h5>
+        <ul class="flex flex-col gap-2 text-xs text-[var(--text-muted)]">
+          <li><span class="text-[var(--text-main)] font-semibold">Duoc UC San Joaquín</span></li>
+          <li><span>Ingeniería en Informática</span></li>
+          <li><span>Proyecto Capstone APT122</span></li>
+          <li><span>Plan de 18 Semanas</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Barra Inferior -->
+    <div class="pt-6 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between text-xs text-[var(--text-muted)] gap-3">
+      <div>© 2026 PlayMatch — VoxTi Labs. Todos los derechos reservados.</div>
+      <div class="font-mono text-[11px]">Astro 4 · React Islands · GPU-Accelerated · 0 Emojis</div>
+    </div>
+  </div>
+</footer>

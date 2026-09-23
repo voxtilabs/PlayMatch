@@ -1,0 +1,137 @@
+---
+// TournamentHub.astro — Hub de Torneos Oficiales
+---
+
+<section class="py-12 border-t border-[var(--border-subtle)]" id="tourneysSection">
+  <div class="app-container">
+    
+    <!-- Banner de Inscripción -->
+    <div class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 sm:p-8 mb-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="max-w-xl">
+        <h3 class="text-xl sm:text-2xl font-black text-[var(--text-main)] mb-2">
+          Competencias Comunitarias &amp; Torneos Amateur
+        </h3>
+        <p class="text-sm text-[var(--text-body)] leading-relaxed">
+          Inscripciones centralizadas, validación de alineaciones y generación automática de llaves de eliminación directa en servidores de baja latencia.
+        </p>
+      </div>
+
+      <button class="neu-btn neu-btn-primary" onclick="alert('Formulario de registro de escuadras abierto para la Copa Santiago VALORANT.')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="8 21 12 17 16 21"></polyline>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+          <path d="M7 4H4a2 2 0 0 0-2 2v2a5 5 0 0 0 5 5h1"></path>
+          <path d="M17 4h3a2 2 0 0 1 2 2v2a5 5 0 0 1-5 5h-1"></path>
+          <rect x="7" y="2" width="10" height="11" rx="2"></rect>
+        </svg>
+        Inscribir Escuadra
+      </button>
+    </div>
+
+    <!-- Lista de Torneos Oficiales -->
+    <div class="mb-12">
+      <div class="mb-6">
+        <h2 class="text-xl font-black text-[var(--text-main)]">Torneos Oficiales en Curso</h2>
+        <p class="text-xs text-[var(--text-muted)]">Monitoreo y seguimiento de llaves en servidores de baja latencia.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        {/* Torneo 1 */}
+        <article class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col justify-between gap-5 transition-transform hover:-translate-y-1">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="neu-pill-tag rank-accent text-xs">VALORANT</span>
+              <span class="neu-pill-tag text-xs text-[var(--accent-mint)]">Inscripciones Abiertas</span>
+            </div>
+            <h4 class="text-base font-bold text-[var(--text-main)] mb-2">Copa Santiago VALORANT 5v5 — Apertura 2026</h4>
+            <p class="text-xs text-[var(--text-body)] leading-relaxed mb-4">
+              Torneo interuniversitario e interregional en servidores de Santiago. Transmisión comunitaria y seguimiento de llaves en vivo.
+            </p>
+            <ul class="flex flex-col gap-2 text-xs text-[var(--text-muted)] font-mono">
+              <li class="flex items-center gap-2">
+                <span class="text-[var(--accent-amber)] font-bold">Premio:</span> $250.000 CLP + Riot Points
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[var(--primary)] font-bold">Cupos:</span> 16 / 16 Equipos
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[var(--text-main)] font-bold">Fecha:</span> Sábado 28 de Septiembre · 16:00 CLT
+              </li>
+            </ul>
+          </div>
+          <div class="flex gap-2 pt-2 border-t border-[var(--border-subtle)]">
+            <button class="neu-btn neu-btn-primary neu-btn-sm text-xs flex-1" onclick="alert('Inscripción registrada para Copa Santiago VALORANT.')">
+              Inscripción
+            </button>
+            <a href="#bracketTree" class="neu-btn neu-btn-sm text-xs">Ver Llave</a>
+          </div>
+        </article>
+
+        {/* Torneo 2 */}
+        <article class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col justify-between gap-5 transition-transform hover:-translate-y-1">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="neu-pill-tag rank-accent text-xs">LEAGUE OF LEGENDS</span>
+              <span class="neu-pill-tag text-xs text-[var(--primary)]">Fase de Grupos</span>
+            </div>
+            <h4 class="text-base font-bold text-[var(--text-main)] mb-2">Circuito Amateur League of Legends: Grieta LAS</h4>
+            <p class="text-xs text-[var(--text-body)] leading-relaxed mb-4">
+              Competición de nivel Esmeralda-Diamante. Verificación de identidad competitiva anti-smurf y arbitraje en línea.
+            </p>
+            <ul class="flex flex-col gap-2 text-xs text-[var(--text-muted)] font-mono">
+              <li class="flex items-center gap-2">
+                <span class="text-[var(--accent-amber)] font-bold">Premio:</span> $180.000 CLP + Cofres Hextech
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[var(--primary)] font-bold">Cupos:</span> 8 / 8 Escuadras
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[var(--text-main)] font-bold">Fecha:</span> Domingo 29 de Septiembre · 17:30 CLT
+              </li>
+            </ul>
+          </div>
+          <div class="flex gap-2 pt-2 border-t border-[var(--border-subtle)]">
+            <button class="neu-btn neu-btn-primary neu-btn-sm text-xs flex-1" onclick="alert('Inscripción registrada para Grieta LAS.')">
+              Inscripción
+            </button>
+            <a href="#bracketTree" class="neu-btn neu-btn-sm text-xs">Ver Llave</a>
+          </div>
+        </article>
+
+        {/* Torneo 3 */}
+        <article class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col justify-between gap-5 transition-transform hover:-translate-y-1">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="neu-pill-tag rank-accent text-xs">COUNTER-STRIKE 2</span>
+              <span class="neu-pill-tag text-xs text-[var(--accent-amber)]">Inscripciones Próximas</span>
+            </div>
+            <h4 class="text-base font-bold text-[var(--text-main)] mb-2">Premier CS2 Cono Sur — Season 1</h4>
+            <p class="text-xs text-[var(--text-body)] leading-relaxed mb-4">
+              Servidores 128-tick simulados con latencia sub-15ms en Chile y Argentina. Sistema anti-trampas mandatario.
+            </p>
+            <ul class="flex flex-col gap-2 text-xs text-[var(--text-muted)] font-mono">
+              <li class="flex items-center gap-2">
+                <span class="text-[var(--accent-amber)] font-bold">Premio:</span> $300.000 CLP
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[var(--primary)] font-bold">Cupos:</span> 12 / 16 Equipos
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-[var(--text-main)] font-bold">Fecha:</span> Sábado 05 de Octubre · 15:00 CLT
+              </li>
+            </ul>
+          </div>
+          <div class="flex gap-2 pt-2 border-t border-[var(--border-subtle)]">
+            <button class="neu-btn neu-btn-primary neu-btn-sm text-xs flex-1" onclick="alert('Inscripción registrada para Premier CS2.')">
+              Inscripción
+            </button>
+            <a href="#bracketTree" class="neu-btn neu-btn-sm text-xs">Ver Llave</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>

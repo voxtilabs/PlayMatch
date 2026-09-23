@@ -1,0 +1,66 @@
+---
+// HeroCinematic.astro — Cabecera de Impacto Cinematográfico
+---
+
+<section class="py-12 md:py-16 relative">
+  <div class="app-container">
+    <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+      
+      <!-- Copy Cinematográfico -->
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--bg-sunken)] border border-[var(--border-subtle)] text-xs font-mono font-bold text-[var(--accent-mint)] mb-5 shadow-[var(--neu-pressed-sm)]">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          MATCHMAKING SOCIAL ASISTIDO · SERVIDORES SANTIAGO LAS
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--text-main)] tracking-tight leading-[1.15] mb-4">
+          Emparejamiento Táctico &amp; <br class="hidden sm:block"/>
+          <span class="bg-gradient-to-r from-[var(--primary)] via-[var(--accent-violet)] to-[var(--accent-mint)] bg-clip-text text-transparent">
+            Gestión de Torneos
+          </span>
+        </h1>
+
+        <p class="text-base text-[var(--text-body)] max-w-xl leading-relaxed">
+          Arquitectura orientada a conectar compañeros de equipo por afinidad horaria real, proximidad de rango y conducta intachable. Sin toxicidad, sin colas desiertas.
+        </p>
+      </div>
+
+      <!-- Cápsula de Telemetría Neumórfica -->
+      <div class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex items-center gap-6 sm:gap-8 flex-wrap">
+        <div class="flex flex-col">
+          <span class="font-mono text-2xl sm:text-3xl font-bold text-[var(--primary)]" id="livePlayerCounter">442</span>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mt-0.5">Activos Ahora</span>
+        </div>
+        
+        <div class="w-px h-10 bg-[var(--border-subtle)]"></div>
+
+        <div class="flex flex-col">
+          <span class="font-mono text-2xl sm:text-3xl font-bold text-[var(--text-main)]">98.4%</span>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mt-0.5">Afinidad Media</span>
+        </div>
+
+        <div class="w-px h-10 bg-[var(--border-subtle)]"></div>
+
+        <div class="flex flex-col">
+          <span class="font-mono text-2xl sm:text-3xl font-bold text-[var(--accent-mint)]">0.0%</span>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] mt-0.5">Tolerancia Tóxica</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  // Variación orgánica sutil de jugadores en línea
+  setInterval(() => {
+    const el = document.getElementById('livePlayerCounter');
+    if (el) {
+      const base = 438;
+      const rnd = Math.floor(Math.random() * 12);
+      el.textContent = String(base + rnd);
+    }
+  }, 8000);
+</script>

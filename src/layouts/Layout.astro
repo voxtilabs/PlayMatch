@@ -1,0 +1,44 @@
+---
+import '../styles/cinematic.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "PlayMatch — Emparejamiento Social & Gestión de Torneos",
+  description = "Plataforma de alta ingeniería y diseño cinematográfico para emparejamiento social y gestión de torneos competitivos."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es" data-mode="noche">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%230B0F19'/><polygon points='35,25 75,50 35,75' fill='%233D5AFE'/></svg>" />
+</head>
+<body>
+
+  <!-- Capas Atmosféricas Cinematográficas Aceleradas por Hardware -->
+  <div class="cinema-viewport-layers" aria-hidden="true">
+    <div class="cinema-vignette"></div>
+    <div class="cinema-tactical-grid"></div>
+    <div class="anamorphic-flare"></div>
+    <div class="anamorphic-glow-orb orb-primary"></div>
+    <div class="anamorphic-glow-orb orb-violet"></div>
+    <div class="anamorphic-glow-orb orb-mint"></div>
+  </div>
+
+  <slot />
+
+  <script is:inline>
+    // Inicialización del tema cinematográfico
+    const savedTheme = localStorage.getItem('pm_theme_mode') || 'noche';
+    document.documentElement.setAttribute('data-mode', savedTheme);
+  </script>
+</body>
+</html>

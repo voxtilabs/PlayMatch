@@ -1,0 +1,66 @@
+---
+// index.astro — Página Principal Cinematográfica de PlayMatch
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import HeroCinematic from '../components/HeroCinematic.astro';
+import MatchmakingFeed from '../components/MatchmakingFeed';
+import TournamentHub from '../components/TournamentHub.astro';
+import TournamentBracket from '../components/TournamentBracket';
+import ArchitectureSection from '../components/ArchitectureSection.astro';
+import Footer from '../components/Footer.astro';
+
+import RadarModal from '../components/RadarModal';
+import LobbyModal from '../components/LobbyModal';
+import KarmaModal from '../components/KarmaModal';
+import ProfileModal from '../components/ProfileModal';
+import ToastNotifier from '../components/ToastNotifier';
+---
+
+<Layout title="PlayMatch — Matchmaking Táctico & Torneos Amateur">
+  
+  <!-- Barra de Navegación HUD -->
+  <Navbar />
+
+  <!-- Hero Cinematográfico -->
+  <HeroCinematic />
+
+  <!-- Sección Principal: Dashboard Táctico (2 Columnas con Islas React) -->
+  <main class="app-container pb-16" id="playersSection">
+    
+    <div class="mb-6 flex items-center justify-between">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-black text-[var(--text-main)]">
+          Compañeros Disponibles por Índice de Afinidad
+        </h2>
+        <p class="text-xs text-[var(--text-muted)]">
+          Ponderación heurística basada en rango competitivo, sincronía de horarios y conducta comprobada.
+        </p>
+      </div>
+    </div>
+
+    <!-- Dashboard Táctico de 2 Columnas (Matchmaking + Preferencias + Filtros) -->
+    <MatchmakingFeed client:load />
+
+  </main>
+
+  <!-- Hub de Torneos & Llaves de Eliminación -->
+  <TournamentHub />
+  
+  <div class="app-container pb-16">
+    <TournamentBracket client:visible />
+  </div>
+
+  <!-- Sección de Ingeniería y Anteproyecto Duoc UC -->
+  <ArchitectureSection />
+
+  <!-- Pie de Página -->
+  <Footer />
+
+  <!-- Islas React de Modales y Notificaciones (Hidratadas con client:idle) -->
+  <RadarModal client:idle />
+  <LobbyModal client:idle />
+  <KarmaModal client:idle />
+  <ProfileModal client:idle />
+  <ToastNotifier client:idle />
+
+</Layout>
