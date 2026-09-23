@@ -1,76 +1,66 @@
-# Guía de Personalidad & Sistema de Diseño: Pulso Gamer — PlayMatch
+# Guía de Personalidad & Sistema de Diseño: Neumorfismo Elegante — PlayMatch
 
-> Versión 1.1 · Septiembre 2026  
-> Marca: PlayMatch · Sistema: Pulso (VoxTi Labs)
-
----
-
-## 1. Personalidad de Marca
-
-PlayMatch combina el rigor arquitectónico y minimalista de **VoxTi Labs** con la energía vibrante y táctica del mundo de los eSports. Su personalidad se define como:
-
-- **Directa y Sin Rodeos:** La interfaz prioriza la acción ("Buscar Dúo", "Inscribir Equipo"). Sin textos de relleno ni jerga burocrática.
-- **Táctica y Confiable:** Inspira seguridad competitiva y juego limpio. El sistema de karma no es punitivo sino un estándar de respeto profesional.
-- **Moderna y Dinámica:** Una atmósfera gamer sofisticada (inspirada en clientes competitivos modernos como Riot Client, Faceit y HLTV), evitando excesos estridentes o barrocos de los 2000s.
+> Versión 2.0 · Septiembre 2026  
+> Marca: PlayMatch · Sistema: Pulso Neumórfico (VoxTi Labs)
 
 ---
 
-## 2. Tipografía Oficial (Sistema Pulso)
+## 1. Filosofía Visual: Alta Calidad, Táctil & Sofisticada
 
-| Rol | Familia | Peso | Uso en PlayMatch |
+PlayMatch evoluciona hacia una estética **neumórfica táctil y de alta fidelidad** combinada con una **paleta de colores vibrantes**. Se eliminan deliberadamente las tipografías de neón, los brillos excesivos y los emojis, reemplazándolos por iconografía vectorial SVG de precisión y superficies en relieve físico:
+
+- **Sensación Táctil (Soft UI / Neumorfismo):** Los botones, tarjetas y campos de entrada poseen profundidad mediante combinaciones de luces y sombras duales cóncavas y convexas, simulando controles físicos de alta gama.
+- **Sin Efectos Neón Artificiales:** La tipografía es nítida, de alto contraste y refinada, priorizando la legibilidad ejecutiva y profesional sobre los clichés de videojuegos de los 2000s.
+- **Iconografía Exclusivamente Vectorial (Cero Emojis):** Cada acción, estado o métrica se representa mediante trazos SVG limpios (stroke-width 2px) alineados a la grilla tipográfica.
+- **Animaciones Físicas y Sutiles:** Transiciones fluidas en curvas Bezier (`cubic-bezier(0.16, 1, 0.3, 1)`) en estados de hover, presionado y modales, evitando animaciones sobrecargadas.
+
+---
+
+## 2. Paleta Cromática y Tokens Neumórficos
+
+### Modo Noche (Obsidiana Suave)
+- **Fondo General (`--bg`):** `#111520`
+- **Superficie de Tarjetas (`--bg-card`):** `#151B2A`
+- **Superficie Hundida / Inputs (`--bg-sunken`):** `#0D101A`
+- **Sombra Neumórfica Elevada (`--neu-flat`):** `8px 8px 20px #090B12, -7px -7px 18px #1A2234`
+- **Sombra Neumórfica Presionada (`--neu-pressed`):** `inset 4px 4px 9px #080A10, inset -4px -4px 9px #1D2539`
+
+### Modo Día (Arcilla / Slated Alabaster)
+- **Fondo General (`--bg`):** `#EAEFF6`
+- **Superficie de Tarjetas (`--bg-card`):** `#EBF0F8`
+- **Superficie Hundida / Inputs (`--bg-sunken`):** `#E2E7F0`
+- **Sombra Neumórfica Elevada (`--neu-flat`):** `7px 7px 16px #C8D1E0, -7px -7px 16px #FFFFFF`
+- **Sombra Neumórfica Presionada (`--neu-pressed`):** `inset 4px 4px 8px #CCD5E4, inset -4px -4px 8px #FFFFFF`
+
+### Acentos Vibrantes de Alta Energía
+- **Primario / Acción:** `#3D5AFE` (Azul ultramarino real) con gradiente `linear-gradient(145deg, #4461FF, #334EEB)`.
+- **Menta / Convivencia / Éxito:** `#00E599` (Verde menta vibrante).
+- **Violeta Táctico:** `#8B5CF6` (Acento sofisticado de rol e identidad).
+- **Ámbar / Reputación:** `#FFB300` (Evaluación de karma y honor).
+- **Coral / Destructivo:** `#FF5252` (Alertas críticas).
+
+---
+
+## 3. Tipografía Oficial
+
+| Rol | Familia | Peso | Características |
 | :--- | :--- | :---: | :--- |
-| **Display & H1** | **Outfit** | 800 | Titulares principales, hero, nombres de torneos. |
-| **H2 & H3** | **Outfit** | 700 | Títulos de sección, modales, nombres de tarjetas. |
-| **Cuerpo** | **Inter** | 400 / 500 / 600 | Descripciones, bios de jugadores, mensajes de chat y labels. |
-| **Métricas & Datos** | **JetBrains Mono** | 500 / 700 | Gamertags, porcentajes de afinidad (%), scores de brackets, horarios. |
-
-> **Regla de Oro de VoxTi:** *Outfit* nunca se usa en párrafos largos (cansa la vista). *JetBrains Mono* nunca se usa en prosa corrida; su uso es exclusivo para datos técnicos y cifras comparables.
+| **Display & H1** | **Outfit** | 800 | Titulares con carácter sin sombras difuminadas ni neón. |
+| **H2 & H3** | **Outfit** | 700 | Títulos de sección y modales limpios. |
+| **Cuerpo de Texto** | **Plus Jakarta Sans** | 500 / 600 / 700 | Lectura ultra-nítida con excelente rendimiento en pantallas. |
+| **Métricas & Datos** | **JetBrains Mono** | 500 / 700 | Gamertags, porcentajes de afinidad y marcadores de llaves. |
 
 ---
 
-## 3. Paleta Cromática y Tokens Semánticos
+## 4. Componentes Neumórficos Clave
 
-PlayMatch implementa la regla fundacional de Pulso: **ningún componente decide colores arbitrarios en hex; todo consume tokens semánticos**.
-
-### Tokens Principales (Modo Noche — Predeterminado Gamer)
-- `--bg`: `#0B0D14` (fondo profundo, evita halos excesivos).
-- `--bg-raised`: `#141826` (superficie de tarjetas de jugadores y torneos).
-- `--bg-rest`: `#1D2233` (superficie de descanso, campos e inputs secundarios).
-- `--border`: `#262C40` (delimitador sutil).
-- `--border-strong`: `#333A52` (bordes de campos activos y botones secundarios).
-- `--text`: `#EDEFF7` (titulares y datos; no blanco puro `#FFF` para reducir fatiga visual).
-- `--text-muted`: `#8189A0` (metadatos, etiquetas y subtítulos).
-
-### Tokens de Acción y Acentos Gaming
-- `--action`: `#3D5AFE` (azul primario de VoxTi Labs para acciones principales).
-- `--accent-cyan`: `#35E0D0` (cian neón para indicadores de match, alta afinidad y victorias de torneo).
-- `--accent-purple`: `#8B5CF6` (violeta eléctrico para roles, títulos y botones de acento).
-- `--warn`: `#FFB84D` / `--warn-soft`: `#2A2012` (ámbar para insignias de Karma y advertencias).
-- `--good`: `#4FD9A0` / `--good-soft`: `#10281F` (verde esmeralda para estado en línea y confirmaciones).
-- `--bad`: `#D9304F` / `--bad-soft`: `#2A141B` (destructivo o reporte de toxicidad).
-
-### Tokens en Modo Día
-En modo día, las tarjetas se separan del fondo mediante un tono suave (`--bg: #FFFFFF` y `--bg-raised: #F7F8FD`), manteniendo la misma legibilidad y contraste accesible WCAG AA.
-
----
-
-## 4. Radios y Escala de Componentes
-
-```
-Radios:
-  Botón:      999px (Pill shape absoluto, tacto ergonómico)
-  Campo:      14px (Suavidad moderna)
-  Tarjeta:    22px (Tarjetas de jugadores y torneos)
-  Contenedor: 28px (Barra de matchmaking y visualizador de brackets)
-
-Alturas mínimas:
-  Controles e inputs: 46px (Área táctil mínima accesible)
-```
-
----
-
-## 5. Tono de Voz & Textos de Interfaz
-
-- **Errores y Avisos:** Siempre indican qué sucedió y qué hacer a continuación. Nunca "Error inesperado" ni mensajes técnicos crudos.
-- **Estados Vacíos:** Comunican qué aparecerá y ofrecen la acción directa (ej: *"No encontramos jugadores con este filtro. Intenta ampliar el horario o cambiar de juego."* con botón de acción).
-- **Tratamiento:** Cercano, colaborativo y respetuoso, utilizando modismos gamers comprensibles en Chile (dúo, tryhard, chilling, coms, tilt, bracket, partida).
+1. **Botón Neumórfico Base (`.neu-btn`):**
+   - Altura mínima: 48px.
+   - Radio de curvatura: 16px.
+   - Sombra suave elevada con estado activo hundido (`--neu-pressed`) que transmite un clic mecánico realista.
+2. **Botón Primario Neumórfico (`.neu-btn-primary`):**
+   - Gradiente de color vibrante con relieve sutil superior y sombra coloreada difusa.
+3. **Selector Neumórfico Tipo Píldora (`.neu-chip`):**
+   - Estados inactivos con sombra plana exterior; al seleccionarse se deprimen hacia el fondo (`--neu-pressed-sm`).
+4. **Campos de Entrada Hundidos (`.neu-input`, `.neu-select`):**
+   - Aspecto de cavidad física suave (`--neu-pressed-sm`) que destaca naturalmente sobre la superficie elevada de la tarjeta.

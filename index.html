@@ -3,114 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PlayMatch — Matchmaking Social & Torneos Gamer</title>
-  <meta name="description" content="Plataforma web de emparejamiento social y gestión de torneos para la comunidad gamer chilena. Conecta sin toxicidad, organiza torneos y sube de rango.">
+  <title>PlayMatch — Emparejamiento Social & Gestión de Torneos</title>
+  <meta name="description" content="Plataforma de alta ingeniería para emparejamiento social y administración de torneos competitivos para la comunidad gamer.">
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%233D5AFE'/><path d='M30 50 L50 25 L70 50 L50 75 Z' fill='%2335E0D0'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%23141A27'/><polygon points='35,25 75,50 35,75' fill='%233D5AFE'/></svg>">
 </head>
 <body>
 
   <!-- ========================================================================
-       BARRA DE NAVEGACIÓN SUPERIOR (PULSO STANDARD)
+       BARRA DE NAVEGACIÓN NEUMÓRFICA
        ======================================================================== -->
   <header class="navbar">
     <div class="container nav-content">
       <a href="#" class="brand-lockup">
-        <div class="brand-logo-icon">
+        <div class="brand-icon-plate">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
           </svg>
         </div>
-        <div class="brand-name">Play<span>Match</span> <span class="badge-brand-sub">VoxTi Labs</span></div>
+        <div class="brand-name">Play<span>Match</span> <span class="badge-sub">VOXTI LABS</span></div>
       </a>
 
-      <nav>
-        <ul class="nav-links">
-          <li><button class="nav-link-btn active" id="navBtnPlayers"><span>👥</span> Buscar Compañeros</button></li>
-          <li><button class="nav-link-btn" id="navBtnTourneys"><span>🏆</span> Torneos & Brackets</button></li>
-          <li><a href="#aboutSection" class="nav-link-btn"><span>ℹ️</span> El Proyecto</a></li>
-        </ul>
+      <!-- Selector de Pestañas Tipo Pill Neumórfico -->
+      <nav class="nav-tabs-bar">
+        <button class="nav-tab-btn active" id="navBtnPlayers">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+          Compañeros
+        </button>
+        <button class="nav-tab-btn" id="navBtnTourneys">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="8 21 12 17 16 21"></polyline><line x1="12" y1="17" x2="12" y2="21"></line><path d="M7 4H4a2 2 0 0 0-2 2v2a5 5 0 0 0 5 5h1"></path><path d="M17 4h3a2 2 0 0 1 2 2v2a5 5 0 0 1-5 5h-1"></path><rect x="7" y="2" width="10" height="11" rx="2"></rect></svg>
+          Torneos & Llaves
+        </button>
+        <a href="#aboutSection" class="nav-tab-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          Arquitectura
+        </a>
       </nav>
 
       <div class="nav-actions">
-        <div class="live-status-pill" title="Jugadores activos en la plataforma">
-          <span class="pulse-dot"></span>
-          <span id="onlinePlayersCount">435 jugadores online</span>
+        <div class="live-indicator" title="Jugadores activos en servidores locales">
+          <span class="live-indicator-dot"></span>
+          <span id="onlinePlayersCount">438 jugadores activos</span>
         </div>
 
-        <button class="mode-toggle" id="themeToggleBtn" aria-label="Cambiar modo de tema día / noche" title="Alternar modo día / noche">
-          <span id="themeIcon">🌙</span>
+        <!-- Botón Neumórfico de Cambio Día/Noche -->
+        <button class="neu-icon-btn" id="themeToggleBtn" aria-label="Cambiar modo de tema" title="Alternar modo visual">
+          <span id="themeIconContainer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </span>
         </button>
 
-        <button class="btn btn-primary btn-sm" onclick="showPlayerProfile(1)">
-          <span>👤</span> Mi Perfil
+        <button class="neu-btn neu-btn-primary neu-btn-sm" onclick="showPlayerProfile(1)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          Mi Perfil
         </button>
       </div>
     </div>
   </header>
 
   <!-- ========================================================================
-       HERO & QUICK MATCHMAKER BAR
+       HERO & BARRA DE EMPAREJAMIENTO TÁCTIL
        ======================================================================== -->
   <main>
     <section class="hero-section">
       <div class="container">
-        <div class="hero-badge-tag">
-          <span>⚡</span> Matchmaking Inteligente · Cero Toxicidad · Chile & LAS
+        <div class="hero-pill-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          Matchmaking Social Asistido · Chile & Servidores LAS
         </div>
+
         <h1 class="hero-title">
-          Encuentra tu dúo ideal y compite en <span class="glow">torneos amateur</span>
+          Emparejamiento inteligente y gestión de <span class="accent-gradient">torneos amateur</span>
         </h1>
+
         <p class="hero-subtitle">
-          Deja atrás la pesadilla de la <em>solo queue</em>. PlayMatch conecta jugadores por juego, rango, horarios y nivel de convivencia verificado.
+          Arquitectura diseñada para erradicar la frustración de la cola en solitario. Filtra compañeros por afinidad horaria, cercanía de rango y conducta verificada.
         </p>
 
-        <!-- Barra Rápida de Filtros -->
-        <div class="matchmaker-bar">
+        <!-- Panel de Filtros Neumórfico -->
+        <div class="neu-filter-panel">
           <div>
-            <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.6rem;">
-              Selecciona tu juego principal
-            </span>
-            <div class="game-selector-chips">
-              <button class="game-chip active" data-game="all">🎮 Todos los juegos</button>
-              <button class="game-chip" data-game="valorant">🎯 Valorant</button>
-              <button class="game-chip" data-game="lol">⚔️ League of Legends</button>
-              <button class="game-chip" data-game="cs2">💣 Counter-Strike 2</button>
-              <button class="game-chip" data-game="rocket_league">🚗 Rocket League</button>
+            <div class="filter-section-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="4"></rect></svg>
+              Disciplina / Juego
+            </div>
+            <div class="chips-row">
+              <button class="neu-chip active" data-game="all">Todos los títulos</button>
+              <button class="neu-chip" data-game="valorant">Valorant</button>
+              <button class="neu-chip" data-game="lol">League of Legends</button>
+              <button class="neu-chip" data-game="cs2">Counter-Strike 2</button>
+              <button class="neu-chip" data-game="rocket_league">Rocket League</button>
             </div>
           </div>
 
-          <div class="filter-grid-row">
-            <div class="form-field">
-              <label for="filterSchedule">Horario habitual</label>
-              <select id="filterSchedule" class="form-select">
-                <option value="all">Cualquier horario</option>
+          <div class="filter-controls-row">
+            <div class="field-group">
+              <label for="filterSchedule" class="field-label">Disponibilidad</label>
+              <select id="filterSchedule" class="neu-select">
+                <option value="all">Cualquier franja horaria</option>
                 <option value="tardes">Tardes (18:00 - 22:00 CLT)</option>
                 <option value="noches">Noches (21:00 - 02:00 CLT)</option>
                 <option value="findes">Fines de semana</option>
               </select>
             </div>
 
-            <div class="form-field">
-              <label for="filterMic">Uso de Micrófono</label>
-              <select id="filterMic" class="form-select">
-                <option value="all">Cualquiera</option>
-                <option value="si">Micrófono obligatorio (Discord)</option>
-                <option value="opcional">Opcional / Sin mic</option>
+            <div class="field-group">
+              <label for="filterMic" class="field-label">Canal de Voz</label>
+              <select id="filterMic" class="neu-select">
+                <option value="all">Indiferente</option>
+                <option value="si">Voz requerida (Discord)</option>
+                <option value="opcional">Sin micrófono obligatorio</option>
               </select>
             </div>
 
-            <div class="form-field">
-              <label for="filterMode">Estilo de Juego</label>
-              <select id="filterMode" class="form-select">
-                <option value="all">Cualquier estilo</option>
-                <option value="ranked">Ranked / Tryhard (Competitivo)</option>
-                <option value="casual">Casual / Chilling</option>
+            <div class="field-group">
+              <label for="filterMode" class="field-label">Modalidad</label>
+              <select id="filterMode" class="neu-select">
+                <option value="all">Todas las modalidades</option>
+                <option value="ranked">Competitivo / Clasificatoria</option>
+                <option value="casual">Casual / Entrenamiento</option>
               </select>
             </div>
 
-            <button class="btn btn-cyan" id="quickMatchBtn" title="Inicia el escaneo automático de emparejamiento">
-              <span>⚡</span> Buscar Dúo Ahora
+            <button class="neu-btn neu-btn-primary" id="quickMatchBtn" title="Iniciar escaneo de afinidad">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              Buscar Compañero
             </button>
           </div>
         </div>
@@ -118,80 +135,92 @@
     </section>
 
     <!-- ======================================================================
-         SECCIÓN: COMPAÑEROS & FEED SOCIAL
+         SECCIÓN: COMPAÑEROS & FEED DE AFINIDAD
          ====================================================================== -->
     <section class="content-section" id="playersSection">
       <div class="container">
-        <div class="section-header">
-          <div class="section-title-wrap">
-            <h2><span>🎯</span> Compañeros Compatibles en tu Región</h2>
-            <p class="section-subtitle">Ordenados por nivel de compatibilidad, karma anti-toxicidad y afinidad horaria.</p>
+        <div class="section-head">
+          <div class="section-title">
+            <h2>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              Jugadores Disponibles por Índice de Afinidad
+            </h2>
+            <p class="section-desc">Ponderación multidimensional basada en rango, compatibilidad horaria y reputación comunitaria.</p>
           </div>
           <div>
-            <span class="live-status-pill" id="resultsCount">Cargando compañeros...</span>
+            <span class="live-indicator" id="resultsCount">Calculando coincidencias...</span>
           </div>
         </div>
 
-        <div class="players-grid" id="playersGrid">
+        <div class="cards-grid" id="playersGrid">
           <!-- Renderizado dinámico desde app.js -->
         </div>
       </div>
     </section>
 
     <!-- ======================================================================
-         SECCIÓN: HUB DE TORNEOS & BRACKETS (OCULTO INICIALMENTE O VÍA TAB)
+         SECCIÓN: HUB DE TORNEOS & BRACKETS (LLAVES)
          ====================================================================== -->
     <section class="content-section" id="tourneysSection" style="display: none;">
       <div class="container">
-        <div class="tournaments-header-card">
-          <div class="tournament-banner-text">
-            <h3>🏆 Torneos Amateur & Competencias Comunitarias</h3>
+        <div class="tournament-banner-plate">
+          <div>
+            <h3>Competencias Comunitarias & Torneos Amateur</h3>
             <p>
-              Inscribe a tu equipo, sigue los resultados en tiempo real y compite por premios en dinero y puntos de juego. Sin planillas de cálculo ni retrasos en Discord.
+              Inscripciones centralizadas, validación de alineaciones y generación automática de llaves de eliminación directa.
             </p>
           </div>
-          <button class="btn btn-primary" onclick="openRegisterTournamentModal('tourney-1')">
-            <span>⚔️</span> Inscribir Equipo
+          <button class="neu-btn neu-btn-primary" onclick="openRegisterTournamentModal('tourney-1')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="8 21 12 17 16 21"></polyline><line x1="12" y1="17" x2="12" y2="21"></line><path d="M7 4H4a2 2 0 0 0-2 2v2a5 5 0 0 0 5 5h1"></path><path d="M17 4h3a2 2 0 0 1 2 2v2a5 5 0 0 1-5 5h-1"></path><rect x="7" y="2" width="10" height="11" rx="2"></rect></svg>
+            Inscribir Escuadra
           </button>
         </div>
 
-        <div class="section-header">
-          <div class="section-title-wrap">
-            <h2>Torneos Destacados de la Temporada</h2>
-            <p class="section-subtitle">Validación técnica y generación automática de llaves para torneos chilenos.</p>
+        <div class="section-head">
+          <div class="section-title">
+            <h2>Torneos Oficiales en Curso</h2>
+            <p class="section-desc">Monitoreo y seguimiento de llaves en servidores de baja latencia.</p>
           </div>
         </div>
 
-        <div class="tournament-list" id="tournamentsList">
+        <div class="tourneys-grid" id="tournamentsList">
           <!-- Renderizado dinámico desde app.js -->
         </div>
 
-        <!-- Visualizador de Llaves / Brackets -->
-        <div class="bracket-wrapper" id="bracketSection">
-          <div class="bracket-title-bar">
+        <!-- Árbol de Brackets -->
+        <div class="bracket-outer-plate" id="bracketSection">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
             <div>
-              <h3>Llave en Vivo: Copa Santiago VALORANT (Fase Final)</h3>
+              <h3>Llave Oficial: Copa Santiago VALORANT (Cuadro Principal)</h3>
               <p style="color: var(--text-muted); font-size: 0.85rem;">Eliminación directa · Servidor Santiago de Chile</p>
             </div>
-            <span class="live-status-pill"><span class="pulse-dot"></span> Torneo en Curso</span>
+            <span class="live-indicator">
+              <span class="live-indicator-dot"></span> Fase Final Activa
+            </span>
           </div>
 
-          <div class="bracket-tree">
-            <!-- Cuartos de Final -->
-            <div class="bracket-round">
-              <div class="round-header">Cuartos de Final</div>
+          <div class="bracket-tree-flex">
+            <div class="bracket-column">
+              <div class="column-header-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Cuartos de Final
+              </div>
               <div id="bracketQuarterFinals" style="display: flex; flex-direction: column; gap: 1.5rem;"></div>
             </div>
 
-            <!-- Semifinales -->
-            <div class="bracket-round">
-              <div class="round-header">Semifinales</div>
+            <div class="bracket-column">
+              <div class="column-header-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Semifinales
+              </div>
               <div id="bracketSemiFinals" style="display: flex; flex-direction: column; gap: 4rem;"></div>
             </div>
 
-            <!-- Gran Final -->
-            <div class="bracket-round">
-              <div class="round-header">Gran Final</div>
+            <div class="bracket-column">
+              <div class="column-header-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="8 21 12 17 16 21"></polyline><line x1="12" y1="17" x2="12" y2="21"></line><path d="M7 4H4a2 2 0 0 0-2 2v2a5 5 0 0 0 5 5h1"></path><path d="M17 4h3a2 2 0 0 1 2 2v2a5 5 0 0 1-5 5h-1"></path><rect x="7" y="2" width="10" height="11" rx="2"></rect></svg>
+                Gran Final
+              </div>
               <div id="bracketGrandFinal" style="display: flex; flex-direction: column; justify-content: center;"></div>
             </div>
           </div>
@@ -200,39 +229,47 @@
     </section>
 
     <!-- ======================================================================
-         SECCIÓN: ACERCA DEL ANTEPROYECTO (CONTEXTO TÉCNICO & PORTAFOLIO)
+         SECCIÓN: ARQUITECTURA & ANTEPROYECTO
          ====================================================================== -->
-    <section class="content-section" id="aboutSection" style="border-top: 1px solid var(--border); background: var(--bg-raised);">
+    <section class="content-section" id="aboutSection" style="border-top: 1px solid var(--border-subtle);">
       <div class="container">
-        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-          <span class="tag-pill" style="margin-bottom: 1rem; background: var(--action-soft); color: var(--action-text);">
-            Ingeniería en Informática · Duoc UC San Joaquín
+        <div style="max-width: 820px; margin: 0 auto; text-align: center;">
+          <span class="neu-pill-tag" style="margin-bottom: 1.25rem;">
+            Ingeniería en Informática · Duoc UC San Joaquín · APT122
           </span>
-          <h2 style="margin-bottom: 1rem;">¿Por qué creamos PlayMatch?</h2>
-          <p style="color: var(--text-muted); margin-bottom: 2rem;">
-            PlayMatch nace como respuesta a dos problemas críticos del ecosistema gamer moderno: la soledad y toxicidad de la <em>solo queue</em>, y la dispersión operativa de torneos en herramientas no especializadas. 
+          <h2 style="margin-bottom: 1rem;">Fundamentos de Ingeniería de PlayMatch</h2>
+          <p style="color: var(--text-muted); margin-bottom: 2.5rem; font-size: 0.96rem;">
+            Desarrollo enfocado en transformar la experiencia social de los videojuegos y la organización de torneos competitivos mediante buenas prácticas de software, datos e infraestructura.
           </p>
 
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; text-align: left;">
-            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 18px; padding: 1.5rem;">
-              <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🛡️</div>
-              <h4 style="margin-bottom: 0.5rem;">Anti-Toxicidad</h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.75rem; text-align: left;">
+            <div class="neu-card" style="padding: 1.5rem;">
+              <div style="width: 36px; height: 36px; margin-bottom: 0.75rem; color: var(--accent-mint);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
+              <h4 style="margin-bottom: 0.4rem;">Sistema de Convivencia</h4>
               <p style="font-size: 0.85rem; color: var(--text-muted);">
-                Sistema de Karma y reputación comunitaria que premia el juego limpio y aísla jugadores tóxicos.
+                Métrica de Karma ponderada que premia el comportamiento responsable y aísla conductas no deportivas.
               </p>
             </div>
-            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 18px; padding: 1.5rem;">
-              <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⚡</div>
-              <h4 style="margin-bottom: 0.5rem;">Matchmaking Social</h4>
+
+            <div class="neu-card" style="padding: 1.5rem;">
+              <div style="width: 36px; height: 36px; margin-bottom: 0.75rem; color: var(--primary);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </div>
+              <h4 style="margin-bottom: 0.4rem;">Scoring Multidimensional</h4>
               <p style="font-size: 0.85rem; color: var(--text-muted);">
-                Algoritmo de compatibilidad multidimensional: rango, horarios, comunicación y modo de juego.
+                Algoritmo heurístico que contrasta solapamiento de horarios semanales, roles tácticos y proximidad de división.
               </p>
             </div>
-            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 18px; padding: 1.5rem;">
-              <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🏅</div>
-              <h4 style="margin-bottom: 0.5rem;">Gestión de Torneos</h4>
+
+            <div class="neu-card" style="padding: 1.5rem;">
+              <div style="width: 36px; height: 36px; margin-bottom: 0.75rem; color: var(--accent-amber);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="8 21 12 17 16 21"></polyline><line x1="12" y1="17" x2="12" y2="21"></line><path d="M7 4H4a2 2 0 0 0-2 2v2a5 5 0 0 0 5 5h1"></path><path d="M17 4h3a2 2 0 0 1 2 2v2a5 5 0 0 1-5 5h-1"></path><rect x="7" y="2" width="10" height="11" rx="2"></rect></svg>
+              </div>
+              <h4 style="margin-bottom: 0.4rem;">Gestión Centralizada</h4>
               <p style="font-size: 0.85rem; color: var(--text-muted);">
-                Inscripciones centralizadas, validación de plantillas y brackets automáticos en tiempo real.
+                Automatización de plantillas de torneo y llaves de enfrentamiento en sustitución de planillas manuales.
               </p>
             </div>
           </div>
@@ -242,210 +279,248 @@
   </main>
 
   <!-- ========================================================================
-       MODALES INTERACTIVOS
+       MODALES NEUMÓRFICOS INTERACTIVOS
        ======================================================================== -->
 
-  <!-- 1. Modal Radar de Matchmaking -->
-  <div class="modal-backdrop" id="radarModal">
-    <div class="modal-dialog" style="max-width: 440px;">
-      <div class="radar-search-modal">
-        <div class="radar-circle">
-          <div class="radar-sweep"></div>
-          <span style="font-size: 2.5rem; z-index: 2;">⚡</span>
+  <!-- 1. Modal Radar de Emparejamiento Rápido -->
+  <div class="neu-modal-backdrop" id="radarModal">
+    <div class="neu-modal-card" style="max-width: 440px;">
+      <div class="radar-stage">
+        <div class="radar-dish-neu">
+          <div class="radar-subtle-ring"></div>
+          <div style="width: 38px; height: 38px; color: var(--primary);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
         </div>
-        <h3 id="radarTitle">Buscando Dúo Compatible</h3>
-        <p id="radarStatusText" style="color: var(--text-muted); font-size: 0.9rem;">
-          Escaneando jugadores activos en Chile con rango y horarios afines...
+        <h3 id="radarTitle" style="font-size: 1.25rem;">Búsqueda Inteligente de Compañero</h3>
+        <p id="radarStatusText" style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.5;">
+          Evaluando candidatos activos con proximidad de elo y compatibilidad de franja horaria...
         </p>
-        <button class="btn btn-secondary btn-sm" onclick="closeRadarModal()">Cancelar Búsqueda</button>
+        <button class="neu-btn neu-btn-sm" onclick="closeRadarModal()">Cancelar Búsqueda</button>
       </div>
     </div>
   </div>
 
-  <!-- 2. Modal Sala de Lobby & Chat de Coordinación -->
-  <div class="modal-backdrop" id="lobbyModal">
-    <div class="modal-dialog">
-      <div class="modal-header">
+  <!-- 2. Modal Sala de Coordinación & Mensajería -->
+  <div class="neu-modal-backdrop" id="lobbyModal">
+    <div class="neu-modal-card">
+      <div class="neu-modal-head">
         <div>
-          <h3>Sala de Coordinación PlayMatch</h3>
-          <span style="font-size: 0.8rem; color: var(--good-text); font-family: 'JetBrains Mono', monospace;">● Canal Seguro Activo</span>
+          <h3>Sala de Coordinación Privada</h3>
+          <span style="font-size: 0.78rem; color: var(--accent-mint); font-family: 'JetBrains Mono', monospace;">Canal de comunicación seguro</span>
         </div>
-        <button class="modal-close-btn" onclick="closeLobbyModal()" aria-label="Cerrar sala">✕</button>
+        <button class="neu-icon-btn neu-btn-sm" onclick="closeLobbyModal()" aria-label="Cerrar ventana">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
       </div>
 
-      <div class="modal-body">
-        <div class="lobby-roster">
-          <!-- Mi Jugador -->
-          <div class="roster-card">
-            <div class="avatar" style="color: var(--action);">TÚ</div>
+      <div class="neu-modal-body">
+        <div class="duo-roster-split">
+          <div class="roster-member-plate">
+            <div class="member-avatar">TÚ</div>
             <div>
               <strong style="font-size: 0.9rem;">Gamer VoxTi</strong>
               <div class="font-mono" style="font-size: 0.75rem; color: var(--text-muted);">VoxTiPlayer#CL</div>
-              <span class="tag-pill" style="font-size: 0.7rem; padding: 2px 6px; background: var(--good-soft); color: var(--good-text);">Listo</span>
+              <span class="neu-pill-tag" style="font-size: 0.68rem; margin-top: 2px;">En línea</span>
             </div>
           </div>
 
-          <!-- Compañero -->
-          <div class="roster-card">
-            <div class="avatar" id="lobbyPartnerAvatar" style="color: var(--accent-purple);">IS</div>
+          <div class="roster-member-plate">
+            <div class="member-avatar" id="lobbyPartnerAvatar" style="color: var(--accent-violet);">IS</div>
             <div>
               <strong id="lobbyPartnerName" style="font-size: 0.9rem;">Ignacio Silva</strong>
               <div class="font-mono" id="lobbyPartnerTag" style="font-size: 0.75rem; color: var(--text-muted);">NachoViper#LAS</div>
-              <span class="tag-pill" style="font-size: 0.7rem; padding: 2px 6px; background: var(--good-soft); color: var(--good-text);">Conectado</span>
+              <span class="neu-pill-tag" style="font-size: 0.68rem; margin-top: 2px; color: var(--accent-mint);">Conectado</span>
             </div>
           </div>
         </div>
 
-        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-          <button class="btn btn-secondary btn-sm" onclick="copyGamerTag()">📋 Copiar Gamertag</button>
-          <button class="btn btn-secondary btn-sm" onclick="copyDiscordTag()">🎧 Copiar Discord</button>
+        <div style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+          <button class="neu-btn neu-btn-sm" onclick="copyGamerTag()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            Copiar Gamertag
+          </button>
+          <button class="neu-btn neu-btn-sm" onclick="copyDiscordTag()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+            Copiar Discord ID
+          </button>
         </div>
 
-        <!-- Chat en Vivo -->
-        <div class="chat-box-container" id="chatMessagesContainer">
-          <!-- Mensajes dinámicos -->
+        <div class="chat-thread-container" id="chatMessagesContainer"></div>
+
+        <div class="chat-entry-bar">
+          <input type="text" id="chatInput" class="neu-input" placeholder="Coordinar sala o servidor..." style="flex: 1;" onkeydown="if(event.key==='Enter') sendChatMessage()">
+          <button class="neu-btn neu-btn-primary" onclick="sendChatMessage()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            Enviar
+          </button>
         </div>
 
-        <div class="chat-input-bar">
-          <input type="text" id="chatInput" class="form-input" placeholder="Escribe un mensaje para coordinar partida..." style="flex: 1;" onkeydown="if(event.key==='Enter') sendChatMessage()">
-          <button class="btn btn-primary" onclick="sendChatMessage()">Enviar</button>
-        </div>
-
-        <div style="border-top: 1px solid var(--border); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-size: 0.8rem; color: var(--text-muted);">¿Finalizaste la partida con este compañero?</span>
-          <button class="btn btn-accent btn-sm" onclick="finishMatchAndRate()">
-            <span>⭐</span> Calificar Karma
+        <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.82rem; color: var(--text-muted);">¿Partida concluida con este compañero?</span>
+          <button class="neu-btn neu-btn-mint neu-btn-sm" onclick="finishMatchAndRate()">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            Calificar Experiencia
           </button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 3. Modal de Calificación de Karma / Honor -->
-  <div class="modal-backdrop" id="karmaModal">
-    <div class="modal-dialog" style="max-width: 480px;">
-      <div class="modal-header">
-        <h3>Calificar Experiencia con <span id="karmaPlayerName">Jugador</span></h3>
-        <button class="modal-close-btn" onclick="closeKarmaModal()">✕</button>
+  <!-- 3. Modal de Calificación de Karma / Honor (Sin Emojis) -->
+  <div class="neu-modal-backdrop" id="karmaModal">
+    <div class="neu-modal-card" style="max-width: 480px;">
+      <div class="neu-modal-head">
+        <h3>Evaluación de Convivencia: <span id="karmaPlayerName">Jugador</span></h3>
+        <button class="neu-icon-btn neu-btn-sm" onclick="closeKarmaModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
       </div>
-      <div class="modal-body" style="text-align: center;">
-        <p style="font-size: 0.9rem; color: var(--text-muted);">
-          Tus votos impactan directamente en el sistema de reputación para mantener una comunidad sana y libre de toxicidad.
+      <div class="neu-modal-body" style="text-align: center;">
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          El índice de Karma recompensa la deportividad y mantiene una plataforma libre de conductas tóxicas.
         </p>
 
-        <div style="font-size: 2rem; margin: 1rem 0; cursor: pointer;">
-          ⭐⭐⭐⭐⭐
+        <!-- Selector de Estrellas SVG Neumórfico -->
+        <div style="display: flex; justify-content: center; gap: 0.5rem; margin: 1rem 0;">
+          <span style="color: var(--accent-amber); width: 28px; height: 28px; cursor: pointer;">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </span>
+          <span style="color: var(--accent-amber); width: 28px; height: 28px; cursor: pointer;">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </span>
+          <span style="color: var(--accent-amber); width: 28px; height: 28px; cursor: pointer;">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </span>
+          <span style="color: var(--accent-amber); width: 28px; height: 28px; cursor: pointer;">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </span>
+          <span style="color: var(--accent-amber); width: 28px; height: 28px; cursor: pointer;">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </span>
         </div>
 
-        <div style="display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
-          <label style="font-size: 0.85rem; font-weight: 600;">Reconoce sus virtudes en partida:</label>
+        <div style="display: flex; flex-direction: column; gap: 0.65rem; text-align: left;">
+          <label style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted);">
+            Reconocimientos otorgados
+          </label>
           <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-            <button class="btn btn-secondary btn-sm">🛡️ Cero Toxicidad</button>
-            <button class="btn btn-secondary btn-sm">🎙️ Gran Comunicación</button>
-            <button class="btn btn-secondary btn-sm">🎯 Buen Nivel / Shotcaller</button>
-            <button class="btn btn-secondary btn-sm">⏰ Puntual y Paciente</button>
+            <button class="neu-btn neu-btn-sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              Conducta Impecable
+            </button>
+            <button class="neu-btn neu-btn-sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path></svg>
+              Comunicación Clara
+            </button>
+            <button class="neu-btn neu-btn-sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              Puntualidad
+            </button>
           </div>
         </div>
 
-        <button class="btn btn-primary" style="margin-top: 1.5rem; width: 100%;" onclick="submitKarmaFeedback()">
-          Enviar Honor & Calificación
+        <button class="neu-btn neu-btn-primary" style="margin-top: 1.5rem; width: 100%;" onclick="submitKarmaFeedback()">
+          Confirmar Evaluación
         </button>
       </div>
     </div>
   </div>
 
   <!-- 4. Modal de Inscripción a Torneo -->
-  <div class="modal-backdrop" id="registerTournamentModal">
-    <div class="modal-dialog" style="max-width: 480px;">
-      <div class="modal-header">
-        <h3 id="registerTournamentTitle">Inscripción a Torneo</h3>
-        <button class="modal-close-btn" onclick="closeRegisterTournamentModal()">✕</button>
+  <div class="neu-modal-backdrop" id="registerTournamentModal">
+    <div class="neu-modal-card" style="max-width: 480px;">
+      <div class="neu-modal-head">
+        <h3 id="registerTournamentTitle">Registro de Escuadra</h3>
+        <button class="neu-icon-btn neu-btn-sm" onclick="closeRegisterTournamentModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
       </div>
-      <div class="modal-body">
-        <div class="form-field">
-          <label for="teamNameInput">Nombre de tu Equipo / Escuadra</label>
-          <input type="text" id="teamNameInput" class="form-input" placeholder="Ej: Santiago Sentinels">
+      <div class="neu-modal-body">
+        <div class="field-group">
+          <label for="teamNameInput" class="field-label">Denominación del Equipo</label>
+          <input type="text" id="teamNameInput" class="neu-input" placeholder="Ej: Santiago Sentinels">
         </div>
-        <div class="form-field">
-          <label for="captainDiscord">Discord del Capitán</label>
-          <input type="text" id="captainDiscord" class="form-input" placeholder="usuario_discord#0000">
+        <div class="field-group">
+          <label for="captainDiscord" class="field-label">Contacto Discord del Capitán</label>
+          <input type="text" id="captainDiscord" class="neu-input" placeholder="usuario_discord#0000">
         </div>
-        <div class="form-field">
-          <label for="regAgreement">Reglamento del Torneo</label>
-          <div style="font-size: 0.8rem; color: var(--text-muted); background: var(--bg); padding: 0.75rem; border-radius: 12px; border: 1px solid var(--border);">
-            Al inscribirte te comprometes a presentarte con 15 minutos de anticipación en el servidor de juego y respetar el código de conducta ético de PlayMatch.
+        <div class="field-group">
+          <label class="field-label">Compromiso de Participación</label>
+          <div style="font-size: 0.82rem; color: var(--text-muted); background: var(--bg-sunken); box-shadow: var(--neu-pressed-sm); padding: 0.85rem; border-radius: 14px;">
+            La confirmación implica asistencia puntual en el servidor asignado y acatamiento de las directrices del reglamento de competición de PlayMatch.
           </div>
         </div>
-        <button class="btn btn-primary" style="width: 100%;" onclick="confirmTournamentRegistration()">
-          Confirmar Inscripción Oficial
+        <button class="neu-btn neu-btn-primary" style="width: 100%;" onclick="confirmTournamentRegistration()">
+          Registrar Escuadra
         </button>
       </div>
     </div>
   </div>
 
-  <!-- 5. Modal de Perfil Gamer Detallado -->
-  <div class="modal-backdrop" id="profileModal">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <h3>Ficha del Jugador</h3>
-        <button class="modal-close-btn" onclick="closeProfileModal()">✕</button>
+  <!-- 5. Modal de Ficha de Jugador -->
+  <div class="neu-modal-backdrop" id="profileModal">
+    <div class="neu-modal-card">
+      <div class="neu-modal-head">
+        <h3>Ficha Técnica del Jugador</h3>
+        <button class="neu-icon-btn neu-btn-sm" onclick="closeProfileModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
       </div>
-      <div class="modal-body" id="profileModalBody">
-        <!-- Renderizado dinámico desde app.js -->
-      </div>
+      <div class="neu-modal-body" id="profileModalBody"></div>
     </div>
   </div>
 
   <!-- ========================================================================
-       FOOTER (PULSO STANDARD)
+       FOOTER NEUMÓRFICO
        ======================================================================== -->
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
+      <div class="footer-columns">
+        <div>
           <div class="brand-name">Play<span>Match</span></div>
-          <p>
-            Plataforma web de emparejamiento social y gestión de torneos amateur para la comunidad gamer chilena.
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0.75rem; max-width: 320px; line-height: 1.6;">
+            Plataforma de emparejamiento social y gestión de torneos amateur para la comunidad de jugadores en Chile.
           </p>
-          <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
+          <div style="margin-top: 1rem; font-size: 0.78rem; color: var(--text-muted);">
             Desarrollado bajo los lineamientos de arquitectura y diseño de <strong>VoxTi Labs</strong>.
           </div>
         </div>
 
-        <div class="footer-col">
-          <h4>Plataforma</h4>
-          <ul>
-            <li><a href="#playersSection">Buscar Compañeros</a></li>
-            <li><a href="#tourneysSection">Torneos & Brackets</a></li>
-            <li><a href="#" onclick="showPlayerProfile(1); return false;">Mi Perfil Gamer</a></li>
-            <li><a href="#" onclick="triggerRadarSearch(); return false;">Radar de Matchmaking</a></li>
+        <div>
+          <div class="footer-column-title">Navegación</div>
+          <ul class="footer-links-nav">
+            <li><a href="#playersSection">Compañeros Disponibles</a></li>
+            <li><a href="#tourneysSection">Torneos & Llaves</a></li>
+            <li><a href="#" onclick="showPlayerProfile(1); return false;">Ficha de Jugador</a></li>
+            <li><a href="#" onclick="triggerRadarSearch(); return false;">Búsqueda Inteligente</a></li>
           </ul>
         </div>
 
-        <div class="footer-col">
-          <h4>Comunidad</h4>
-          <ul>
-            <li><a href="https://github.com/voxtilabs/PlayMatch" target="_blank" rel="noopener">GitHub Repositorio</a></li>
-            <li><a href="#">Código de Conducta</a></li>
-            <li><a href="#">Sistema de Karma</a></li>
-            <li><a href="#">Servidores Locales</a></li>
+        <div>
+          <div class="footer-column-title">Repositorio</div>
+          <ul class="footer-links-nav">
+            <li><a href="https://github.com/voxtilabs/PlayMatch" target="_blank" rel="noopener">GitHub Oficial</a></li>
+            <li><a href="#">Especificación SPEC-001</a></li>
+            <li><a href="#">Catálogo de Issues</a></li>
+            <li><a href="#">Manual de Diseño</a></li>
           </ul>
         </div>
 
-        <div class="footer-col">
-          <h4>Proyecto APT</h4>
-          <ul>
+        <div>
+          <div class="footer-column-title">Académico</div>
+          <ul class="footer-links-nav">
             <li><a href="#">Duoc UC San Joaquín</a></li>
             <li><a href="#">Ingeniería en Informática</a></li>
-            <li><a href="#">Carta Gantt (18 semanas)</a></li>
-            <li><a href="#">Documentación Técnica</a></li>
+            <li><a href="#">Proyecto Capstone APT122</a></li>
+            <li><a href="#">Plan de 18 Semanas</a></li>
           </ul>
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <div>© 2026 PlayMatch — Un producto de VoxTi Labs. Todos los derechos reservados.</div>
-        <div class="font-mono">Sistema de Diseño Pulso v1.1 · Modo Dual Día/Noche</div>
+      <div class="footer-sub-bar">
+        <div>© 2026 PlayMatch — VoxTi Labs. Todos los derechos reservados.</div>
+        <div class="font-mono">Sistema Neumórfico Pulso v2.0 · Diseño Sin Neón</div>
       </div>
     </div>
   </footer>

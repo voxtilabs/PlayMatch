@@ -1,52 +1,73 @@
 /**
- * PlayMatch — Aplicación Web Preliminar
- * VoxTi Labs · Sistema Pulso · Septiembre 2026
+ * PlayMatch — Lógica de Aplicación
+ * VoxTi Labs · Versión 2.0 · Neumorfismo Elegante & SVGs Limpios (Cero Emojis)
  */
 
 // ============================================================================
-// 1. Base de Datos Mock (Jugadores, Torneos y Brackets)
+// 1. Catálogo de Iconos SVG Vectoriales (Sin Emojis)
+// ============================================================================
+
+const ICONS = {
+  lightning: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`,
+  users: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
+  trophy: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 21 12 17 16 21"></polyline><line x1="12" y1="17" x2="12" y2="21"></line><path d="M7 4H4a2 2 0 0 0-2 2v2a5 5 0 0 0 5 5h1"></path><path d="M17 4h3a2 2 0 0 1 2 2v2a5 5 0 0 1-5 5h-1"></path><rect x="7" y="2" width="10" height="11" rx="2"></rect></svg>`,
+  star: `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`,
+  mic: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>`,
+  clock: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
+  shield: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
+  check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`,
+  sun: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`,
+  moon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`,
+  gamepad: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><line x1="15" y1="13" x2="15.01" y2="13"></line><line x1="18" y1="11" x2="18.01" y2="11"></line><rect x="2" y="6" width="20" height="12" rx="4"></rect></svg>`,
+  send: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>`,
+  copy: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`,
+  bell: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>`
+};
+
+// ============================================================================
+// 2. Base de Datos Mock
 // ============================================================================
 
 const MOCK_PLAYERS = [
   {
     id: 1,
-    name: "Ignacio 'Nacho' Silva",
+    name: "Ignacio Silva",
     gamertag: "NachoViper#LAS",
     game: "valorant",
     rank: "Ascendente 2",
     role: "Iniciador / Sova",
-    schedule: "noches", // tardes, noches, findes
+    schedule: "noches",
     scheduleText: "Noches (21:00 - 01:00 CLT)",
     mode: "ranked",
     mic: "si",
     karma: 4.95,
-    honors: ["Cero Tilt", "Shotcaller", "Puntual"],
-    bio: "Main Sova y Fade en LAS. Busco dúo para subir a Inmortal sin rage ni toxicidad. Muy comunicativo por Discord.",
+    honors: ["Conducta Impecable", "Liderazgo Tactico", "Puntualidad"],
+    bio: "Especialista en iniciación y reconocimiento en servidores de Santiago. Busco dúo con comunicación sólida para escalar a Inmortal.",
     avatarText: "IS",
     winRate: "62%",
     matchesCount: 142
   },
   {
     id: 2,
-    name: "Camila 'Mila' Rojas",
+    name: "Camila Rojas",
     gamertag: "MilaStar#LAS",
     game: "lol",
     rank: "Esmeralda 1",
-    role: "Support / Enchanter",
+    role: "Soporte / Utilidad",
     schedule: "tardes",
     scheduleText: "Tardes (18:00 - 22:00 CLT)",
     mode: "ranked",
     mic: "si",
     karma: 5.0,
-    honors: ["Compañera de Oro", "Buena Vibra", "Paciencia 100%"],
-    bio: "Main Nami, Lulu y Taliyah. Jugadora de Santiago. Busco ADC serio para escalar a Diamante y torneos amateur de fin de semana.",
+    honors: ["Espiritu de Equipo", "Paciencia Plena", "Buena Coordinacion"],
+    bio: "Main Nami, Lulu y Taliyah en LAS. Busco ADC coordinado para escalar a Diamante y competir en torneos comunitarios.",
     avatarText: "CR",
     winRate: "58%",
     matchesCount: 210
   },
   {
     id: 3,
-    name: "Matías 'Darko' Morales",
+    name: "Matias Morales",
     gamertag: "DarkoCS#CL",
     game: "cs2",
     rank: "15,800 CS Rating",
@@ -56,33 +77,33 @@ const MOCK_PLAYERS = [
     mode: "ranked",
     mic: "si",
     karma: 4.88,
-    honors: ["Coms Claras", "Líder Táctico"],
-    bio: "Ex-competidor de torneos locales. Busco trío o squad para Premier en servidores de Chile/Brasil. Micrófono nítido obligatorio.",
+    honors: ["Coms Claras", "Juego Colectivo"],
+    bio: "Ex-competidor de ligas locales. Busco trío o escuadra para Premier con servidores de baja latencia en Chile.",
     avatarText: "MM",
     winRate: "55%",
     matchesCount: 320
   },
   {
     id: 4,
-    name: "Valentina 'Valu' Vega",
+    name: "Valentina Vega",
     gamertag: "ValuAerial#CL",
     game: "rocket_league",
-    rank: "Campeón 2",
-    role: "Rotation / Passer",
+    rank: "Campeon 2",
+    role: "Rotacion y Asistencias",
     schedule: "findes",
     scheduleText: "Fines de semana y tardes",
     mode: "casual",
     mic: "opcional",
     karma: 4.92,
-    honors: ["Pases Limpios", "Cero Toxicidad"],
-    bio: "Juego 2v2 y 3v3 por diversión y para mejorar pases aéreos. Cero tilteo si cometemos errores. Buena onda ante todo.",
+    honors: ["Juego Limpio", "Solidaridad en Partida"],
+    bio: "Partidas 2v2 y 3v3 orientadas a mejorar mecanicas de rotacion y juego aereo. Ambiente sereno y libre de frustracion.",
     avatarText: "VV",
     winRate: "59%",
     matchesCount: 95
   },
   {
     id: 5,
-    name: "Sebastián 'Basti' Henríquez",
+    name: "Sebastian Henriquez",
     gamertag: "BastiJg#LAS",
     game: "lol",
     rank: "Platino 2",
@@ -92,15 +113,15 @@ const MOCK_PLAYERS = [
     mode: "ranked",
     mic: "si",
     karma: 4.85,
-    honors: ["Objetivos Claros", "No Tiltea"],
-    bio: "Priorizo dragones y ganks temprano. Busco Mid o Toplaner coordinado para dúo en LAS. Duoc UC San Joaquín.",
+    honors: ["Control de Objetivos", "Mentalidad Firme"],
+    bio: "Prioridad en vision de mapa y aseguramiento de objetivos tempranos. Busco linea central solida para emparejamiento constante.",
     avatarText: "SH",
     winRate: "54%",
     matchesCount: 88
   },
   {
     id: 6,
-    name: "Fernanda 'Fer' Lagos",
+    name: "Fernanda Lagos",
     gamertag: "FerDuelist#99",
     game: "valorant",
     rank: "Diamante 3",
@@ -110,8 +131,8 @@ const MOCK_PLAYERS = [
     mode: "ranked",
     mic: "si",
     karma: 4.9,
-    honors: ["Entry Preciso", "Gran Aim", "Respetuosa"],
-    bio: "Enfocada en subir a Ascendente. Juego limpio, reporto toxicidad inmediatamente y priorizo la buena vibra del equipo.",
+    honors: ["Apertura de Sitio", "Excelente Comunicacion"],
+    bio: "Enfocada en transicionar a Ascendente. Juego responsable, respeto mutuo y alta disciplina en rondas de compra economica.",
     avatarText: "FL",
     winRate: "61%",
     matchesCount: 167
@@ -121,31 +142,29 @@ const MOCK_PLAYERS = [
 const MOCK_TOURNAMENTS = [
   {
     id: "tourney-1",
-    title: "Copa Santiago VALORANT 5v5 — Edición Primavera 2026",
+    title: "Copa Santiago VALORANT 5v5 — Apertura 2026",
     game: "VALORANT",
     gameCode: "valorant",
     status: "Inscripciones Abiertas",
-    statusClass: "badge-open",
     prize: "$250.000 CLP + Riot Points",
-    date: "Sábado 28 de Septiembre · 16:00 CLT",
-    teamsCount: "12 / 16 Equipos",
-    mode: "Eliminación Directa (Bo1 / Bo3 Final)",
+    date: "Sabado 28 de Septiembre · 16:00 CLT",
+    teamsCount: "12 / 16 Escuadras",
+    mode: "Eliminacion Directa (Bo1 / Bo3 Final)",
     server: "Santiago (Chile / LAS)",
-    description: "Torneo abierto para escuadras amateur y universitarias. Transmisión comunitaria y anti-cheat estricto."
+    description: "Competencia oficial para escuadras amateur y universitarias. Validacion de plantillas y transmision comunitaria."
   },
   {
     id: "tourney-2",
-    title: "Torneo Relámpago LoL Grieta del Invocador",
+    title: "Torneo Grieta del Invocador — Primavera",
     game: "League of Legends",
     gameCode: "lol",
-    status: "Fase de Cuartos en Vivo",
-    statusClass: "badge-live",
+    status: "Fase de Cuartos en Curso",
     prize: "$150.000 CLP",
-    date: "En progreso",
-    teamsCount: "8 Equipos",
+    date: "En desarrollo",
+    teamsCount: "8 Escuadras",
     mode: "Llave de 8 (Bo3)",
     server: "Servidor LAS",
-    description: "Competencia de fin de semana para jugadores oro a retador sin equipos profesionales."
+    description: "Enfocado en escuadras locales sin participacion profesional previa. Reglas de torneo de alta disciplina."
   },
   {
     id: "tourney-3",
@@ -153,45 +172,43 @@ const MOCK_TOURNAMENTS = [
     game: "Counter-Strike 2",
     gameCode: "cs2",
     status: "Inscripciones Abiertas",
-    statusClass: "badge-open",
-    prize: "$100.000 CLP + Skins",
+    prize: "$100.000 CLP + Trofeos",
     date: "Viernes 04 de Octubre · 20:00 CLT",
-    teamsCount: "6 / 8 Equipos",
+    teamsCount: "6 / 8 Escuadras",
     mode: "Formato Suizo",
-    server: "Servidores 128 Tick Chile",
-    description: "Enfocado en medir el nivel táctico de escuadras locales con sistema de veto de mapas MR12."
+    server: "Servidores Oficiales Chile",
+    description: "Certamen tactico estructurado con sistema de veto de mapas MR12 y grabacion obligatoria de demostraciones."
   }
 ];
 
 const MOCK_BRACKET = {
   quarterFinals: [
-    { teamA: "Los Cóndores Gaming", scoreA: 13, teamB: "Valparaíso Vipers", scoreB: 9, winner: "A" },
-    { teamA: "Duoc San Joaquín eSports", scoreA: 13, teamB: "Araucanía Tactics", scoreB: 11, winner: "A" },
-    { teamA: "Biobío Blasters", scoreA: 8, teamB: "Antofagasta Aces", scoreB: 13, winner: "B" },
+    { teamA: "Los Condores Gaming", scoreA: 13, teamB: "Valparaiso Vipers", scoreB: 9, winner: "A" },
+    { teamA: "Duoc San Joaquin eSports", scoreA: 13, teamB: "Araucania Tactics", scoreB: 11, winner: "A" },
+    { teamA: "Biobio Blasters", scoreA: 8, teamB: "Antofagasta Aces", scoreB: 13, winner: "B" },
     { teamA: "Santiago Sentinels", scoreA: 13, teamB: "Punta Arenas Frost", scoreB: 4, winner: "A" }
   ],
   semiFinals: [
-    { teamA: "Los Cóndores Gaming", scoreA: 2, teamB: "Duoc San Joaquín eSports", scoreB: 1, winner: "A" },
+    { teamA: "Los Condores Gaming", scoreA: 2, teamB: "Duoc San Joaquin eSports", scoreB: 1, winner: "A" },
     { teamA: "Antofagasta Aces", scoreA: 0, teamB: "Santiago Sentinels", scoreB: 2, winner: "B" }
   ],
   grandFinal: {
-    teamA: "Los Cóndores Gaming",
+    teamA: "Los Condores Gaming",
     scoreA: 1,
     teamB: "Santiago Sentinels",
     scoreB: 2,
     winner: "B",
-    champion: "Santiago Sentinels (Campeón 🏆)"
+    champion: "Santiago Sentinels (Campeon Oficial)"
   }
 };
 
 // ============================================================================
-// 2. Estado de la Aplicación (Local Reactive State)
+// 3. Estado de la Aplicación
 // ============================================================================
 
 const state = {
   activeTab: "players",
   selectedGame: "all",
-  filterRank: "all",
   filterSchedule: "all",
   filterMic: "all",
   filterMode: "all",
@@ -208,7 +225,7 @@ const state = {
 };
 
 // ============================================================================
-// 3. Inicialización y Gestión de Modo Día / Noche (Tokens Pulso)
+// 4. Inicialización
 // ============================================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -237,16 +254,15 @@ function initTheme() {
 function applyTheme(mode) {
   document.documentElement.setAttribute("data-mode", mode);
   localStorage.setItem("pm_theme_mode", mode);
-  const icon = document.getElementById("themeIcon");
-  if (icon) {
-    icon.textContent = mode === "noche" ? "🌙" : "☀️";
+  const container = document.getElementById("themeIconContainer");
+  if (container) {
+    container.innerHTML = mode === "noche" ? ICONS.moon : ICONS.sun;
   }
 }
 
 function updateOnlineCounter() {
   const onlineCount = document.getElementById("onlinePlayersCount");
   if (onlineCount) {
-    // Variación realista de jugadores chilenos conectados
     const base = 428;
     const variation = Math.floor(Math.random() * 15);
     onlineCount.textContent = `${base + variation} jugadores online`;
@@ -254,29 +270,16 @@ function updateOnlineCounter() {
 }
 
 // ============================================================================
-// 4. Algoritmo de Compatibilidad & Renderizado de Jugadores
+// 5. Motor de Afinidad y Renderizado de Jugadores
 // ============================================================================
 
 function calculateCompatibility(player) {
-  let score = 75; // base
-
-  // Si coincide en juego preferido
-  if (state.selectedGame !== "all" && player.game === state.selectedGame) {
-    score += 12;
-  } else if (player.game === state.currentUser.preferredGame) {
-    score += 10;
-  }
-
-  // Compatibilidad por horario
+  let score = 75;
+  if (state.selectedGame !== "all" && player.game === state.selectedGame) score += 12;
+  else if (player.game === state.currentUser.preferredGame) score += 10;
   if (player.schedule === "noches") score += 6;
-
-  // Compatibilidad por micrófono
   if (player.mic === "si") score += 5;
-
-  // Bonus de karma
   if (player.karma >= 4.9) score += 4;
-
-  // Tope en 99%
   return Math.min(score, 99);
 }
 
@@ -294,16 +297,16 @@ function renderPlayers() {
 
   const countBadge = document.getElementById("resultsCount");
   if (countBadge) {
-    countBadge.textContent = `${filtered.length} compañeros disponibles`;
+    countBadge.textContent = `${filtered.length} companeros disponibles`;
   }
 
   if (filtered.length === 0) {
     grid.innerHTML = `
-      <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; background: var(--bg-raised); border-radius: 22px; border: 1px dashed var(--border-strong);">
-        <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">🎮</p>
-        <h3 style="margin-bottom: 0.5rem;">No encontramos jugadores con estos filtros exactos</h3>
-        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Intenta ampliar el rango de horario o elegir cualquier modo de juego.</p>
-        <button class="btn btn-secondary btn-sm" onclick="resetFilters()">Restablecer filtros</button>
+      <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; background: var(--bg-card); border-radius: 24px; box-shadow: var(--neu-flat); border: 1px solid var(--border-subtle);">
+        <div style="width: 48px; height: 48px; margin: 0 auto 1rem; color: var(--text-muted);">${ICONS.users}</div>
+        <h3 style="margin-bottom: 0.5rem;">Sin coincidencias exactas</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.92rem;">Amplia los parametros de horario o selecciona otro estilo de juego.</p>
+        <button class="neu-btn neu-btn-sm" onclick="resetFilters()">Restablecer filtros</button>
       </div>
     `;
     return;
@@ -312,46 +315,46 @@ function renderPlayers() {
   grid.innerHTML = filtered.map(player => {
     const affinity = calculateCompatibility(player);
     return `
-      <article class="player-card" data-id="${player.id}">
-        <div class="player-card-header">
-          <div class="player-meta">
-            <div class="player-avatar">
+      <article class="neu-card" data-id="${player.id}">
+        <div class="card-top">
+          <div class="player-info-cluster">
+            <div class="avatar-emboss">
               ${player.avatarText}
-              <div class="player-status-badge" title="En línea para jugar"></div>
+              <div class="online-dot-subtle" title="En linea"></div>
             </div>
-            <div class="player-names">
+            <div class="player-headings">
               <h3>${player.name}</h3>
-              <div class="player-game-tag">${player.gamertag}</div>
+              <div class="gamertag-sub">${player.gamertag}</div>
             </div>
           </div>
-          <div class="match-score-badge">
-            <div class="match-score-pill">
-              <span>⚡</span> ${affinity}%
+          <div class="affinity-badge">
+            <div class="affinity-pill">
+              ${ICONS.lightning} ${affinity}%
             </div>
-            <span class="match-score-label">Afinidad</span>
+            <span class="affinity-label">Afinidad</span>
           </div>
         </div>
 
-        <div class="player-details-row">
-          <span class="tag-pill rank">${player.rank}</span>
-          <span class="tag-pill">${player.role}</span>
-          <span class="tag-pill karma">★ ${player.karma.toFixed(2)} Karma</span>
-          <span class="tag-pill">🎙️ Mic: ${player.mic.toUpperCase()}</span>
+        <div class="badges-row">
+          <span class="neu-pill-tag rank-accent">${player.rank}</span>
+          <span class="neu-pill-tag">${player.role}</span>
+          <span class="neu-pill-tag karma-accent">${ICONS.star} ${player.karma.toFixed(2)} Karma</span>
+          <span class="neu-pill-tag">${ICONS.mic} Mic: ${player.mic.toUpperCase()}</span>
         </div>
 
-        <p class="player-bio">"${player.bio}"</p>
+        <p class="card-bio-plate">"${player.bio}"</p>
 
-        <div style="display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted);">
-          <span>🕒 ${player.scheduleText}</span>
-          <span class="font-mono">Winrate: ${player.winRate}</span>
+        <div class="card-foot-meta">
+          <span>${ICONS.clock} ${player.scheduleText}</span>
+          <span class="font-mono">Victoria: ${player.winRate}</span>
         </div>
 
-        <div class="player-card-actions">
-          <button class="btn btn-primary" style="flex: 1;" onclick="startInstantInvite(${player.id})">
-            <span>⚡</span> Invitar a Dúo
+        <div style="display: flex; gap: 0.85rem; margin-top: 0.35rem;">
+          <button class="neu-btn neu-btn-primary" style="flex: 1;" onclick="startInstantInvite(${player.id})">
+            ${ICONS.lightning} Invitar a Duo
           </button>
-          <button class="btn btn-secondary btn-sm" onclick="showPlayerProfile(${player.id})">
-            Perfil
+          <button class="neu-btn neu-btn-sm" onclick="showPlayerProfile(${player.id})">
+            Ficha
           </button>
         </div>
       </article>
@@ -360,21 +363,19 @@ function renderPlayers() {
 }
 
 // ============================================================================
-// 5. Gestión de Filtros
+// 6. Gestion de Eventos y Filtros
 // ============================================================================
 
 function setupEventListeners() {
-  // Chips de juego
-  document.querySelectorAll(".game-chip").forEach(chip => {
+  document.querySelectorAll(".neu-chip").forEach(chip => {
     chip.addEventListener("click", () => {
-      document.querySelectorAll(".game-chip").forEach(c => c.classList.remove("active"));
+      document.querySelectorAll(".neu-chip").forEach(c => c.classList.remove("active"));
       chip.classList.add("active");
       state.selectedGame = chip.getAttribute("data-game");
       renderPlayers();
     });
   });
 
-  // Selects de filtros
   const scheduleSelect = document.getElementById("filterSchedule");
   if (scheduleSelect) {
     scheduleSelect.addEventListener("change", (e) => {
@@ -399,7 +400,6 @@ function setupEventListeners() {
     });
   }
 
-  // Pestañas principales de navegación
   const navPlayers = document.getElementById("navBtnPlayers");
   const navTourneys = document.getElementById("navBtnTourneys");
   const sectionPlayers = document.getElementById("playersSection");
@@ -421,7 +421,6 @@ function setupEventListeners() {
     });
   }
 
-  // Botón radar de búsqueda rápida
   const quickMatchBtn = document.getElementById("quickMatchBtn");
   if (quickMatchBtn) {
     quickMatchBtn.addEventListener("click", triggerRadarSearch);
@@ -434,8 +433,8 @@ function resetFilters() {
   state.filterMic = "all";
   state.filterMode = "all";
 
-  document.querySelectorAll(".game-chip").forEach(c => c.classList.remove("active"));
-  document.querySelector('.game-chip[data-game="all"]').classList.add("active");
+  document.querySelectorAll(".neu-chip").forEach(c => c.classList.remove("active"));
+  document.querySelector('.neu-chip[data-game="all"]').classList.add("active");
 
   const s = document.getElementById("filterSchedule");
   const m = document.getElementById("filterMic");
@@ -448,7 +447,7 @@ function resetFilters() {
 }
 
 // ============================================================================
-// 6. Simulación de Matchmaking Rápido (Radar)
+// 7. Busqueda Rapida
 // ============================================================================
 
 function triggerRadarSearch() {
@@ -457,18 +456,17 @@ function triggerRadarSearch() {
   if (!modal) return;
 
   modal.classList.add("open");
-  statusTxt.textContent = "Buscando compañeros con horarios y rangos afines en Chile...";
+  statusTxt.textContent = "Evaluando perfiles con rangos y horarios afines en servidores locales...";
 
   setTimeout(() => {
-    statusTxt.textContent = "¡Candidato con 96% de compatibilidad detectado! Negociando sala...";
-  }, 1800);
+    statusTxt.textContent = "Candidato con 96% de compatibilidad verificado. Creando sala de coordinacion...";
+  }, 1600);
 
   setTimeout(() => {
     modal.classList.remove("open");
-    // Emparejar con Nacho o Camila
     const matchPartner = MOCK_PLAYERS[0];
     startInstantInvite(matchPartner.id);
-  }, 3200);
+  }, 2900);
 }
 
 function closeRadarModal() {
@@ -477,7 +475,7 @@ function closeRadarModal() {
 }
 
 // ============================================================================
-// 7. Sala de Lobby & Chat de Coordinación en Vivo
+// 8. Sala de Coordinacion y Mensajeria Instantanea
 // ============================================================================
 
 function startInstantInvite(playerId) {
@@ -486,8 +484,8 @@ function startInstantInvite(playerId) {
 
   state.activeLobby = partner;
   state.chatMessages = [
-    { sender: "system", text: `Sala PlayMatch creada. Reglas: Cero toxicidad. Conéctate y comparte sala.` },
-    { sender: partner.name, text: `¡Hola! Me alegro que hagamos match. Estoy listo para jugar ${partner.game.toUpperCase()}. ¿Me agregas o pasas tu Discord?` }
+    { sender: "system", text: `Canal privado establecido. Cero toxicidad. Coordina IDs y servidor.` },
+    { sender: partner.name, text: `Hola. Confirmo disponibilidad para jugar ${partner.game.toUpperCase()}. Pasame tu Discord o ID de juego para invitar.` }
   ];
 
   const lobbyModal = document.getElementById("lobbyModal");
@@ -511,12 +509,12 @@ function renderChatMessages() {
 
   container.innerHTML = state.chatMessages.map(msg => {
     if (msg.sender === "system") {
-      return `<div class="chat-message system">🔔 ${msg.text}</div>`;
+      return `<div class="chat-bubble system-alert">${msg.text}</div>`;
     }
-    const isMe = msg.sender === "Tú";
+    const isMe = msg.sender === "Tu";
     return `
-      <div class="chat-message ${isMe ? 'outgoing' : 'incoming'}">
-        <span class="chat-sender-name">${msg.sender}</span>
+      <div class="chat-bubble ${isMe ? 'outbound' : 'inbound'}">
+        <span class="chat-author">${msg.sender}</span>
         <span>${msg.text}</span>
       </div>
     `;
@@ -530,35 +528,34 @@ function sendChatMessage() {
   if (!input || !input.value.trim()) return;
 
   const text = input.value.trim();
-  state.chatMessages.push({ sender: "Tú", text });
+  state.chatMessages.push({ sender: "Tu", text });
   input.value = "";
   renderChatMessages();
 
-  // Simulación de respuesta reactiva del compañero
   setTimeout(() => {
     if (state.activeLobby) {
       const responses = [
-        "¡Excelente! Te acabo de enviar solicitud de amistad en el juego.",
-        "Dale, ya me metí a la sala de Discord. Te espero ahí.",
-        "Listo, dale 'Ready' y buscamos partida."
+        "Solicitud enviada en el cliente de juego. Revisa tus notificaciones.",
+        "Conectado a la sala de voz de Discord. Te espero para iniciar.",
+        "Listo, marca tu estado para iniciar busqueda de partida."
       ];
       const randomResp = responses[Math.floor(Math.random() * responses.length)];
       state.chatMessages.push({ sender: state.activeLobby.name, text: randomResp });
       renderChatMessages();
     }
-  }, 1200);
+  }, 1100);
 }
 
 function copyGamerTag() {
   if (!state.activeLobby) return;
   navigator.clipboard.writeText(state.activeLobby.gamertag);
-  showToast(`¡Gamertag "${state.activeLobby.gamertag}" copiado al portapapeles!`);
+  showToast(`Gamertag copiado: ${state.activeLobby.gamertag}`);
 }
 
 function copyDiscordTag() {
   const discordTag = `${state.activeLobby.name.toLowerCase().replace(/[^a-z]/g, "")}_cl#2026`;
   navigator.clipboard.writeText(discordTag);
-  showToast(`¡Discord Tag "${discordTag}" copiado!`);
+  showToast(`Discord ID copiado: ${discordTag}`);
 }
 
 function closeLobbyModal() {
@@ -572,7 +569,7 @@ function finishMatchAndRate() {
 }
 
 // ============================================================================
-// 8. Sistema de Reputación & Karma Anti-Toxicidad
+// 9. Sistema de Reconocimiento y Karma (Anti-Toxicidad)
 // ============================================================================
 
 let currentRatingPlayer = null;
@@ -594,13 +591,13 @@ function submitKarmaFeedback() {
   if (currentRatingPlayer) {
     currentRatingPlayer.karma = Math.min(5.0, currentRatingPlayer.karma + 0.02);
     renderPlayers();
-    showToast(`¡Honor registrado para ${currentRatingPlayer.name}! Gracias por promover un gaming sin toxicidad.`);
+    showToast(`Valoracion registrada para ${currentRatingPlayer.name}. Reconocimiento añadido.`);
   }
   closeKarmaModal();
 }
 
 // ============================================================================
-// 9. Módulo de Torneos & Renderizado de Brackets
+// 10. Torneos y Visualizador de Brackets
 // ============================================================================
 
 function renderTournaments() {
@@ -608,28 +605,28 @@ function renderTournaments() {
   if (!container) return;
 
   container.innerHTML = MOCK_TOURNAMENTS.map(t => `
-    <article class="tournament-card">
+    <article class="tourney-item-card">
       <div>
-        <div class="tournament-status-bar">
-          <span class="tournament-game-badge ${t.statusClass}">${t.game}</span>
-          <span class="tag-pill" style="font-size: 0.75rem;">${t.status}</span>
+        <div class="tourney-top-status">
+          <span class="neu-pill-tag rank-accent">${t.game}</span>
+          <span class="neu-pill-tag" style="font-size: 0.72rem;">${t.status}</span>
         </div>
-        <h3 style="margin: 0.75rem 0 0.5rem; font-size: 1.25rem;">${t.title}</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">${t.description}</p>
+        <h3 style="margin: 0.9rem 0 0.5rem; font-size: 1.25rem;">${t.title}</h3>
+        <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1.25rem;">${t.description}</p>
         
-        <ul class="tournament-meta-list">
-          <li>🏆 Premio: <strong>${t.prize}</strong></li>
-          <li>📅 Fecha: <strong>${t.date}</strong></li>
-          <li>👥 Cupos: <strong>${t.teamsCount}</strong></li>
-          <li>⚔️ Formato: <strong>${t.mode}</strong></li>
+        <ul class="meta-spec-list">
+          <li>${ICONS.trophy} <span>Premio: <strong>${t.prize}</strong></span></li>
+          <li>${ICONS.clock} <span>Fecha: <strong>${t.date}</strong></span></li>
+          <li>${ICONS.users} <span>Cupos: <strong>${t.teamsCount}</strong></span></li>
+          <li>${ICONS.shield} <span>Formato: <strong>${t.mode}</strong></span></li>
         </ul>
       </div>
 
       <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem;">
-        <button class="btn btn-primary btn-sm" style="flex: 1;" onclick="openRegisterTournamentModal('${t.id}')">
-          Inscribirme
+        <button class="neu-btn neu-btn-primary neu-btn-sm" style="flex: 1;" onclick="openRegisterTournamentModal('${t.id}')">
+          Inscripcion
         </button>
-        <button class="btn btn-secondary btn-sm" onclick="scrollToBracket()">
+        <button class="neu-btn neu-btn-sm" onclick="scrollToBracket()">
           Ver Llave
         </button>
       </div>
@@ -646,28 +643,28 @@ function renderBracket() {
 
   // Cuartos
   qfContainer.innerHTML = MOCK_BRACKET.quarterFinals.map(m => `
-    <div class="match-box">
-      <div class="match-team ${m.winner === 'A' ? 'winner' : ''}">
+    <div class="match-tile-plate">
+      <div class="match-team-row ${m.winner === 'A' ? 'winner-row' : ''}">
         <span>${m.teamA}</span>
-        <span class="match-score">${m.scoreA}</span>
+        <span class="score-badge-neu">${m.scoreA}</span>
       </div>
-      <div class="match-team ${m.winner === 'B' ? 'winner' : ''}">
+      <div class="match-team-row ${m.winner === 'B' ? 'winner-row' : ''}">
         <span>${m.teamB}</span>
-        <span class="match-score">${m.scoreB}</span>
+        <span class="score-badge-neu">${m.scoreB}</span>
       </div>
     </div>
   `).join("");
 
   // Semifinales
   sfContainer.innerHTML = MOCK_BRACKET.semiFinals.map(m => `
-    <div class="match-box">
-      <div class="match-team ${m.winner === 'A' ? 'winner' : ''}">
+    <div class="match-tile-plate">
+      <div class="match-team-row ${m.winner === 'A' ? 'winner-row' : ''}">
         <span>${m.teamA}</span>
-        <span class="match-score">${m.scoreA}</span>
+        <span class="score-badge-neu">${m.scoreA}</span>
       </div>
-      <div class="match-team ${m.winner === 'B' ? 'winner' : ''}">
+      <div class="match-team-row ${m.winner === 'B' ? 'winner-row' : ''}">
         <span>${m.teamB}</span>
-        <span class="match-score">${m.scoreB}</span>
+        <span class="score-badge-neu">${m.scoreB}</span>
       </div>
     </div>
   `).join("");
@@ -675,17 +672,17 @@ function renderBracket() {
   // Gran Final
   const gf = MOCK_BRACKET.grandFinal;
   gfContainer.innerHTML = `
-    <div class="match-box" style="border: 2px solid var(--accent-cyan); box-shadow: var(--glow-cyan);">
-      <div class="match-team ${gf.winner === 'A' ? 'winner' : ''}">
+    <div class="match-tile-plate" style="border: 1px solid var(--accent-mint); box-shadow: var(--neu-flat);">
+      <div class="match-team-row ${gf.winner === 'A' ? 'winner-row' : ''}">
         <span>${gf.teamA}</span>
-        <span class="match-score">${gf.scoreA}</span>
+        <span class="score-badge-neu">${gf.scoreA}</span>
       </div>
-      <div class="match-team ${gf.winner === 'B' ? 'winner' : ''}">
+      <div class="match-team-row ${gf.winner === 'B' ? 'winner-row' : ''}">
         <span>${gf.teamB}</span>
-        <span class="match-score">${gf.scoreB}</span>
+        <span class="score-badge-neu">${gf.scoreB}</span>
       </div>
     </div>
-    <div style="margin-top: 1rem; text-align: center; font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--accent-cyan); font-size: 0.95rem;">
+    <div style="margin-top: 1.15rem; text-align: center; font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--accent-mint); font-size: 0.95rem;">
       ${gf.champion}
     </div>
   `;
@@ -712,12 +709,12 @@ function closeRegisterTournamentModal() {
 function confirmTournamentRegistration() {
   const teamInput = document.getElementById("teamNameInput");
   const teamName = teamInput && teamInput.value.trim() ? teamInput.value.trim() : "Escuadra VoxTi";
-  showToast(`¡Inscripción confirmada para "${teamName}"! Se enviaron las instrucciones a tu correo.`);
+  showToast(`Inscripcion oficial procesada para: ${teamName}`);
   closeRegisterTournamentModal();
 }
 
 // ============================================================================
-// 10. Perfil del Usuario
+// 11. Perfil del Usuario
 // ============================================================================
 
 function showPlayerProfile(playerId) {
@@ -730,46 +727,54 @@ function showPlayerProfile(playerId) {
 
   body.innerHTML = `
     <div style="display: flex; align-items: center; gap: 1.25rem;">
-      <div class="player-avatar" style="width: 72px; height: 72px; font-size: 2rem;">
+      <div class="avatar-emboss" style="width: 72px; height: 72px; font-size: 1.8rem;">
         ${player.avatarText}
       </div>
       <div>
-        <h3 style="font-size: 1.5rem;">${player.name}</h3>
-        <p class="font-mono" style="color: var(--text-muted);">${player.gamertag}</p>
-        <span class="tag-pill karma" style="margin-top: 0.25rem;">★ ${player.karma.toFixed(2)} Índice de Convivencia</span>
+        <h3 style="font-size: 1.45rem;">${player.name}</h3>
+        <p class="font-mono" style="color: var(--text-muted); font-size: 0.85rem;">${player.gamertag}</p>
+        <span class="neu-pill-tag karma-accent" style="margin-top: 0.4rem;">
+          ${ICONS.star} ${player.karma.toFixed(2)} Indice de Convivencia
+        </span>
       </div>
     </div>
 
-    <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem;">
-      <h4 style="margin-bottom: 0.5rem;">Insignias Comunitarias Otorgadas</h4>
+    <div style="background: var(--bg-sunken); box-shadow: var(--neu-pressed-sm); border-radius: 18px; padding: 1.25rem;">
+      <h4 style="margin-bottom: 0.65rem; font-size: 0.92rem;">Insignias de Reconocimiento</h4>
       <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-        ${player.honors.map(h => `<span class="tag-pill" style="background: var(--good-soft); color: var(--good-text); border: 1px solid var(--good-soft-br);">🛡️ ${h}</span>`).join("")}
+        ${player.honors.map(h => `
+          <span class="neu-pill-tag" style="color: var(--accent-mint);">
+            ${ICONS.shield} ${h}
+          </span>
+        `).join("")}
       </div>
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center;">
-      <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 1rem;">
-        <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Winrate</span>
-        <div class="stat-value" style="font-size: 1.4rem; font-weight: 700; color: var(--action);">${player.winRate}</div>
+      <div style="background: var(--bg-card); box-shadow: var(--neu-flat-xs); border-radius: 14px; padding: 1rem; border: 1px solid var(--border-subtle);">
+        <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Winrate</span>
+        <div class="stat-value" style="font-size: 1.35rem; font-weight: 700; color: var(--primary);">${player.winRate}</div>
       </div>
-      <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 1rem;">
-        <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Matches</span>
-        <div class="stat-value" style="font-size: 1.4rem; font-weight: 700; color: var(--text);">${player.matchesCount}</div>
+      <div style="background: var(--bg-card); box-shadow: var(--neu-flat-xs); border-radius: 14px; padding: 1rem; border: 1px solid var(--border-subtle);">
+        <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Partidas</span>
+        <div class="stat-value" style="font-size: 1.35rem; font-weight: 700; color: var(--text);">${player.matchesCount}</div>
       </div>
-      <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 1rem;">
-        <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Toxicidad</span>
-        <div class="stat-value" style="font-size: 1.4rem; font-weight: 700; color: var(--good-text);">0.0%</div>
+      <div style="background: var(--bg-card); box-shadow: var(--neu-flat-xs); border-radius: 14px; padding: 1rem; border: 1px solid var(--border-subtle);">
+        <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Toxicidad</span>
+        <div class="stat-value" style="font-size: 1.35rem; font-weight: 700; color: var(--accent-mint);">0.0%</div>
       </div>
     </div>
 
     <div>
-      <h4 style="margin-bottom: 0.5rem;">Acerca del jugador</h4>
-      <p style="color: var(--text-body); background: var(--bg); padding: 1rem; border-radius: 14px; border: 1px solid var(--border);">${player.bio}</p>
+      <h4 style="margin-bottom: 0.45rem; font-size: 0.92rem;">Descripcion del Jugador</h4>
+      <p style="color: var(--text-body); background: var(--bg-sunken); box-shadow: var(--neu-pressed-sm); padding: 1rem; border-radius: 14px; font-size: 0.88rem;">${player.bio}</p>
     </div>
 
     <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 0.5rem;">
-      <button class="btn btn-secondary btn-sm" onclick="closeProfileModal()">Cerrar</button>
-      <button class="btn btn-primary btn-sm" onclick="closeProfileModal(); startInstantInvite(${player.id})">Invitar a Jugar</button>
+      <button class="neu-btn neu-btn-sm" onclick="closeProfileModal()">Cerrar</button>
+      <button class="neu-btn neu-btn-primary neu-btn-sm" onclick="closeProfileModal(); startInstantInvite(${player.id})">
+        ${ICONS.lightning} Invitar
+      </button>
     </div>
   `;
 
@@ -782,7 +787,7 @@ function closeProfileModal() {
 }
 
 // ============================================================================
-// 11. Notificaciones Toast
+// 12. Notificaciones Toast Neumórficas
 // ============================================================================
 
 function showToast(message) {
@@ -791,17 +796,18 @@ function showToast(message) {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    background: var(--text);
-    color: var(--bg);
-    padding: 0.85rem 1.4rem;
-    border-radius: 14px;
-    font-size: 0.9rem;
+    background: var(--bg-card);
+    color: var(--text);
+    padding: 0.9rem 1.45rem;
+    border-radius: 16px;
+    font-size: 0.88rem;
     font-weight: 600;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: var(--neu-floating);
+    border: 1px solid var(--border-subtle);
     z-index: 9999;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px);
   `;
   toast.textContent = message;
   document.body.appendChild(toast);
@@ -813,7 +819,7 @@ function showToast(message) {
 
   setTimeout(() => {
     toast.style.opacity = "0";
-    toast.style.transform = "translateY(20px)";
-    setTimeout(() => toast.remove(), 300);
-  }, 3500);
+    toast.style.transform = "translateY(16px)";
+    setTimeout(() => toast.remove(), 250);
+  }, 3200);
 }
