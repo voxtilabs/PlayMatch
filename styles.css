@@ -1,106 +1,173 @@
 /* ==========================================================================
-   PlayMatch — Diseño Neumórfico Elegante & Paleta Vibrante
-   VoxTi Labs · Versión 2.0 · Sin Neón · Sin Emojis · Microinteracciones Sutiles
+   PlayMatch — Diseño Neumórfico Ejecutivo & Dashboard de Alta Gama
+   VoxTi Labs · Versión 2.5 · Animaciones de Fondo Sutiles · Cero Emojis
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap');
 
 /* ==========================================================================
    1. Tokens & Variables Neumórficas
    ========================================================================== */
 
 :root, [data-mode="dia"] {
-  /* Fondos y Superficies de Arcilla Neumórfica Suave */
-  --bg: #EAEFF6;
-  --bg-raised: #EAEFF6;
-  --bg-sunken: #E2E7F0;
-  --bg-card: #EBF0F8;
+  --bg: #E7ECF4;
+  --bg-raised: #EBF0F8;
+  --bg-sunken: #DEE4EE;
+  --bg-card: #E8EDF6;
+  --bg-modal: #EBF0F8;
   
-  --border-subtle: rgba(255, 255, 255, 0.7);
-  --border-field: #D5DDE8;
+  --border-subtle: rgba(255, 255, 255, 0.75);
+  --border-field: #CDD6E4;
 
-  /* Sombras Neumórficas Día */
-  --neu-flat: 7px 7px 16px #C8D1E0, -7px -7px 16px #FFFFFF;
-  --neu-flat-sm: 4px 4px 10px #CCD5E4, -4px -4px 10px #FFFFFF;
-  --neu-flat-xs: 2px 2px 6px #D0D9E8, -2px -2px 6px #FFFFFF;
-  --neu-pressed: inset 4px 4px 8px #CCD5E4, inset -4px -4px 8px #FFFFFF;
-  --neu-pressed-sm: inset 2px 2px 5px #CCD5E4, inset -2px -2px 5px #FFFFFF;
-  --neu-floating: 12px 12px 28px #BAC5D6, -12px -12px 28px #FFFFFF;
+  /* Sombras Neumórficas Suaves */
+  --neu-flat: 8px 8px 18px #C5CFDF, -8px -8px 18px #FFFFFF;
+  --neu-flat-sm: 4px 4px 11px #C8D2E2, -4px -4px 11px #FFFFFF;
+  --neu-flat-xs: 2px 2px 7px #CCD6E6, -2px -2px 7px #FFFFFF;
+  --neu-pressed: inset 4px 4px 9px #CCD6E6, inset -4px -4px 9px #FFFFFF;
+  --neu-pressed-sm: inset 2px 2px 5px #CCD6E6, inset -2px -2px 5px #FFFFFF;
+  --neu-floating: 14px 14px 32px #B8C4D6, -14px -14px 32px #FFFFFF;
 
-  /* Tipografía */
-  --text: #161B26;
-  --text-body: #3B4455;
-  --text-muted: #69758C;
+  --text: #141924;
+  --text-body: #3E4758;
+  --text-muted: #6C788F;
   --text-faint: #98A4BA;
 
-  /* Paleta Vibrante Elegante */
   --primary: #3354F4;
   --primary-hover: #2343E0;
-  --primary-gradient: linear-gradient(145deg, #3B5DFF, #2B4AE8);
-  --primary-neu-shadow: 5px 5px 14px rgba(43, 74, 232, 0.35), -3px -3px 10px rgba(255, 255, 255, 0.9);
+  --primary-gradient: linear-gradient(145deg, #3B5DFF, #2948E4);
+  --primary-neu-shadow: 6px 6px 16px rgba(41, 72, 228, 0.35), -3px -3px 10px rgba(255, 255, 255, 0.9);
 
   --accent-mint: #00BFA5;
-  --accent-mint-soft: rgba(0, 191, 165, 0.14);
-  
+  --accent-mint-soft: rgba(0, 191, 165, 0.12);
   --accent-violet: #7C4DFF;
-  --accent-violet-soft: rgba(124, 77, 255, 0.14);
-
+  --accent-violet-soft: rgba(124, 77, 255, 0.12);
   --accent-amber: #FF9100;
-  --accent-amber-soft: rgba(255, 145, 0, 0.14);
-
+  --accent-amber-soft: rgba(255, 145, 0, 0.12);
   --accent-coral: #F53B57;
-  --accent-coral-soft: rgba(245, 59, 87, 0.14);
 
-  --nav-backdrop: rgba(234, 239, 246, 0.92);
+  --nav-backdrop: rgba(231, 236, 244, 0.92);
+  --ambient-orb-1: rgba(51, 84, 244, 0.12);
+  --ambient-orb-2: rgba(124, 77, 255, 0.09);
+  --ambient-orb-3: rgba(0, 191, 165, 0.09);
 }
 
 [data-mode="noche"] {
-  /* Fondos y Superficies de Obsidiana Suave */
-  --bg: #111520;
-  --bg-raised: #141A27;
-  --bg-sunken: #0D101A;
+  --bg: #10141F;
+  --bg-raised: #141A29;
+  --bg-sunken: #0C0F17;
   --bg-card: #151B2A;
+  --bg-modal: #141A28;
 
   --border-subtle: rgba(255, 255, 255, 0.05);
-  --border-field: rgba(255, 255, 255, 0.08);
+  --border-field: rgba(255, 255, 255, 0.09);
 
   /* Sombras Neumórficas Noche */
-  --neu-flat: 8px 8px 20px #090B12, -7px -7px 18px #1A2234;
-  --neu-flat-sm: 4px 4px 12px #090B12, -4px -4px 12px #1C2436;
-  --neu-flat-xs: 2px 2px 7px #090B12, -2px -2px 7px #1B2335;
-  --neu-pressed: inset 4px 4px 9px #080A10, inset -4px -4px 9px #1D2539;
-  --neu-pressed-sm: inset 2px 2px 5px #080A10, inset -2px -2px 5px #1E273B;
-  --neu-floating: 16px 16px 36px #06080E, -12px -12px 30px #1E273A;
+  --neu-flat: 9px 9px 22px #080A10, -8px -8px 20px #1A2234;
+  --neu-flat-sm: 4px 4px 12px #080A10, -4px -4px 12px #1B2335;
+  --neu-flat-xs: 2px 2px 7px #07090F, -2px -2px 7px #1B2335;
+  --neu-pressed: inset 4px 4px 9px #07090F, inset -4px -4px 9px #1D253A;
+  --neu-pressed-sm: inset 2px 2px 5px #07090F, inset -2px -2px 5px #1E273C;
+  --neu-floating: 16px 16px 38px #05060B, -12px -12px 32px #1E273B;
 
-  /* Tipografía */
   --text: #F1F4FA;
   --text-body: #AFB9CC;
   --text-muted: #727E96;
   --text-faint: #485266;
 
-  /* Paleta Vibrante Noche */
   --primary: #3D5AFE;
   --primary-hover: #536DFE;
-  --primary-gradient: linear-gradient(145deg, #4461FF, #334EEB);
-  --primary-neu-shadow: 6px 6px 18px rgba(0, 0, 0, 0.6), -2px -2px 10px rgba(61, 90, 254, 0.25);
+  --primary-gradient: linear-gradient(145deg, #4461FF, #324DEB);
+  --primary-neu-shadow: 6px 6px 18px rgba(0, 0, 0, 0.65), -2px -2px 10px rgba(61, 90, 254, 0.25);
 
   --accent-mint: #00E599;
   --accent-mint-soft: rgba(0, 229, 153, 0.12);
-
   --accent-violet: #8B5CF6;
-  --accent-violet-soft: rgba(139, 92, 246, 0.15);
-
+  --accent-violet-soft: rgba(139, 92, 246, 0.14);
   --accent-amber: #FFB300;
-  --accent-amber-soft: rgba(255, 179, 0, 0.15);
-
+  --accent-amber-soft: rgba(255, 179, 0, 0.14);
   --accent-coral: #FF5252;
-  --accent-coral-soft: rgba(255, 82, 82, 0.15);
 
-  --nav-backdrop: rgba(17, 21, 32, 0.88);
+  --nav-backdrop: rgba(16, 20, 31, 0.88);
+  --ambient-orb-1: rgba(61, 90, 254, 0.15);
+  --ambient-orb-2: rgba(139, 92, 246, 0.14);
+  --ambient-orb-3: rgba(0, 229, 153, 0.10);
 }
 
 /* ==========================================================================
-   2. Reset y Tipografía Elegante (Sin Neón)
+   2. Animaciones de Fondo Sutiles (Ambient Fluid Orbs)
+   ========================================================================== */
+
+.ambient-background-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  will-change: transform;
+}
+
+.ambient-orb-primary {
+  width: 45vw;
+  height: 45vw;
+  max-width: 600px;
+  max-height: 600px;
+  top: -10%;
+  left: 15%;
+  background: var(--ambient-orb-1);
+  animation: floatOrbOne 24s ease-in-out infinite alternate;
+}
+
+.ambient-orb-violet {
+  width: 40vw;
+  height: 40vw;
+  max-width: 520px;
+  max-height: 520px;
+  top: 35%;
+  right: -5%;
+  background: var(--ambient-orb-2);
+  animation: floatOrbTwo 28s ease-in-out infinite alternate;
+}
+
+.ambient-orb-mint {
+  width: 35vw;
+  height: 35vw;
+  max-width: 450px;
+  max-height: 450px;
+  bottom: -10%;
+  left: 20%;
+  background: var(--ambient-orb-3);
+  animation: floatOrbThree 22s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrbOne {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 80px) scale(1.08); }
+  100% { transform: translate(-40px, 40px) scale(0.95); }
+}
+
+@keyframes floatOrbTwo {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-70px, -60px) scale(1.1); }
+  100% { transform: translate(30px, 50px) scale(0.92); }
+}
+
+@keyframes floatOrbThree {
+  0% { transform: translate(0, 0) scale(0.95); }
+  50% { transform: translate(80px, -40px) scale(1.06); }
+  100% { transform: translate(-30px, -70px) scale(1.02); }
+}
+
+/* ==========================================================================
+   3. Reset & Tipografía Limpia (Sin Neón)
    ========================================================================== */
 
 *, *::before, *::after {
@@ -124,7 +191,13 @@ body {
   flex-direction: column;
   transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
   overflow-x: hidden;
+  position: relative;
   -webkit-font-smoothing: antialiased;
+}
+
+main, header, footer {
+  position: relative;
+  z-index: 1;
 }
 
 h1, h2, h3, h4 {
@@ -135,21 +208,10 @@ h1, h2, h3, h4 {
   line-height: 1.25;
 }
 
-h1 {
-  font-size: clamp(2.1rem, 4.2vw, 3.4rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-}
-
-h2 {
-  font-size: clamp(1.4rem, 2.5vw, 2rem);
-  letter-spacing: -0.03em;
-}
-
-h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-}
+h1 { font-size: clamp(2.2rem, 3.8vw, 3.2rem); font-weight: 800; }
+h2 { font-size: clamp(1.4rem, 2.2vw, 1.85rem); }
+h3 { font-size: 1.18rem; }
+h4 { font-size: 0.96rem; }
 
 .font-mono, .code-metric, .stat-value {
   font-family: 'JetBrains Mono', monospace;
@@ -164,16 +226,16 @@ a:hover {
   opacity: 0.85;
 }
 
-/* ==========================================================================
-   3. Estructura & Barra de Navegación Neumórfica
-   ========================================================================== */
-
 .container {
   width: 100%;
-  max-width: 1220px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 0 1.75rem;
+  padding: 0 1.5rem;
 }
+
+/* ==========================================================================
+   4. Navbar Neumórfica
+   ========================================================================== */
 
 .navbar {
   position: sticky;
@@ -190,7 +252,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 76px;
+  height: 74px;
 }
 
 .brand-lockup {
@@ -201,9 +263,9 @@ a:hover {
 }
 
 .brand-icon-plate {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
   background: var(--bg-card);
   box-shadow: var(--neu-flat-sm);
   display: flex;
@@ -221,7 +283,7 @@ a:hover {
 
 .brand-name {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   font-weight: 800;
   color: var(--text);
   letter-spacing: -0.04em;
@@ -235,19 +297,19 @@ a:hover {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.65rem;
   font-weight: 600;
-  padding: 3px 7px;
+  padding: 3px 6px;
   background: var(--bg-sunken);
   box-shadow: var(--neu-pressed-sm);
   color: var(--text-muted);
   border-radius: 6px;
-  letter-spacing: 0.06em;
-  margin-left: 0.35rem;
+  letter-spacing: 0.05em;
+  margin-left: 0.3rem;
 }
 
 .nav-tabs-bar {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   background: var(--bg-sunken);
   padding: 5px;
   border-radius: 999px;
@@ -257,9 +319,9 @@ a:hover {
 .nav-tab-btn {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   color: var(--text-muted);
-  padding: 0.5rem 1.15rem;
+  padding: 0.45rem 1.1rem;
   border-radius: 999px;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
@@ -267,12 +329,12 @@ a:hover {
   background: transparent;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .nav-tab-btn svg {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   stroke: currentColor;
 }
 
@@ -285,20 +347,19 @@ a:hover {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.85rem;
 }
 
-/* Estado Online Táctil */
 .live-indicator {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.5rem;
   background: var(--bg-card);
   box-shadow: var(--neu-flat-xs);
-  padding: 0.45rem 0.9rem;
+  padding: 0.4rem 0.85rem;
   border-radius: 999px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   color: var(--text);
   font-weight: 600;
   border: 1px solid var(--border-subtle);
@@ -309,23 +370,23 @@ a:hover {
   height: 7px;
   border-radius: 50%;
   background: var(--accent-mint);
-  box-shadow: 0 0 6px var(--accent-mint);
+  box-shadow: 0 0 5px var(--accent-mint);
 }
 
 /* ==========================================================================
-   4. Botones & Controles Neumórficos (Soft UI Táctil)
+   5. Botones y Controles Neumórficos
    ========================================================================== */
 
 .neu-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  min-height: 48px;
-  padding: 0 1.6rem;
-  border-radius: 16px;
+  gap: 0.55rem;
+  min-height: 46px;
+  padding: 0 1.45rem;
+  border-radius: 14px;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
@@ -333,13 +394,13 @@ a:hover {
   background: var(--bg-card);
   color: var(--text);
   box-shadow: var(--neu-flat-sm);
-  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
 }
 
 .neu-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   stroke: currentColor;
 }
 
@@ -355,7 +416,6 @@ a:hover {
   box-shadow: var(--neu-pressed);
 }
 
-/* Botón Neumórfico Primario */
 .neu-btn-primary {
   background: var(--primary-gradient);
   color: #FFFFFF;
@@ -365,8 +425,8 @@ a:hover {
 
 .neu-btn-primary:hover {
   filter: brightness(1.06);
-  box-shadow: 6px 6px 20px rgba(61, 90, 254, 0.45), -2px -2px 8px rgba(255, 255, 255, 0.3);
   color: #FFFFFF;
+  box-shadow: 6px 6px 20px rgba(61, 90, 254, 0.45), -2px -2px 8px rgba(255, 255, 255, 0.3);
 }
 
 .neu-btn-primary:active {
@@ -374,10 +434,9 @@ a:hover {
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.4), inset -2px -2px 6px rgba(255, 255, 255, 0.2);
 }
 
-/* Botón Neumórfico de Acento Menta / Verde */
 .neu-btn-mint {
   background: linear-gradient(145deg, #00E599, #00C782);
-  color: #0A1612;
+  color: #081410;
   font-weight: 800;
   border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 5px 5px 15px rgba(0, 229, 153, 0.3), -2px -2px 8px rgba(255, 255, 255, 0.2);
@@ -385,18 +444,16 @@ a:hover {
 
 .neu-btn-mint:hover {
   filter: brightness(1.05);
-  box-shadow: 6px 6px 18px rgba(0, 229, 153, 0.42);
 }
 
 .neu-btn-mint:active {
   box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* Botón Neumórfico Circular / Icono */
 .neu-icon-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
   background: var(--bg-card);
   box-shadow: var(--neu-flat-sm);
   border: 1px solid var(--border-subtle);
@@ -409,8 +466,8 @@ a:hover {
 }
 
 .neu-icon-btn svg {
-  width: 19px;
-  height: 19px;
+  width: 18px;
+  height: 18px;
   stroke: currentColor;
 }
 
@@ -432,119 +489,324 @@ a:hover {
 }
 
 /* ==========================================================================
-   5. Hero Section Sofisticada & Filtros Táctiles
+   6. Estilos Custom de Selectores & Common Boxes (Neumórficos)
    ========================================================================== */
 
-.hero-section {
-  padding: 4.5rem 0 3.5rem;
-  text-align: center;
+.custom-select-wrapper {
   position: relative;
+  width: 100%;
 }
 
-.hero-pill-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 6px 16px;
-  background: var(--bg-card);
-  box-shadow: var(--neu-flat-xs);
-  border: 1px solid var(--border-subtle);
-  border-radius: 999px;
-  color: var(--primary);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.78rem;
+.custom-select-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 9px;
+  height: 6px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23727E96' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.neu-select, .neu-input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 2.2rem 0 1rem;
+  border-radius: 13px;
+  background: var(--bg-sunken);
+  box-shadow: var(--neu-pressed-sm);
+  border: 1px solid var(--border-field);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 1.5rem;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.hero-pill-tag svg {
-  width: 14px;
-  height: 14px;
-  stroke: currentColor;
+.neu-input {
+  padding-right: 1rem;
+  cursor: text;
 }
 
-.hero-title {
-  max-width: 860px;
-  margin: 0 auto 1.25rem;
+.neu-select:focus, .neu-input:focus {
+  border-color: var(--primary);
+  box-shadow: var(--neu-pressed), 0 0 0 1px var(--primary);
 }
 
-.hero-title .accent-gradient {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent-violet) 50%, var(--accent-mint) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.neu-select option {
+  background-color: var(--bg-raised);
+  color: var(--text);
+  padding: 10px;
 }
 
-.hero-subtitle {
-  max-width: 660px;
-  margin: 0 auto 2.5rem;
-  font-size: 1.12rem;
+/* ==========================================================================
+   7. Distribución Moderna: Hero & Layout de 2 Columnas (Dashboard)
+   ========================================================================== */
+
+.hero-dashboard-bar {
+  padding: 2.75rem 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-summary-copy h1 {
+  margin-bottom: 0.5rem;
+}
+
+.hero-summary-copy p {
   color: var(--text-muted);
-  line-height: 1.65;
+  max-width: 580px;
+  font-size: 1rem;
 }
 
-/* Panel de Filtros Neumórfico */
-.neu-filter-panel {
+.hero-stats-capsule {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
   background: var(--bg-card);
   box-shadow: var(--neu-flat);
-  border-radius: 26px;
   border: 1px solid var(--border-subtle);
-  padding: 1.5rem 1.75rem;
-  max-width: 1060px;
-  margin: 0 auto;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: 1.35rem;
+  border-radius: 20px;
+  padding: 1rem 1.6rem;
 }
 
-.filter-section-title {
-  font-size: 0.78rem;
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-item .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.stat-item .lbl {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--border-subtle);
+}
+
+/* Grid Principal de 2 Columnas */
+.dashboard-grid-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 2rem;
+  align-items: start;
+  padding-bottom: 4rem;
+}
+
+/* Columna Lateral Izquierda (Sticky Sidebar) */
+.sidebar-controls-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  position: sticky;
+  top: 96px;
+}
+
+/* Panel de "Mis Juegos de Preferencia" */
+.preferences-panel-card {
+  background: var(--bg-card);
+  box-shadow: var(--neu-flat);
+  border-radius: 22px;
+  border: 1px solid var(--border-subtle);
+  padding: 1.4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.panel-header-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panel-header-badge h3 {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.panel-header-badge h3 svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--primary);
+}
+
+.pref-games-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.pref-game-item {
+  background: var(--bg-sunken);
+  box-shadow: var(--neu-pressed-sm);
+  border-radius: 14px;
+  padding: 0.75rem 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.pref-game-item:hover {
+  border-color: var(--border-subtle);
+}
+
+.pref-game-item.selected {
+  border-color: rgba(61, 90, 254, 0.4);
+  background: var(--bg-card);
+  box-shadow: var(--neu-flat-xs);
+}
+
+.pref-game-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pref-game-checkbox {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  background: var(--bg-sunken);
+  box-shadow: var(--neu-pressed-sm);
+  border: 1px solid var(--border-field);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: all 0.2s ease;
+}
+
+.pref-game-checkbox svg {
+  width: 12px;
+  height: 12px;
+}
+
+.pref-game-item.selected .pref-game-checkbox {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #FFFFFF;
+}
+
+.pref-game-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.pref-game-role-badge {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Panel de Filtros Secundario */
+.filters-sidebar-card {
+  background: var(--bg-card);
+  box-shadow: var(--neu-flat);
+  border-radius: 22px;
+  border: 1px solid var(--border-subtle);
+  padding: 1.4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.filter-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.filter-label-title {
+  font-size: 0.76rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.05em;
   color: var(--text-muted);
-  margin-bottom: 0.65rem;
+}
+
+/* ==========================================================================
+   8. Columna Principal: Feed de Jugadores & Tarjetas Reestructuradas
+   ========================================================================== */
+
+.main-feed-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.feed-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-card);
+  box-shadow: var(--neu-flat-sm);
+  border: 1px solid var(--border-subtle);
+  border-radius: 18px;
+  padding: 1rem 1.4rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.active-game-chips-bar {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.filter-section-title svg {
-  width: 14px;
-  height: 14px;
-}
-
-.chips-row {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
   flex-wrap: wrap;
 }
 
 .neu-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.55rem 1.15rem;
+  gap: 0.45rem;
+  padding: 0.45rem 1rem;
   border-radius: 999px;
   background: var(--bg-card);
   box-shadow: var(--neu-flat-xs);
   border: 1px solid var(--border-subtle);
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 600;
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s ease;
   user-select: none;
 }
 
 .neu-chip svg {
-  width: 16px;
-  height: 16px;
-  stroke: currentColor;
+  width: 14px;
+  height: 14px;
 }
 
 .neu-chip:hover {
@@ -556,106 +818,32 @@ a:hover {
   background: var(--bg-sunken);
   box-shadow: var(--neu-pressed-sm);
   color: var(--primary);
-  border-color: rgba(61, 90, 254, 0.3);
+  border-color: rgba(61, 90, 254, 0.35);
   font-weight: 700;
 }
 
-.filter-controls-row {
+/* Grid de Tarjetas de Jugadores */
+.cards-flow-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)) auto;
-  gap: 1.15rem;
-  align-items: end;
-}
-
-.field-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
-.field-label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-muted);
-}
-
-.neu-select, .neu-input {
-  min-height: 48px;
-  padding: 0 1.15rem;
-  border-radius: 14px;
-  background: var(--bg-sunken);
-  box-shadow: var(--neu-pressed-sm);
-  border: 1px solid var(--border-field);
-  color: var(--text);
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.92rem;
-  outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.neu-select:focus, .neu-input:focus {
-  border-color: var(--primary);
-  box-shadow: var(--neu-pressed), 0 0 0 1px var(--primary);
-}
-
-/* ==========================================================================
-   6. Tarjetas de Jugadores (Neumorfismo Suave)
-   ========================================================================== */
-
-.content-section {
-  padding: 3.5rem 0;
-}
-
-.section-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.section-title h2 {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.section-title h2 svg {
-  width: 24px;
-  height: 24px;
-  stroke: var(--primary);
-}
-
-.section-desc {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  margin-top: 0.25rem;
-}
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 1.75rem;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
 }
 
 .neu-card {
   background: var(--bg-card);
   box-shadow: var(--neu-flat);
-  border-radius: 24px;
+  border-radius: 22px;
   border: 1px solid var(--border-subtle);
-  padding: 1.65rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1.35rem;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  gap: 1.15rem;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease;
 }
 
 .neu-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: var(--neu-floating);
 }
 
@@ -663,19 +851,19 @@ a:hover {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.85rem;
 }
 
 .player-info-cluster {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.9rem;
 }
 
 .avatar-emboss {
-  width: 58px;
-  height: 58px;
-  border-radius: 18px;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
   background: var(--bg-card);
   box-shadow: var(--neu-flat-sm);
   border: 1px solid var(--border-subtle);
@@ -683,87 +871,86 @@ a:hover {
   align-items: center;
   justify-content: center;
   font-family: 'Outfit', sans-serif;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--accent-violet);
   position: relative;
+  flex-shrink: 0;
 }
 
 .online-dot-subtle {
   position: absolute;
   bottom: -2px;
   right: -2px;
-  width: 12px;
-  height: 12px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
   background: var(--accent-mint);
   border: 2px solid var(--bg-card);
 }
 
 .player-headings h3 {
-  font-size: 1.15rem;
+  font-size: 1.08rem;
   margin-bottom: 2px;
 }
 
 .gamertag-sub {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
 }
 
-/* Indicador de Afinidad */
 .affinity-badge {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 3px;
+  gap: 2px;
 }
 
 .affinity-pill {
-  padding: 5px 11px;
+  padding: 4px 10px;
   border-radius: 999px;
   background: var(--bg-sunken);
   box-shadow: var(--neu-pressed-sm);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--accent-mint);
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
 }
 
 .affinity-pill svg {
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
   stroke: currentColor;
 }
 
 .affinity-label {
-  font-size: 0.65rem;
+  font-size: 0.64rem;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
-/* Badges e Insignias */
 .badges-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .neu-pill-tag {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 4px 11px;
+  gap: 0.35rem;
+  padding: 4px 10px;
   border-radius: 999px;
   background: var(--bg-card);
   box-shadow: var(--neu-flat-xs);
   border: 1px solid var(--border-subtle);
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 600;
   color: var(--text-body);
 }
@@ -787,9 +974,9 @@ a:hover {
 .card-bio-plate {
   background: var(--bg-sunken);
   box-shadow: var(--neu-pressed-sm);
-  border-radius: 14px;
-  padding: 0.85rem 1rem;
-  font-size: 0.88rem;
+  border-radius: 13px;
+  padding: 0.8rem 0.95rem;
+  font-size: 0.86rem;
   color: var(--text-body);
   line-height: 1.5;
 }
@@ -798,27 +985,27 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
 }
 
 .card-foot-meta svg {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   vertical-align: -2px;
   stroke: currentColor;
 }
 
 /* ==========================================================================
-   7. Hub de Torneos & Llaves Neumórficas (Brackets)
+   9. Hub de Torneos & Llaves Neumórficas (Brackets)
    ========================================================================== */
 
 .tournament-banner-plate {
   background: var(--bg-card);
   box-shadow: var(--neu-flat);
-  border-radius: 26px;
+  border-radius: 24px;
   border: 1px solid var(--border-subtle);
-  padding: 2.25rem;
+  padding: 2rem 2.25rem;
   margin-bottom: 2.5rem;
   display: flex;
   align-items: center;
@@ -827,30 +1014,19 @@ a:hover {
   flex-wrap: wrap;
 }
 
-.tournament-banner-plate h3 {
-  font-size: 1.65rem;
-  margin-bottom: 0.4rem;
-}
-
-.tournament-banner-plate p {
-  color: var(--text-muted);
-  max-width: 620px;
-  font-size: 0.95rem;
-}
-
 .tourneys-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 1.75rem;
-  margin-bottom: 3.5rem;
+  gap: 1.6rem;
+  margin-bottom: 3rem;
 }
 
 .tourney-item-card {
   background: var(--bg-card);
   box-shadow: var(--neu-flat);
-  border-radius: 22px;
+  border-radius: 20px;
   border: 1px solid var(--border-subtle);
-  padding: 1.75rem;
+  padding: 1.6rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -863,25 +1039,19 @@ a:hover {
   box-shadow: var(--neu-floating);
 }
 
-.tourney-top-status {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .meta-spec-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
-  font-size: 0.85rem;
+  gap: 0.6rem;
+  font-size: 0.84rem;
   color: var(--text-muted);
 }
 
 .meta-spec-list li {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.5rem;
 }
 
 .meta-spec-list li svg {
@@ -896,13 +1066,12 @@ a:hover {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Árbol de Brackets Neumórfico */
 .bracket-outer-plate {
   background: var(--bg-card);
   box-shadow: var(--neu-flat);
-  border-radius: 26px;
+  border-radius: 24px;
   border: 1px solid var(--border-subtle);
-  padding: 2.25rem;
+  padding: 2rem;
   overflow-x: auto;
 }
 
@@ -917,24 +1086,24 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  gap: 1.5rem;
+  gap: 1.4rem;
   flex: 1;
 }
 
 .column-header-title {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--text-muted);
   text-align: center;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .column-header-title svg {
@@ -945,7 +1114,7 @@ a:hover {
 .match-tile-plate {
   background: var(--bg-sunken);
   box-shadow: var(--neu-pressed-sm);
-  border-radius: 16px;
+  border-radius: 15px;
   border: 1px solid var(--border-subtle);
   overflow: hidden;
 }
@@ -954,12 +1123,11 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1.15rem;
-  font-size: 0.88rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.86rem;
   font-weight: 600;
   color: var(--text-body);
   border-bottom: 1px solid var(--border-subtle);
-  transition: all 0.2s ease;
 }
 
 .match-team-row:last-child {
@@ -974,7 +1142,7 @@ a:hover {
 
 .score-badge-neu {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 700;
   padding: 2px 7px;
   border-radius: 6px;
@@ -989,7 +1157,7 @@ a:hover {
 }
 
 /* ==========================================================================
-   8. Modales Neumórficos, Sala de Lobby & Chat
+   10. Modales Neumórficos, Sala & Radar
    ========================================================================== */
 
 .neu-modal-backdrop {
@@ -998,9 +1166,9 @@ a:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(10, 13, 20, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(8, 11, 18, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1016,12 +1184,12 @@ a:hover {
 }
 
 .neu-modal-card {
-  background: var(--bg-card);
+  background: var(--bg-modal);
   box-shadow: var(--neu-floating);
   border: 1px solid var(--border-subtle);
-  border-radius: 26px;
+  border-radius: 24px;
   width: 92%;
-  max-width: 640px;
+  max-width: 620px;
   max-height: 88vh;
   display: flex;
   flex-direction: column;
@@ -1035,7 +1203,7 @@ a:hover {
 }
 
 .neu-modal-head {
-  padding: 1.5rem 1.75rem;
+  padding: 1.4rem 1.65rem;
   border-bottom: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
@@ -1043,14 +1211,13 @@ a:hover {
 }
 
 .neu-modal-body {
-  padding: 1.75rem;
+  padding: 1.65rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
 
-/* Chat & Sala de Lobby */
 .duo-roster-split {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1060,16 +1227,16 @@ a:hover {
 .roster-member-plate {
   background: var(--bg-sunken);
   box-shadow: var(--neu-pressed-sm);
-  border-radius: 16px;
-  padding: 0.9rem 1.15rem;
+  border-radius: 15px;
+  padding: 0.85rem 1.1rem;
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.8rem;
 }
 
 .member-avatar {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 12px;
   background: var(--bg-card);
   box-shadow: var(--neu-flat-xs);
@@ -1081,11 +1248,11 @@ a:hover {
 }
 
 .chat-thread-container {
-  height: 240px;
+  height: 230px;
   background: var(--bg-sunken);
   box-shadow: var(--neu-pressed);
-  border-radius: 18px;
-  padding: 1.15rem;
+  border-radius: 16px;
+  padding: 1.1rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -1096,9 +1263,9 @@ a:hover {
   display: flex;
   flex-direction: column;
   max-width: 82%;
-  padding: 0.65rem 1rem;
-  border-radius: 16px;
-  font-size: 0.86rem;
+  padding: 0.65rem 0.95rem;
+  border-radius: 15px;
+  font-size: 0.85rem;
   line-height: 1.45;
 }
 
@@ -1108,7 +1275,7 @@ a:hover {
   box-shadow: var(--neu-flat-xs);
   color: var(--primary);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   text-align: center;
   border-radius: 999px;
   padding: 4px 14px;
@@ -1141,19 +1308,19 @@ a:hover {
   gap: 0.65rem;
 }
 
-/* Animación de Radar Sutil (Sin Neón) */
+/* Radar Sutil */
 .radar-stage {
   text-align: center;
-  padding: 2.75rem 1.5rem;
+  padding: 2.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.35rem;
+  gap: 1.25rem;
 }
 
 .radar-dish-neu {
-  width: 130px;
-  height: 130px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   background: var(--bg-sunken);
   box-shadow: var(--neu-pressed);
@@ -1165,11 +1332,11 @@ a:hover {
 
 .radar-subtle-ring {
   position: absolute;
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   border: 2px solid var(--primary);
-  opacity: 0.4;
+  opacity: 0.45;
   animation: pulse-subtle 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
@@ -1179,7 +1346,7 @@ a:hover {
 }
 
 /* ==========================================================================
-   9. Footer Neumórfico
+   11. Footer Neumórfico & Responsividad
    ========================================================================== */
 
 .site-footer {
@@ -1187,7 +1354,7 @@ a:hover {
   border-top: 1px solid var(--border-subtle);
   background: var(--bg-card);
   box-shadow: var(--neu-flat);
-  padding: 3.5rem 0 2.5rem;
+  padding: 3rem 0 2rem;
 }
 
 .footer-columns {
@@ -1211,7 +1378,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
-  font-size: 0.86rem;
+  font-size: 0.85rem;
 }
 
 .footer-links-nav a {
@@ -1225,19 +1392,19 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 2rem;
+  padding-top: 1.8rem;
   border-top: 1px solid var(--border-subtle);
   font-size: 0.82rem;
   color: var(--text-muted);
 }
 
-/* ==========================================================================
-   10. Responsividad
-   ========================================================================== */
+@media (max-width: 980px) {
+  .dashboard-grid-layout { grid-template-columns: 1fr; }
+  .sidebar-controls-col { position: static; }
+}
 
 @media (max-width: 768px) {
   .nav-tabs-bar { display: none; }
-  .filter-controls-row { grid-template-columns: 1fr; }
   .footer-columns { grid-template-columns: 1fr; }
   .duo-roster-split { grid-template-columns: 1fr; }
   .bracket-tree-flex { overflow-x: scroll; }

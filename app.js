@@ -1,6 +1,6 @@
 /**
  * PlayMatch — Lógica de Aplicación
- * VoxTi Labs · Versión 2.0 · Neumorfismo Elegante & SVGs Limpios (Cero Emojis)
+ * VoxTi Labs · Versión 2.5 · Dashboard Ejecutivo Neumórfico & Cero Emojis
  */
 
 // ============================================================================
@@ -15,18 +15,24 @@ const ICONS = {
   mic: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>`,
   clock: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
   shield: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`,
-  check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`,
+  check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`,
   sun: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`,
   moon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`,
   gamepad: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="10" y2="12"></line><line x1="8" y1="10" x2="8" y2="14"></line><line x1="15" y1="13" x2="15.01" y2="13"></line><line x1="18" y1="11" x2="18.01" y2="11"></line><rect x="2" y="6" width="20" height="12" rx="4"></rect></svg>`,
   send: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>`,
-  copy: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`,
-  bell: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>`
+  copy: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`
 };
 
 // ============================================================================
 // 2. Base de Datos Mock
 // ============================================================================
+
+const AVAILABLE_GAMES = [
+  { id: "valorant", name: "VALORANT", role: "Iniciador / Sova", tag: "Ascendente 2" },
+  { id: "lol", name: "League of Legends", role: "Soporte / Utilidad", tag: "Esmeralda 1" },
+  { id: "cs2", name: "Counter-Strike 2", role: "Entry Fragger / Rifler", tag: "15,800 CS" },
+  { id: "rocket_league", name: "Rocket League", role: "Rotación 2v2 / Aéreo", tag: "Campeón 2" }
+];
 
 const MOCK_PLAYERS = [
   {
@@ -41,7 +47,7 @@ const MOCK_PLAYERS = [
     mode: "ranked",
     mic: "si",
     karma: 4.95,
-    honors: ["Conducta Impecable", "Liderazgo Tactico", "Puntualidad"],
+    honors: ["Conducta Impecable", "Liderazgo Táctico", "Puntualidad"],
     bio: "Especialista en iniciación y reconocimiento en servidores de Santiago. Busco dúo con comunicación sólida para escalar a Inmortal.",
     avatarText: "IS",
     winRate: "62%",
@@ -59,7 +65,7 @@ const MOCK_PLAYERS = [
     mode: "ranked",
     mic: "si",
     karma: 5.0,
-    honors: ["Espiritu de Equipo", "Paciencia Plena", "Buena Coordinacion"],
+    honors: ["Espíritu de Equipo", "Paciencia Plena", "Buena Coordinación"],
     bio: "Main Nami, Lulu y Taliyah en LAS. Busco ADC coordinado para escalar a Diamante y competir en torneos comunitarios.",
     avatarText: "CR",
     winRate: "58%",
@@ -67,7 +73,7 @@ const MOCK_PLAYERS = [
   },
   {
     id: 3,
-    name: "Matias Morales",
+    name: "Matías Morales",
     gamertag: "DarkoCS#CL",
     game: "cs2",
     rank: "15,800 CS Rating",
@@ -88,22 +94,22 @@ const MOCK_PLAYERS = [
     name: "Valentina Vega",
     gamertag: "ValuAerial#CL",
     game: "rocket_league",
-    rank: "Campeon 2",
-    role: "Rotacion y Asistencias",
+    rank: "Campeón 2",
+    role: "Rotación y Asistencias",
     schedule: "findes",
     scheduleText: "Fines de semana y tardes",
     mode: "casual",
     mic: "opcional",
     karma: 4.92,
     honors: ["Juego Limpio", "Solidaridad en Partida"],
-    bio: "Partidas 2v2 y 3v3 orientadas a mejorar mecanicas de rotacion y juego aereo. Ambiente sereno y libre de frustracion.",
+    bio: "Partidas 2v2 y 3v3 orientadas a mejorar mecánicas de rotación y juego aéreo. Ambiente sereno y libre de frustración.",
     avatarText: "VV",
     winRate: "59%",
     matchesCount: 95
   },
   {
     id: 5,
-    name: "Sebastian Henriquez",
+    name: "Sebastián Henríquez",
     gamertag: "BastiJg#LAS",
     game: "lol",
     rank: "Platino 2",
@@ -114,7 +120,7 @@ const MOCK_PLAYERS = [
     mic: "si",
     karma: 4.85,
     honors: ["Control de Objetivos", "Mentalidad Firme"],
-    bio: "Prioridad en vision de mapa y aseguramiento de objetivos tempranos. Busco linea central solida para emparejamiento constante.",
+    bio: "Prioridad en visión de mapa y aseguramiento de objetivos tempranos. Busco línea central sólida para emparejamiento constante.",
     avatarText: "SH",
     winRate: "54%",
     matchesCount: 88
@@ -131,8 +137,8 @@ const MOCK_PLAYERS = [
     mode: "ranked",
     mic: "si",
     karma: 4.9,
-    honors: ["Apertura de Sitio", "Excelente Comunicacion"],
-    bio: "Enfocada en transicionar a Ascendente. Juego responsable, respeto mutuo y alta disciplina en rondas de compra economica.",
+    honors: ["Apertura de Sitio", "Excelente Comunicación"],
+    bio: "Enfocada en transicionar a Ascendente. Juego responsable, respeto mutuo y alta disciplina en rondas de compra económica.",
     avatarText: "FL",
     winRate: "61%",
     matchesCount: 167
@@ -147,58 +153,56 @@ const MOCK_TOURNAMENTS = [
     gameCode: "valorant",
     status: "Inscripciones Abiertas",
     prize: "$250.000 CLP + Riot Points",
-    date: "Sabado 28 de Septiembre · 16:00 CLT",
-    teamsCount: "12 / 16 Escuadras",
-    mode: "Eliminacion Directa (Bo1 / Bo3 Final)",
-    server: "Santiago (Chile / LAS)",
-    description: "Competencia oficial para escuadras amateur y universitarias. Validacion de plantillas y transmision comunitaria."
+    date: "Sábado 28 de Septiembre · 16:00 CLT",
+    teamsCount: "16 / 16 Equipos",
+    mode: "Eliminación Directa Bo1 / Gran Final Bo3",
+    description: "Torneo interuniversitario e interregional en servidores oficiales de Santiago. Transmisión comunitaria y seguimiento de llaves en vivo."
   },
   {
     id: "tourney-2",
-    title: "Torneo Grieta del Invocador — Primavera",
-    game: "League of Legends",
+    title: "Circuito Amateur League of Legends: Grieta LAS",
+    game: "LEAGUE OF LEGENDS",
     gameCode: "lol",
-    status: "Fase de Cuartos en Curso",
-    prize: "$150.000 CLP",
-    date: "En desarrollo",
-    teamsCount: "8 Escuadras",
-    mode: "Llave de 8 (Bo3)",
-    server: "Servidor LAS",
-    description: "Enfocado en escuadras locales sin participacion profesional previa. Reglas de torneo de alta disciplina."
+    status: "Fase de Grupos",
+    prize: "$180.000 CLP + Cofres Hextech",
+    date: "Domingo 29 de Septiembre · 17:30 CLT",
+    teamsCount: "8 / 8 Escuadras",
+    mode: "Round Robin + Playoffs",
+    description: "Competición de nivel Esmeralda-Diamante. Verificación de identidad competitiva anti-smurf y arbitraje en línea."
   },
   {
     id: "tourney-3",
-    title: "CS2 Premier League Chile — Temporada 1",
-    game: "Counter-Strike 2",
+    title: "Premier CS2 Cono Sur — Season 1",
+    game: "COUNTER-STRIKE 2",
     gameCode: "cs2",
-    status: "Inscripciones Abiertas",
-    prize: "$100.000 CLP + Trofeos",
-    date: "Viernes 04 de Octubre · 20:00 CLT",
-    teamsCount: "6 / 8 Escuadras",
-    mode: "Formato Suizo",
-    server: "Servidores Oficiales Chile",
-    description: "Certamen tactico estructurado con sistema de veto de mapas MR12 y grabacion obligatoria de demostraciones."
+    status: "Inscripciones Próximas",
+    prize: "$300.000 CLP",
+    date: "Sábado 05 de Octubre · 15:00 CLT",
+    teamsCount: "12 / 16 Equipos",
+    mode: "MR12 Sistema Suizo",
+    description: "Servidores 128-tick simulados con latencia sub-15ms en Chile y Argentina. Sistema anti-trampas de terceros mandatario."
   }
 ];
 
 const MOCK_BRACKET = {
   quarterFinals: [
-    { teamA: "Los Condores Gaming", scoreA: 13, teamB: "Valparaiso Vipers", scoreB: 9, winner: "A" },
-    { teamA: "Duoc San Joaquin eSports", scoreA: 13, teamB: "Araucania Tactics", scoreB: 11, winner: "A" },
-    { teamA: "Biobio Blasters", scoreA: 8, teamB: "Antofagasta Aces", scoreB: 13, winner: "B" },
-    { teamA: "Santiago Sentinels", scoreA: 13, teamB: "Punta Arenas Frost", scoreB: 4, winner: "A" }
+    { id: "qf1", teamA: "Santiago Sentinels", teamB: "Valparaíso Vipers", scoreA: 13, scoreB: 9, winner: "A" },
+    { id: "qf2", teamA: "Andes Esports", teamB: "Concepción Cyber", scoreA: 11, scoreB: 13, winner: "B" },
+    { id: "qf3", teamA: "Metropolitan Gaming", teamB: "Patagonia Pulse", scoreA: 13, scoreB: 6, winner: "A" },
+    { id: "qf4", teamA: "Duoc UC Gaming", teamB: "Antofagasta Apex", scoreA: 14, scoreB: 12, winner: "A" }
   ],
   semiFinals: [
-    { teamA: "Los Condores Gaming", scoreA: 2, teamB: "Duoc San Joaquin eSports", scoreB: 1, winner: "A" },
-    { teamA: "Antofagasta Aces", scoreA: 0, teamB: "Santiago Sentinels", scoreB: 2, winner: "B" }
+    { id: "sf1", teamA: "Santiago Sentinels", teamB: "Concepción Cyber", scoreA: 13, scoreB: 8, winner: "A" },
+    { id: "sf2", teamA: "Metropolitan Gaming", teamB: "Duoc UC Gaming", scoreA: 10, scoreB: 13, winner: "B" }
   ],
   grandFinal: {
-    teamA: "Los Condores Gaming",
-    scoreA: 1,
+    id: "gf",
+    teamA: "Duoc UC Gaming",
     teamB: "Santiago Sentinels",
+    scoreA: 1,
     scoreB: 2,
     winner: "B",
-    champion: "Santiago Sentinels (Campeon Oficial)"
+    champion: "Santiago Sentinels (Campeón Oficial)"
   }
 };
 
@@ -212,12 +216,11 @@ const state = {
   filterSchedule: "all",
   filterMic: "all",
   filterMode: "all",
+  userPreferences: ["valorant", "lol"], // Juegos de preferencia iniciales
   currentUser: {
     name: "Gamer VoxTi",
     gamertag: "VoxTiPlayer#CL",
     karma: 4.96,
-    preferredGame: "valorant",
-    rank: "Ascendente 1",
     discord: "voxti_player#1337"
   },
   activeLobby: null,
@@ -231,6 +234,7 @@ const state = {
 document.addEventListener("DOMContentLoaded", () => {
   initTheme();
   setupEventListeners();
+  renderPreferredGames();
   renderPlayers();
   renderTournaments();
   renderBracket();
@@ -261,25 +265,92 @@ function applyTheme(mode) {
 }
 
 function updateOnlineCounter() {
-  const onlineCount = document.getElementById("onlinePlayersCount");
-  if (onlineCount) {
-    const base = 428;
-    const variation = Math.floor(Math.random() * 15);
-    onlineCount.textContent = `${base + variation} jugadores online`;
-  }
+  const countNav = document.getElementById("onlinePlayersCount");
+  const countHero = document.getElementById("statOnlineCounter");
+  const base = 438;
+  const variation = Math.floor(Math.random() * 12);
+  const total = base + variation;
+
+  if (countNav) countNav.textContent = `${total} jugadores activos`;
+  if (countHero) countHero.textContent = `${total}`;
 }
 
 // ============================================================================
-// 5. Motor de Afinidad y Renderizado de Jugadores
+// 5. Gestión del Apartado "Mis Juegos de Preferencia"
+// ============================================================================
+
+function renderPreferredGames() {
+  const container = document.getElementById("prefGamesList");
+  const badge = document.getElementById("prefActiveCountBadge");
+  if (!container) return;
+
+  if (badge) {
+    badge.textContent = `${state.userPreferences.length} Activos`;
+  }
+
+  container.innerHTML = AVAILABLE_GAMES.map(game => {
+    const isSelected = state.userPreferences.includes(game.id);
+    return `
+      <div class="pref-game-item ${isSelected ? 'selected' : ''}" onclick="toggleGamePreference('${game.id}')" title="Clic para alternar prioridad en matchmaking">
+        <div class="pref-game-left">
+          <div class="pref-game-checkbox">
+            ${ICONS.check}
+          </div>
+          <div>
+            <div class="pref-game-title">${game.name}</div>
+            <div class="pref-game-role-badge">${game.role} · ${game.tag}</div>
+          </div>
+        </div>
+        <span class="neu-pill-tag" style="font-size: 0.65rem; padding: 2px 7px; ${isSelected ? 'color: var(--primary); font-weight: 700;' : 'color: var(--text-muted);'}">
+          ${isSelected ? 'Prioridad' : 'Inactivo'}
+        </span>
+      </div>
+    `;
+  }).join("");
+}
+
+function toggleGamePreference(gameId) {
+  const game = AVAILABLE_GAMES.find(g => g.id === gameId);
+  const index = state.userPreferences.indexOf(gameId);
+
+  if (index >= 0) {
+    if (state.userPreferences.length === 1) {
+      showToast("Debes mantener al menos un juego de preferencia activo.");
+      return;
+    }
+    state.userPreferences.splice(index, 1);
+    showToast(`${game ? game.name : gameId} removido de tus prioridades.`);
+  } else {
+    state.userPreferences.push(gameId);
+    showToast(`${game ? game.name : gameId} añadido a tus prioridades.`);
+  }
+
+  renderPreferredGames();
+  renderPlayers(); // Recalcular afinidades dinámicamente
+}
+
+// ============================================================================
+// 6. Motor de Afinidad y Renderizado de Jugadores
 // ============================================================================
 
 function calculateCompatibility(player) {
-  let score = 75;
-  if (state.selectedGame !== "all" && player.game === state.selectedGame) score += 12;
-  else if (player.game === state.currentUser.preferredGame) score += 10;
-  if (player.schedule === "noches") score += 6;
-  if (player.mic === "si") score += 5;
+  let score = 70;
+  
+  // Bonificación por coincidir con los juegos de preferencia del usuario (+16%)
+  if (state.userPreferences.includes(player.game)) {
+    score += 16;
+  }
+  
+  // Coincidencia de juego filtrado
+  if (state.selectedGame !== "all" && player.game === state.selectedGame) {
+    score += 8;
+  }
+
+  // Compatibilidad de horarios y voz
+  if (player.schedule === "noches") score += 5;
+  if (player.mic === "si") score += 4;
   if (player.karma >= 4.9) score += 4;
+
   return Math.min(score, 99);
 }
 
@@ -295,18 +366,23 @@ function renderPlayers() {
     return true;
   });
 
+  // Ordenar por afinidad calculada descendente
+  filtered.sort((a, b) => calculateCompatibility(b) - calculateCompatibility(a));
+
   const countBadge = document.getElementById("resultsCount");
   if (countBadge) {
-    countBadge.textContent = `${filtered.length} companeros disponibles`;
+    countBadge.textContent = `${filtered.length} compañeros disponibles`;
   }
 
   if (filtered.length === 0) {
     grid.innerHTML = `
-      <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 1rem; background: var(--bg-card); border-radius: 24px; box-shadow: var(--neu-flat); border: 1px solid var(--border-subtle);">
-        <div style="width: 48px; height: 48px; margin: 0 auto 1rem; color: var(--text-muted);">${ICONS.users}</div>
-        <h3 style="margin-bottom: 0.5rem;">Sin coincidencias exactas</h3>
-        <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.92rem;">Amplia los parametros de horario o selecciona otro estilo de juego.</p>
-        <button class="neu-btn neu-btn-sm" onclick="resetFilters()">Restablecer filtros</button>
+      <div style="grid-column: 1 / -1; text-align: center; padding: 3.5rem 1.5rem; background: var(--bg-card); border-radius: 24px; box-shadow: var(--neu-flat); border: 1px solid var(--border-subtle);">
+        <div style="width: 44px; height: 44px; margin: 0 auto 1rem; color: var(--text-muted);">${ICONS.users}</div>
+        <h3 style="margin-bottom: 0.5rem; font-size: 1.2rem;">Sin coincidencias con los filtros activos</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.88rem; max-width: 420px; margin-left: auto; margin-right: auto;">
+          Intenta ampliar la disponibilidad horaria o restablecer los criterios de búsqueda.
+        </p>
+        <button class="neu-btn neu-btn-primary neu-btn-sm" onclick="resetFilters()">Restablecer Filtros</button>
       </div>
     `;
     return;
@@ -314,13 +390,15 @@ function renderPlayers() {
 
   grid.innerHTML = filtered.map(player => {
     const affinity = calculateCompatibility(player);
+    const isPreferredGame = state.userPreferences.includes(player.game);
+
     return `
       <article class="neu-card" data-id="${player.id}">
         <div class="card-top">
           <div class="player-info-cluster">
             <div class="avatar-emboss">
               ${player.avatarText}
-              <div class="online-dot-subtle" title="En linea"></div>
+              <div class="online-dot-subtle" title="En línea"></div>
             </div>
             <div class="player-headings">
               <h3>${player.name}</h3>
@@ -328,10 +406,10 @@ function renderPlayers() {
             </div>
           </div>
           <div class="affinity-badge">
-            <div class="affinity-pill">
+            <div class="affinity-pill" style="${isPreferredGame ? 'border: 1px solid rgba(0, 229, 153, 0.4);' : ''}">
               ${ICONS.lightning} ${affinity}%
             </div>
-            <span class="affinity-label">Afinidad</span>
+            <span class="affinity-label">${isPreferredGame ? 'Match Preferente' : 'Afinidad'}</span>
           </div>
         </div>
 
@@ -349,9 +427,9 @@ function renderPlayers() {
           <span class="font-mono">Victoria: ${player.winRate}</span>
         </div>
 
-        <div style="display: flex; gap: 0.85rem; margin-top: 0.35rem;">
+        <div style="display: flex; gap: 0.75rem; margin-top: 0.35rem;">
           <button class="neu-btn neu-btn-primary" style="flex: 1;" onclick="startInstantInvite(${player.id})">
-            ${ICONS.lightning} Invitar a Duo
+            ${ICONS.lightning} Invitar a Dúo
           </button>
           <button class="neu-btn neu-btn-sm" onclick="showPlayerProfile(${player.id})">
             Ficha
@@ -363,19 +441,22 @@ function renderPlayers() {
 }
 
 // ============================================================================
-// 6. Gestion de Eventos y Filtros
+// 7. Configuración de Filtros y Eventos
 // ============================================================================
 
 function setupEventListeners() {
-  document.querySelectorAll(".neu-chip").forEach(chip => {
+  // Filtros rápidos por chips de títulos
+  const chips = document.querySelectorAll("#gameChipsBar .neu-chip");
+  chips.forEach(chip => {
     chip.addEventListener("click", () => {
-      document.querySelectorAll(".neu-chip").forEach(c => c.classList.remove("active"));
+      chips.forEach(c => c.classList.remove("active"));
       chip.classList.add("active");
       state.selectedGame = chip.getAttribute("data-game");
       renderPlayers();
     });
   });
 
+  // Selectores comunes dentro de custom-select-wrapper
   const scheduleSelect = document.getElementById("filterSchedule");
   if (scheduleSelect) {
     scheduleSelect.addEventListener("change", (e) => {
@@ -400,6 +481,7 @@ function setupEventListeners() {
     });
   }
 
+  // Navegación por pestañas principales
   const navPlayers = document.getElementById("navBtnPlayers");
   const navTourneys = document.getElementById("navBtnTourneys");
   const sectionPlayers = document.getElementById("playersSection");
@@ -409,18 +491,19 @@ function setupEventListeners() {
     navPlayers.addEventListener("click", () => {
       navPlayers.classList.add("active");
       navTourneys.classList.remove("active");
-      sectionPlayers.style.display = "block";
-      sectionTourneys.style.display = "none";
+      if (sectionPlayers) sectionPlayers.style.display = "block";
+      if (sectionTourneys) sectionTourneys.style.display = "none";
     });
 
     navTourneys.addEventListener("click", () => {
       navTourneys.classList.add("active");
       navPlayers.classList.remove("active");
-      sectionPlayers.style.display = "none";
-      sectionTourneys.style.display = "block";
+      if (sectionPlayers) sectionPlayers.style.display = "none";
+      if (sectionTourneys) sectionTourneys.style.display = "block";
     });
   }
 
+  // Botón radar
   const quickMatchBtn = document.getElementById("quickMatchBtn");
   if (quickMatchBtn) {
     quickMatchBtn.addEventListener("click", triggerRadarSearch);
@@ -433,8 +516,9 @@ function resetFilters() {
   state.filterMic = "all";
   state.filterMode = "all";
 
-  document.querySelectorAll(".neu-chip").forEach(c => c.classList.remove("active"));
-  document.querySelector('.neu-chip[data-game="all"]').classList.add("active");
+  document.querySelectorAll("#gameChipsBar .neu-chip").forEach(c => c.classList.remove("active"));
+  const defaultChip = document.querySelector('#gameChipsBar .neu-chip[data-game="all"]');
+  if (defaultChip) defaultChip.classList.add("active");
 
   const s = document.getElementById("filterSchedule");
   const m = document.getElementById("filterMic");
@@ -444,10 +528,11 @@ function resetFilters() {
   if (mo) mo.value = "all";
 
   renderPlayers();
+  showToast("Filtros restablecidos al valor predeterminado.");
 }
 
 // ============================================================================
-// 7. Busqueda Rapida
+// 8. Búsqueda Rápida Asistida (Radar de Afinidad)
 // ============================================================================
 
 function triggerRadarSearch() {
@@ -456,17 +541,17 @@ function triggerRadarSearch() {
   if (!modal) return;
 
   modal.classList.add("open");
-  statusTxt.textContent = "Evaluando perfiles con rangos y horarios afines en servidores locales...";
+  if (statusTxt) statusTxt.textContent = "Evaluando candidatos con cercanía de rango y preferencias comunes en servidores locales...";
 
   setTimeout(() => {
-    statusTxt.textContent = "Candidato con 96% de compatibilidad verificado. Creando sala de coordinacion...";
-  }, 1600);
+    if (statusTxt) statusTxt.textContent = "Candidato encontrado con 98% de compatibilidad. Aperturando sala de coordinación...";
+  }, 1500);
 
   setTimeout(() => {
     modal.classList.remove("open");
     const matchPartner = MOCK_PLAYERS[0];
     startInstantInvite(matchPartner.id);
-  }, 2900);
+  }, 2800);
 }
 
 function closeRadarModal() {
@@ -475,7 +560,7 @@ function closeRadarModal() {
 }
 
 // ============================================================================
-// 8. Sala de Coordinacion y Mensajeria Instantanea
+// 9. Sala de Coordinación & Mensajería
 // ============================================================================
 
 function startInstantInvite(playerId) {
@@ -484,19 +569,17 @@ function startInstantInvite(playerId) {
 
   state.activeLobby = partner;
   state.chatMessages = [
-    { sender: "system", text: `Canal privado establecido. Cero toxicidad. Coordina IDs y servidor.` },
-    { sender: partner.name, text: `Hola. Confirmo disponibilidad para jugar ${partner.game.toUpperCase()}. Pasame tu Discord o ID de juego para invitar.` }
+    { sender: "system", text: "Canal de coordinación privado establecido. Cero toxicidad. Coordina IDs y servidor." },
+    { sender: partner.name, text: `Hola. Confirmo disponibilidad para jugar ${partner.game.toUpperCase()}. Pásame tu Discord o ID de juego para invitar.` }
   ];
 
   const lobbyModal = document.getElementById("lobbyModal");
   const partnerName = document.getElementById("lobbyPartnerName");
   const partnerTag = document.getElementById("lobbyPartnerTag");
-  const partnerGame = document.getElementById("lobbyPartnerGame");
   const partnerAvatar = document.getElementById("lobbyPartnerAvatar");
 
   if (partnerName) partnerName.textContent = partner.name;
   if (partnerTag) partnerTag.textContent = partner.gamertag;
-  if (partnerGame) partnerGame.textContent = `${partner.rank} · ${partner.role}`;
   if (partnerAvatar) partnerAvatar.textContent = partner.avatarText;
 
   renderChatMessages();
@@ -511,7 +594,7 @@ function renderChatMessages() {
     if (msg.sender === "system") {
       return `<div class="chat-bubble system-alert">${msg.text}</div>`;
     }
-    const isMe = msg.sender === "Tu";
+    const isMe = msg.sender === "Tú";
     return `
       <div class="chat-bubble ${isMe ? 'outbound' : 'inbound'}">
         <span class="chat-author">${msg.sender}</span>
@@ -528,7 +611,7 @@ function sendChatMessage() {
   if (!input || !input.value.trim()) return;
 
   const text = input.value.trim();
-  state.chatMessages.push({ sender: "Tu", text });
+  state.chatMessages.push({ sender: "Tú", text });
   input.value = "";
   renderChatMessages();
 
@@ -537,13 +620,13 @@ function sendChatMessage() {
       const responses = [
         "Solicitud enviada en el cliente de juego. Revisa tus notificaciones.",
         "Conectado a la sala de voz de Discord. Te espero para iniciar.",
-        "Listo, marca tu estado para iniciar busqueda de partida."
+        "Listo, marca tu estado para iniciar búsqueda de partida."
       ];
       const randomResp = responses[Math.floor(Math.random() * responses.length)];
       state.chatMessages.push({ sender: state.activeLobby.name, text: randomResp });
       renderChatMessages();
     }
-  }, 1100);
+  }, 1000);
 }
 
 function copyGamerTag() {
@@ -553,6 +636,7 @@ function copyGamerTag() {
 }
 
 function copyDiscordTag() {
+  if (!state.activeLobby) return;
   const discordTag = `${state.activeLobby.name.toLowerCase().replace(/[^a-z]/g, "")}_cl#2026`;
   navigator.clipboard.writeText(discordTag);
   showToast(`Discord ID copiado: ${discordTag}`);
@@ -569,7 +653,7 @@ function finishMatchAndRate() {
 }
 
 // ============================================================================
-// 9. Sistema de Reconocimiento y Karma (Anti-Toxicidad)
+// 10. Sistema de Reconocimiento y Karma (Anti-Toxicidad)
 // ============================================================================
 
 let currentRatingPlayer = null;
@@ -591,13 +675,13 @@ function submitKarmaFeedback() {
   if (currentRatingPlayer) {
     currentRatingPlayer.karma = Math.min(5.0, currentRatingPlayer.karma + 0.02);
     renderPlayers();
-    showToast(`Valoracion registrada para ${currentRatingPlayer.name}. Reconocimiento añadido.`);
+    showToast(`Valoración registrada para ${currentRatingPlayer.name}. Reconocimiento añadido.`);
   }
   closeKarmaModal();
 }
 
 // ============================================================================
-// 10. Torneos y Visualizador de Brackets
+// 11. Hub de Torneos y Visualizador de Brackets
 // ============================================================================
 
 function renderTournaments() {
@@ -624,7 +708,7 @@ function renderTournaments() {
 
       <div style="display: flex; gap: 0.75rem; margin-top: 1.25rem;">
         <button class="neu-btn neu-btn-primary neu-btn-sm" style="flex: 1;" onclick="openRegisterTournamentModal('${t.id}')">
-          Inscripcion
+          Inscripción
         </button>
         <button class="neu-btn neu-btn-sm" onclick="scrollToBracket()">
           Ver Llave
@@ -709,12 +793,12 @@ function closeRegisterTournamentModal() {
 function confirmTournamentRegistration() {
   const teamInput = document.getElementById("teamNameInput");
   const teamName = teamInput && teamInput.value.trim() ? teamInput.value.trim() : "Escuadra VoxTi";
-  showToast(`Inscripcion oficial procesada para: ${teamName}`);
+  showToast(`Inscripción oficial procesada para: ${teamName}`);
   closeRegisterTournamentModal();
 }
 
 // ============================================================================
-// 11. Perfil del Usuario
+// 12. Perfil Técnico del Usuario
 // ============================================================================
 
 function showPlayerProfile(playerId) {
@@ -734,7 +818,7 @@ function showPlayerProfile(playerId) {
         <h3 style="font-size: 1.45rem;">${player.name}</h3>
         <p class="font-mono" style="color: var(--text-muted); font-size: 0.85rem;">${player.gamertag}</p>
         <span class="neu-pill-tag karma-accent" style="margin-top: 0.4rem;">
-          ${ICONS.star} ${player.karma.toFixed(2)} Indice de Convivencia
+          ${ICONS.star} ${player.karma.toFixed(2)} Índice de Convivencia
         </span>
       </div>
     </div>
@@ -766,14 +850,14 @@ function showPlayerProfile(playerId) {
     </div>
 
     <div>
-      <h4 style="margin-bottom: 0.45rem; font-size: 0.92rem;">Descripcion del Jugador</h4>
+      <h4 style="margin-bottom: 0.45rem; font-size: 0.92rem;">Descripción del Jugador</h4>
       <p style="color: var(--text-body); background: var(--bg-sunken); box-shadow: var(--neu-pressed-sm); padding: 1rem; border-radius: 14px; font-size: 0.88rem;">${player.bio}</p>
     </div>
 
     <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 0.5rem;">
       <button class="neu-btn neu-btn-sm" onclick="closeProfileModal()">Cerrar</button>
       <button class="neu-btn neu-btn-primary neu-btn-sm" onclick="closeProfileModal(); startInstantInvite(${player.id})">
-        ${ICONS.lightning} Invitar
+        ${ICONS.lightning} Invitar a Dúo
       </button>
     </div>
   `;
@@ -787,7 +871,7 @@ function closeProfileModal() {
 }
 
 // ============================================================================
-// 12. Notificaciones Toast Neumórficas
+// 13. Notificaciones Toast Neumórficas
 // ============================================================================
 
 function showToast(message) {
