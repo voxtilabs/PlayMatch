@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es" data-mode="noche">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlayMatch — Matchmaking Social & Torneos Gamer</title>
+  <meta name="description" content="Plataforma web de emparejamiento social y gestión de torneos para la comunidad gamer chilena. Conecta sin toxicidad, organiza torneos y sube de rango.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='25' fill='%233D5AFE'/><path d='M30 50 L50 25 L70 50 L50 75 Z' fill='%2335E0D0'/></svg>">
+</head>
+<body>
+
+  <!-- ========================================================================
+       BARRA DE NAVEGACIÓN SUPERIOR (PULSO STANDARD)
+       ======================================================================== -->
+  <header class="navbar">
+    <div class="container nav-content">
+      <a href="#" class="brand-lockup">
+        <div class="brand-logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </div>
+        <div class="brand-name">Play<span>Match</span> <span class="badge-brand-sub">VoxTi Labs</span></div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><button class="nav-link-btn active" id="navBtnPlayers"><span>👥</span> Buscar Compañeros</button></li>
+          <li><button class="nav-link-btn" id="navBtnTourneys"><span>🏆</span> Torneos & Brackets</button></li>
+          <li><a href="#aboutSection" class="nav-link-btn"><span>ℹ️</span> El Proyecto</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="live-status-pill" title="Jugadores activos en la plataforma">
+          <span class="pulse-dot"></span>
+          <span id="onlinePlayersCount">435 jugadores online</span>
+        </div>
+
+        <button class="mode-toggle" id="themeToggleBtn" aria-label="Cambiar modo de tema día / noche" title="Alternar modo día / noche">
+          <span id="themeIcon">🌙</span>
+        </button>
+
+        <button class="btn btn-primary btn-sm" onclick="showPlayerProfile(1)">
+          <span>👤</span> Mi Perfil
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       HERO & QUICK MATCHMAKER BAR
+       ======================================================================== -->
+  <main>
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-badge-tag">
+          <span>⚡</span> Matchmaking Inteligente · Cero Toxicidad · Chile & LAS
+        </div>
+        <h1 class="hero-title">
+          Encuentra tu dúo ideal y compite en <span class="glow">torneos amateur</span>
+        </h1>
+        <p class="hero-subtitle">
+          Deja atrás la pesadilla de la <em>solo queue</em>. PlayMatch conecta jugadores por juego, rango, horarios y nivel de convivencia verificado.
+        </p>
+
+        <!-- Barra Rápida de Filtros -->
+        <div class="matchmaker-bar">
+          <div>
+            <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.6rem;">
+              Selecciona tu juego principal
+            </span>
+            <div class="game-selector-chips">
+              <button class="game-chip active" data-game="all">🎮 Todos los juegos</button>
+              <button class="game-chip" data-game="valorant">🎯 Valorant</button>
+              <button class="game-chip" data-game="lol">⚔️ League of Legends</button>
+              <button class="game-chip" data-game="cs2">💣 Counter-Strike 2</button>
+              <button class="game-chip" data-game="rocket_league">🚗 Rocket League</button>
+            </div>
+          </div>
+
+          <div class="filter-grid-row">
+            <div class="form-field">
+              <label for="filterSchedule">Horario habitual</label>
+              <select id="filterSchedule" class="form-select">
+                <option value="all">Cualquier horario</option>
+                <option value="tardes">Tardes (18:00 - 22:00 CLT)</option>
+                <option value="noches">Noches (21:00 - 02:00 CLT)</option>
+                <option value="findes">Fines de semana</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="filterMic">Uso de Micrófono</label>
+              <select id="filterMic" class="form-select">
+                <option value="all">Cualquiera</option>
+                <option value="si">Micrófono obligatorio (Discord)</option>
+                <option value="opcional">Opcional / Sin mic</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="filterMode">Estilo de Juego</label>
+              <select id="filterMode" class="form-select">
+                <option value="all">Cualquier estilo</option>
+                <option value="ranked">Ranked / Tryhard (Competitivo)</option>
+                <option value="casual">Casual / Chilling</option>
+              </select>
+            </div>
+
+            <button class="btn btn-cyan" id="quickMatchBtn" title="Inicia el escaneo automático de emparejamiento">
+              <span>⚡</span> Buscar Dúo Ahora
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECCIÓN: COMPAÑEROS & FEED SOCIAL
+         ====================================================================== -->
+    <section class="content-section" id="playersSection">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2><span>🎯</span> Compañeros Compatibles en tu Región</h2>
+            <p class="section-subtitle">Ordenados por nivel de compatibilidad, karma anti-toxicidad y afinidad horaria.</p>
+          </div>
+          <div>
+            <span class="live-status-pill" id="resultsCount">Cargando compañeros...</span>
+          </div>
+        </div>
+
+        <div class="players-grid" id="playersGrid">
+          <!-- Renderizado dinámico desde app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECCIÓN: HUB DE TORNEOS & BRACKETS (OCULTO INICIALMENTE O VÍA TAB)
+         ====================================================================== -->
+    <section class="content-section" id="tourneysSection" style="display: none;">
+      <div class="container">
+        <div class="tournaments-header-card">
+          <div class="tournament-banner-text">
+            <h3>🏆 Torneos Amateur & Competencias Comunitarias</h3>
+            <p>
+              Inscribe a tu equipo, sigue los resultados en tiempo real y compite por premios en dinero y puntos de juego. Sin planillas de cálculo ni retrasos en Discord.
+            </p>
+          </div>
+          <button class="btn btn-primary" onclick="openRegisterTournamentModal('tourney-1')">
+            <span>⚔️</span> Inscribir Equipo
+          </button>
+        </div>
+
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <h2>Torneos Destacados de la Temporada</h2>
+            <p class="section-subtitle">Validación técnica y generación automática de llaves para torneos chilenos.</p>
+          </div>
+        </div>
+
+        <div class="tournament-list" id="tournamentsList">
+          <!-- Renderizado dinámico desde app.js -->
+        </div>
+
+        <!-- Visualizador de Llaves / Brackets -->
+        <div class="bracket-wrapper" id="bracketSection">
+          <div class="bracket-title-bar">
+            <div>
+              <h3>Llave en Vivo: Copa Santiago VALORANT (Fase Final)</h3>
+              <p style="color: var(--text-muted); font-size: 0.85rem;">Eliminación directa · Servidor Santiago de Chile</p>
+            </div>
+            <span class="live-status-pill"><span class="pulse-dot"></span> Torneo en Curso</span>
+          </div>
+
+          <div class="bracket-tree">
+            <!-- Cuartos de Final -->
+            <div class="bracket-round">
+              <div class="round-header">Cuartos de Final</div>
+              <div id="bracketQuarterFinals" style="display: flex; flex-direction: column; gap: 1.5rem;"></div>
+            </div>
+
+            <!-- Semifinales -->
+            <div class="bracket-round">
+              <div class="round-header">Semifinales</div>
+              <div id="bracketSemiFinals" style="display: flex; flex-direction: column; gap: 4rem;"></div>
+            </div>
+
+            <!-- Gran Final -->
+            <div class="bracket-round">
+              <div class="round-header">Gran Final</div>
+              <div id="bracketGrandFinal" style="display: flex; flex-direction: column; justify-content: center;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECCIÓN: ACERCA DEL ANTEPROYECTO (CONTEXTO TÉCNICO & PORTAFOLIO)
+         ====================================================================== -->
+    <section class="content-section" id="aboutSection" style="border-top: 1px solid var(--border); background: var(--bg-raised);">
+      <div class="container">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+          <span class="tag-pill" style="margin-bottom: 1rem; background: var(--action-soft); color: var(--action-text);">
+            Ingeniería en Informática · Duoc UC San Joaquín
+          </span>
+          <h2 style="margin-bottom: 1rem;">¿Por qué creamos PlayMatch?</h2>
+          <p style="color: var(--text-muted); margin-bottom: 2rem;">
+            PlayMatch nace como respuesta a dos problemas críticos del ecosistema gamer moderno: la soledad y toxicidad de la <em>solo queue</em>, y la dispersión operativa de torneos en herramientas no especializadas. 
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; text-align: left;">
+            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 18px; padding: 1.5rem;">
+              <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🛡️</div>
+              <h4 style="margin-bottom: 0.5rem;">Anti-Toxicidad</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                Sistema de Karma y reputación comunitaria que premia el juego limpio y aísla jugadores tóxicos.
+              </p>
+            </div>
+            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 18px; padding: 1.5rem;">
+              <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⚡</div>
+              <h4 style="margin-bottom: 0.5rem;">Matchmaking Social</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                Algoritmo de compatibilidad multidimensional: rango, horarios, comunicación y modo de juego.
+              </p>
+            </div>
+            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 18px; padding: 1.5rem;">
+              <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🏅</div>
+              <h4 style="margin-bottom: 0.5rem;">Gestión de Torneos</h4>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                Inscripciones centralizadas, validación de plantillas y brackets automáticos en tiempo real.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       MODALES INTERACTIVOS
+       ======================================================================== -->
+
+  <!-- 1. Modal Radar de Matchmaking -->
+  <div class="modal-backdrop" id="radarModal">
+    <div class="modal-dialog" style="max-width: 440px;">
+      <div class="radar-search-modal">
+        <div class="radar-circle">
+          <div class="radar-sweep"></div>
+          <span style="font-size: 2.5rem; z-index: 2;">⚡</span>
+        </div>
+        <h3 id="radarTitle">Buscando Dúo Compatible</h3>
+        <p id="radarStatusText" style="color: var(--text-muted); font-size: 0.9rem;">
+          Escaneando jugadores activos en Chile con rango y horarios afines...
+        </p>
+        <button class="btn btn-secondary btn-sm" onclick="closeRadarModal()">Cancelar Búsqueda</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Modal Sala de Lobby & Chat de Coordinación -->
+  <div class="modal-backdrop" id="lobbyModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <h3>Sala de Coordinación PlayMatch</h3>
+          <span style="font-size: 0.8rem; color: var(--good-text); font-family: 'JetBrains Mono', monospace;">● Canal Seguro Activo</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeLobbyModal()" aria-label="Cerrar sala">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="lobby-roster">
+          <!-- Mi Jugador -->
+          <div class="roster-card">
+            <div class="avatar" style="color: var(--action);">TÚ</div>
+            <div>
+              <strong style="font-size: 0.9rem;">Gamer VoxTi</strong>
+              <div class="font-mono" style="font-size: 0.75rem; color: var(--text-muted);">VoxTiPlayer#CL</div>
+              <span class="tag-pill" style="font-size: 0.7rem; padding: 2px 6px; background: var(--good-soft); color: var(--good-text);">Listo</span>
+            </div>
+          </div>
+
+          <!-- Compañero -->
+          <div class="roster-card">
+            <div class="avatar" id="lobbyPartnerAvatar" style="color: var(--accent-purple);">IS</div>
+            <div>
+              <strong id="lobbyPartnerName" style="font-size: 0.9rem;">Ignacio Silva</strong>
+              <div class="font-mono" id="lobbyPartnerTag" style="font-size: 0.75rem; color: var(--text-muted);">NachoViper#LAS</div>
+              <span class="tag-pill" style="font-size: 0.7rem; padding: 2px 6px; background: var(--good-soft); color: var(--good-text);">Conectado</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <button class="btn btn-secondary btn-sm" onclick="copyGamerTag()">📋 Copiar Gamertag</button>
+          <button class="btn btn-secondary btn-sm" onclick="copyDiscordTag()">🎧 Copiar Discord</button>
+        </div>
+
+        <!-- Chat en Vivo -->
+        <div class="chat-box-container" id="chatMessagesContainer">
+          <!-- Mensajes dinámicos -->
+        </div>
+
+        <div class="chat-input-bar">
+          <input type="text" id="chatInput" class="form-input" placeholder="Escribe un mensaje para coordinar partida..." style="flex: 1;" onkeydown="if(event.key==='Enter') sendChatMessage()">
+          <button class="btn btn-primary" onclick="sendChatMessage()">Enviar</button>
+        </div>
+
+        <div style="border-top: 1px solid var(--border); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.8rem; color: var(--text-muted);">¿Finalizaste la partida con este compañero?</span>
+          <button class="btn btn-accent btn-sm" onclick="finishMatchAndRate()">
+            <span>⭐</span> Calificar Karma
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Modal de Calificación de Karma / Honor -->
+  <div class="modal-backdrop" id="karmaModal">
+    <div class="modal-dialog" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3>Calificar Experiencia con <span id="karmaPlayerName">Jugador</span></h3>
+        <button class="modal-close-btn" onclick="closeKarmaModal()">✕</button>
+      </div>
+      <div class="modal-body" style="text-align: center;">
+        <p style="font-size: 0.9rem; color: var(--text-muted);">
+          Tus votos impactan directamente en el sistema de reputación para mantener una comunidad sana y libre de toxicidad.
+        </p>
+
+        <div style="font-size: 2rem; margin: 1rem 0; cursor: pointer;">
+          ⭐⭐⭐⭐⭐
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
+          <label style="font-size: 0.85rem; font-weight: 600;">Reconoce sus virtudes en partida:</label>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+            <button class="btn btn-secondary btn-sm">🛡️ Cero Toxicidad</button>
+            <button class="btn btn-secondary btn-sm">🎙️ Gran Comunicación</button>
+            <button class="btn btn-secondary btn-sm">🎯 Buen Nivel / Shotcaller</button>
+            <button class="btn btn-secondary btn-sm">⏰ Puntual y Paciente</button>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" style="margin-top: 1.5rem; width: 100%;" onclick="submitKarmaFeedback()">
+          Enviar Honor & Calificación
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Modal de Inscripción a Torneo -->
+  <div class="modal-backdrop" id="registerTournamentModal">
+    <div class="modal-dialog" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 id="registerTournamentTitle">Inscripción a Torneo</h3>
+        <button class="modal-close-btn" onclick="closeRegisterTournamentModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-field">
+          <label for="teamNameInput">Nombre de tu Equipo / Escuadra</label>
+          <input type="text" id="teamNameInput" class="form-input" placeholder="Ej: Santiago Sentinels">
+        </div>
+        <div class="form-field">
+          <label for="captainDiscord">Discord del Capitán</label>
+          <input type="text" id="captainDiscord" class="form-input" placeholder="usuario_discord#0000">
+        </div>
+        <div class="form-field">
+          <label for="regAgreement">Reglamento del Torneo</label>
+          <div style="font-size: 0.8rem; color: var(--text-muted); background: var(--bg); padding: 0.75rem; border-radius: 12px; border: 1px solid var(--border);">
+            Al inscribirte te comprometes a presentarte con 15 minutos de anticipación en el servidor de juego y respetar el código de conducta ético de PlayMatch.
+          </div>
+        </div>
+        <button class="btn btn-primary" style="width: 100%;" onclick="confirmTournamentRegistration()">
+          Confirmar Inscripción Oficial
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Modal de Perfil Gamer Detallado -->
+  <div class="modal-backdrop" id="profileModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Ficha del Jugador</h3>
+        <button class="modal-close-btn" onclick="closeProfileModal()">✕</button>
+      </div>
+      <div class="modal-body" id="profileModalBody">
+        <!-- Renderizado dinámico desde app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       FOOTER (PULSO STANDARD)
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-name">Play<span>Match</span></div>
+          <p>
+            Plataforma web de emparejamiento social y gestión de torneos amateur para la comunidad gamer chilena.
+          </p>
+          <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
+            Desarrollado bajo los lineamientos de arquitectura y diseño de <strong>VoxTi Labs</strong>.
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Plataforma</h4>
+          <ul>
+            <li><a href="#playersSection">Buscar Compañeros</a></li>
+            <li><a href="#tourneysSection">Torneos & Brackets</a></li>
+            <li><a href="#" onclick="showPlayerProfile(1); return false;">Mi Perfil Gamer</a></li>
+            <li><a href="#" onclick="triggerRadarSearch(); return false;">Radar de Matchmaking</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Comunidad</h4>
+          <ul>
+            <li><a href="https://github.com/voxtilabs/PlayMatch" target="_blank" rel="noopener">GitHub Repositorio</a></li>
+            <li><a href="#">Código de Conducta</a></li>
+            <li><a href="#">Sistema de Karma</a></li>
+            <li><a href="#">Servidores Locales</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Proyecto APT</h4>
+          <ul>
+            <li><a href="#">Duoc UC San Joaquín</a></li>
+            <li><a href="#">Ingeniería en Informática</a></li>
+            <li><a href="#">Carta Gantt (18 semanas)</a></li>
+            <li><a href="#">Documentación Técnica</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 PlayMatch — Un producto de VoxTi Labs. Todos los derechos reservados.</div>
+        <div class="font-mono">Sistema de Diseño Pulso v1.1 · Modo Dual Día/Noche</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

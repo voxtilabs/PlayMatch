@@ -1,0 +1,1172 @@
+/* ==========================================================================
+   PlayMatch — Sistema de Diseño Pulso (VoxTi Labs) + Gaming Accents
+   Versión 1.0 · Septiembre 2026
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@600;700;800;900&display=swap');
+
+/* ==========================================================================
+   1. Tokens de Color & Variables del Sistema Pulso
+   ========================================================================== */
+
+:root, [data-mode="dia"] {
+  --bg: #FFFFFF;
+  --bg-raised: #F7F8FD;
+  --bg-rest: #E6E9F2;
+  --border: #E6E9F2;
+  --border-strong: #CBD0DE;
+
+  --text: #12141C;
+  --text-body: #414759;
+  --text-muted: #6E7488;
+  --text-faint: #A3A9BC;
+
+  --action: #3D5AFE;
+  --action-hover: #2739D6;
+  --action-text: #2739D6;
+  --action-soft: #EEF1FF;
+  --action-soft-br: #DDE2FF;
+
+  --warn: #FFA51F;
+  --warn-text: #96560A;
+  --warn-soft: #FFF6E6;
+  --warn-soft-br: #FFDFA8;
+
+  --good: #0F7A52;
+  --good-text: #0F7A52;
+  --good-soft: #E7FAF3;
+  --good-soft-br: #C6F0DF;
+
+  --bad: #E23D5C;
+  --bad-text: #A6203C;
+  --bad-soft: #FFEEF1;
+  --bad-soft-br: #FCD6DE;
+
+  --field-bg: #FFFFFF;
+
+  /* Acentos Gaming PlayMatch */
+  --accent-cyan: #00B4D8;
+  --accent-cyan-soft: #E0F7FA;
+  --accent-purple: #7C4DFF;
+  --accent-purple-soft: #EDE7F6;
+  --accent-amber: #FFB300;
+  --glow-cyan: 0 0 15px rgba(0, 180, 216, 0.35);
+  --glow-purple: 0 0 15px rgba(124, 77, 255, 0.35);
+  --hero-gradient: linear-gradient(135deg, rgba(61, 90, 254, 0.08) 0%, rgba(124, 77, 255, 0.08) 50%, rgba(0, 180, 216, 0.06) 100%);
+  --nav-backdrop: rgba(255, 255, 255, 0.85);
+}
+
+[data-mode="noche"] {
+  --bg: #0B0D14;
+  --bg-raised: #141826;
+  --bg-rest: #1D2233;
+  --border: #262C40;
+  --border-strong: #333A52;
+
+  --text: #EDEFF7;
+  --text-body: #B9C0D4;
+  --text-muted: #8189A0;
+  --text-faint: #5A6178;
+
+  --action: #3D5AFE;
+  --action-hover: #5570FF;
+  --action-text: #93A2FF;
+  --action-soft: #171E3D;
+  --action-soft-br: #2A3566;
+
+  --warn: #FFB84D;
+  --warn-text: #FFB84D;
+  --warn-soft: #2A2012;
+  --warn-soft-br: #4A3A1C;
+
+  --good: #4FD9A0;
+  --good-text: #4FD9A0;
+  --good-soft: #10281F;
+  --good-soft-br: #1E4536;
+
+  --bad: #D9304F;
+  --bad-text: #FF8098;
+  --bad-soft: #2A141B;
+  --bad-soft-br: #4D2130;
+
+  --field-bg: #0F1220;
+
+  /* Acentos Gaming PlayMatch */
+  --accent-cyan: #35E0D0;
+  --accent-cyan-soft: rgba(53, 224, 208, 0.15);
+  --accent-purple: #8B5CF6;
+  --accent-purple-soft: rgba(139, 92, 246, 0.18);
+  --accent-amber: #FFB86B;
+  --glow-cyan: 0 0 20px rgba(53, 224, 208, 0.45);
+  --glow-purple: 0 0 20px rgba(139, 92, 246, 0.45);
+  --hero-gradient: radial-gradient(circle at 50% 20%, rgba(61, 90, 254, 0.16) 0%, rgba(139, 92, 246, 0.12) 40%, rgba(11, 13, 20, 0) 80%);
+  --nav-backdrop: rgba(11, 13, 20, 0.85);
+}
+
+/* ==========================================================================
+   2. Reset & Tipografía
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-body);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Outfit', sans-serif;
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(2rem, 4.5vw, 3.25rem); font-weight: 800; letter-spacing: -0.04em; }
+h2 { font-size: clamp(1.5rem, 3vw, 2.125rem); letter-spacing: -0.035em; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.05rem; }
+
+.font-mono, .code-metric, .stat-value, .gamertag-tag {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+a {
+  color: var(--action-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   3. Estructura & Layout
+   ========================================================================== */
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Header & Barra de Navegación */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--nav-backdrop);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: border-color 0.25s ease;
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.brand-logo-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--action) 0%, var(--accent-purple) 50%, var(--accent-cyan) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--glow-cyan);
+  color: #FFFFFF;
+}
+
+.brand-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.03em;
+}
+
+.brand-name span {
+  color: var(--accent-cyan);
+}
+
+.badge-brand-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  background: var(--bg-rest);
+  color: var(--text-muted);
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-left: 0.25rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav-link-btn {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-link-btn:hover, .nav-link-btn.active {
+  color: var(--text);
+  background: var(--action-soft);
+  text-decoration: none;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Switch Tema Día/Noche */
+.mode-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-raised);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.mode-toggle:hover {
+  background: var(--bg-rest);
+  transform: rotate(15deg);
+}
+
+/* Indicador de estado en línea */
+.live-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--good-soft);
+  border: 1px solid var(--good-soft-br);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--good-text);
+  font-weight: 600;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--good-text);
+  box-shadow: 0 0 0 0 rgba(79, 217, 160, 0.7);
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(79, 217, 160, 0.7); }
+  70% { box-shadow: 0 0 0 6px rgba(79, 217, 160, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(79, 217, 160, 0); }
+}
+
+/* ==========================================================================
+   4. Botones y Controles (Norma Pulso)
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 46px;
+  padding: 0 1.75rem;
+  border-radius: 999px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: var(--action);
+  color: #FFFFFF;
+}
+.btn-primary:hover {
+  background: var(--action-hover);
+  box-shadow: 0 4px 14px rgba(61, 90, 254, 0.35);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+}
+.btn-secondary:hover {
+  background: var(--bg-rest);
+  border-color: var(--text-muted);
+  text-decoration: none;
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--action) 0%, var(--accent-purple) 100%);
+  color: #FFFFFF;
+  box-shadow: var(--glow-purple);
+}
+.btn-accent:hover {
+  opacity: 0.95;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.45);
+  text-decoration: none;
+}
+
+.btn-cyan {
+  background: var(--accent-cyan);
+  color: #0B0D14;
+  font-weight: 800;
+  box-shadow: var(--glow-cyan);
+}
+.btn-cyan:hover {
+  filter: brightness(1.1);
+  text-decoration: none;
+}
+
+.btn-sm {
+  min-height: 36px;
+  padding: 0 1rem;
+  font-size: 0.85rem;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+}
+.btn-ghost:hover {
+  color: var(--text);
+  background: var(--bg-rest);
+}
+
+/* ==========================================================================
+   5. Hero Section & Barra de Matchmaking Rápido
+   ========================================================================== */
+
+.hero-section {
+  position: relative;
+  background: var(--hero-gradient);
+  padding: 4.5rem 0 3.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.hero-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 6px 14px;
+  background: var(--action-soft);
+  border: 1px solid var(--action-soft-br);
+  color: var(--action-text);
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  max-width: 820px;
+  margin: 0 auto 1.25rem;
+}
+
+.hero-title span.glow {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  font-size: 1.15rem;
+  color: var(--text-muted);
+}
+
+/* Barra de Filtros / Quick Match Bar */
+.matchmaker-bar {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: 28px;
+  padding: 1.25rem 1.5rem;
+  max-width: 1040px;
+  margin: 0 auto;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  text-align: left;
+}
+
+.game-selector-chips {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.game-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.game-chip:hover {
+  border-color: var(--accent-purple);
+  color: var(--text);
+}
+
+.game-chip.active {
+  background: var(--action);
+  border-color: var(--action);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(61, 90, 254, 0.3);
+}
+
+.filter-grid-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) auto;
+  gap: 1rem;
+  align-items: end;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-field label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-select, .form-input {
+  min-height: 46px;
+  padding: 0 1rem;
+  border-radius: 14px;
+  background: var(--field-bg);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-select:focus, .form-input:focus {
+  border-color: var(--action);
+  box-shadow: 0 0 0 3px var(--action-soft);
+}
+
+/* ==========================================================================
+   6. Secciones Principales & Pestañas
+   ========================================================================== */
+
+.content-section {
+  padding: 3.5rem 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.section-title-wrap h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+/* Grid de Compañeros / Jugadores */
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Tarjeta de Jugador (Pulso 22px radio) */
+.player-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.player-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+}
+
+.player-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.player-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.player-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--bg-rest);
+  border: 2px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-purple);
+  position: relative;
+}
+
+.player-status-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-raised);
+  background-color: var(--good);
+}
+
+.player-names h3 {
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.player-game-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Badge de Compatibilidad */
+.match-score-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.match-score-pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: var(--good-soft);
+  color: var(--good-text);
+  border: 1px solid var(--good-soft-br);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.match-score-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.player-details-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--bg-rest);
+  color: var(--text-body);
+}
+
+.tag-pill.karma {
+  background: var(--warn-soft);
+  color: var(--warn-text);
+  border: 1px solid var(--warn-soft-br);
+}
+
+.tag-pill.rank {
+  background: var(--action-soft);
+  color: var(--action-text);
+  border: 1px solid var(--action-soft-br);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.player-bio {
+  font-size: 0.9rem;
+  color: var(--text-body);
+  line-height: 1.5;
+  background: var(--bg);
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.player-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   7. Hub de Torneos & Visualizador de Brackets
+   ========================================================================== */
+
+.tournaments-header-card {
+  background: linear-gradient(135deg, var(--bg-raised) 0%, var(--action-soft) 100%);
+  border: 1px solid var(--border-strong);
+  border-radius: 28px;
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.tournament-banner-text h3 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.tournament-banner-text p {
+  color: var(--text-muted);
+  max-width: 600px;
+}
+
+.tournament-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.tournament-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.tournament-card:hover {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.tournament-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tournament-game-badge {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.badge-open {
+  background: var(--good-soft);
+  color: var(--good-text);
+  border: 1px solid var(--good-soft-br);
+}
+
+.badge-live {
+  background: var(--bad-soft);
+  color: var(--bad-text);
+  border: 1px solid var(--bad-soft-br);
+  animation: pulse-ring 2s infinite;
+}
+
+.tournament-meta-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.tournament-meta-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.tournament-meta-list strong {
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Árbol de Brackets (Llaves de Torneo) */
+.bracket-wrapper {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: 28px;
+  padding: 2.5rem;
+  overflow-x: auto;
+}
+
+.bracket-title-bar {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bracket-tree {
+  display: flex;
+  gap: 3rem;
+  min-width: 850px;
+  justify-content: space-between;
+}
+
+.bracket-round {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.round-header {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 4px 0;
+  border-bottom: 2px solid var(--border);
+}
+
+.match-box {
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.match-team {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.match-team:last-child {
+  border-bottom: none;
+}
+
+.match-team.winner {
+  background: var(--action-soft);
+  color: var(--action-text);
+  font-weight: 700;
+}
+
+.match-score {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  padding: 2px 6px;
+  background: var(--bg-rest);
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   8. Modales, Sala de Lobby & Chat de Coordinación
+   ========================================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(8, 11, 18, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-dialog {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: 28px;
+  width: 90%;
+  max-width: 650px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  transform: translateY(20px);
+  transition: transform 0.25s ease;
+}
+
+.modal-backdrop.open .modal-dialog {
+  transform: translateY(0);
+}
+
+.modal-header {
+  padding: 1.5rem 1.75rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-close-btn {
+  background: var(--bg-rest);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.modal-close-btn:hover {
+  color: var(--text);
+  background: var(--border-strong);
+}
+
+.modal-body {
+  padding: 1.75rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Sala de Lobby y Chat */
+.lobby-roster {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.roster-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.roster-card .avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--bg-rest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.chat-box-container {
+  height: 240px;
+  background: var(--field-bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chat-message {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  padding: 0.6rem 0.9rem;
+  border-radius: 14px;
+  font-size: 0.85rem;
+}
+
+.chat-message.system {
+  align-self: center;
+  background: var(--action-soft);
+  color: var(--action-text);
+  font-size: 0.75rem;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.chat-message.incoming {
+  align-self: flex-start;
+  background: var(--bg-rest);
+  color: var(--text);
+}
+
+.chat-message.outgoing {
+  align-self: flex-end;
+  background: var(--action);
+  color: #FFFFFF;
+}
+
+.chat-sender-name {
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+  opacity: 0.8;
+}
+
+.chat-input-bar {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* ==========================================================================
+   9. Simulación Radar de Matchmaking
+   ========================================================================== */
+
+.radar-search-modal {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.radar-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(53, 224, 208, 0.2) 0%, rgba(61, 90, 254, 0.05) 70%, transparent 100%);
+  border: 2px solid var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: var(--glow-cyan);
+}
+
+.radar-sweep {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border-right: 3px solid var(--accent-purple);
+  animation: radar-spin 2s linear infinite;
+}
+
+@keyframes radar-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   10. Footer (Norma Pulso)
+   ========================================================================== */
+
+.site-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  background: var(--bg-raised);
+  padding: 3rem 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.footer-brand p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+  max-width: 320px;
+}
+
+.footer-col h4 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+}
+
+.footer-col a {
+  color: var(--text-muted);
+}
+.footer-col a:hover {
+  color: var(--text);
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .filter-grid-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .lobby-roster { grid-template-columns: 1fr; }
+  .bracket-tree { overflow-x: scroll; }
+}
