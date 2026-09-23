@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useTransition, useCallback } from 'react';
 
 interface GameItem {
   id: string;
@@ -14,8 +14,9 @@ const AVAILABLE_GAMES: GameItem[] = [
   { id: 'rocket_league', name: 'Rocket League', role: 'Rotación 2v2 / Aéreo', rank: 'Campeón 2' }
 ];
 
-export default function PreferencesIsland() {
+function PreferencesIslandComponent() {
   const [preferences, setPreferences] = useState<string[]>(['valorant', 'lol']);
+  const [, startTransition] = useTransition();
 
   useEffect(() => {
     try {
@@ -32,30 +33,36 @@ export default function PreferencesIsland() {
     }
   }, []);
 
-  const toggleGame = (gameId: string) => {
-    let next: string[];
+  const showToast = useCallback((msg: string) => {
+    window.dispatchEvent(new CustomEvent('show-toast', { detail: { message: msg } }));
+  }, []);
+
+  const toggleGame = useCallback((gameId: string) => {
     const game = AVAILABLE_GAMES.find(g => g.id === gameId);
 
-    if (preferences.includes(gameId)) {
-      if (preferences.length === 1) {
-        showToast('Debes mantener al menos una disciplina de preferencia activa.');
-        return;
+    setPreferences(prev => {
+      let next: string[];
+      if (prev.includes(gameId)) {
+        if (prev.length === 1) {
+          showToast('Debes mantener al menos una disciplina de preferencia activa.');
+          return prev;
+        }
+        next = prev.filter(id => id !== gameId);
+        showToast(`${game ? game.name : gameId} removido de tus prioridades.`);
+      } else {
+        next = [...prev, gameId];
+        showToast(`${game ? game.name : gameId} añadido como juego prioritario.`);
       }
-      next = preferences.filter(id => id !== gameId);
-      showToast(`${game ? game.name : gameId} removido de tus prioridades.`);
-    } else {
-      next = [...preferences, gameId];
-      showToast(`${game ? game.name : gameId} añadido como juego prioritario.`);
-    }
 
-    setPreferences(next);
-    localStorage.setItem('pm_user_preferences', JSON.stringify(next));
-    window.dispatchEvent(new CustomEvent('preferences-updated', { detail: { preferences: next } }));
-  };
-
-  const showToast = (msg: string) => {
-    window.dispatchEvent(new CustomEvent('show-toast', { detail: { message: msg } }));
-  };
+      localStorage.setItem('pm_user_preferences', JSON.stringify(next));
+      
+      startTransition(() => {
+        window.dispatchEvent(new CustomEvent('preferences-updated', { detail: { preferences: next } }));
+      });
+      
+      return next;
+    });
+  }, [showToast]);
 
   return (
     <div className="bg-[var(--bg-card)] shadow-[var(--neu-flat)] rounded-3xl border border-[var(--border-subtle)] p-5 sm:p-6 flex flex-col gap-4 hud-corners w-full">
@@ -86,7 +93,7 @@ export default function PreferencesIsland() {
             <div
               key={game.id}
               onClick={() => toggleGame(game.id)}
-              className={`p-3 rounded-2xl cursor-pointer select-none transition-all flex items-center justify-between gap-2 border ${
+              className={`p-3 rounded-2xl cursor-pointer select-none transition-transform duration-100 active:scale-[0.98] flex items-center justify-between gap-2 border ${
                 isSelected
                   ? 'bg-[var(--bg-card)] shadow-[var(--neu-flat-xs)] border-[var(--border-glow)]'
                   : 'bg-[var(--bg-sunken)] shadow-[var(--neu-pressed-sm)] border-transparent hover:border-[var(--border-subtle)]'
@@ -127,3 +134,6 @@ export default function PreferencesIsland() {
     </div>
   );
 }
+
+const PreferencesIsland = React.memo(PreferencesIslandComponent);
+export default PreferencesIsland;
