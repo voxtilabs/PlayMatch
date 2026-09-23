@@ -46,7 +46,8 @@ def test_compiled_css():
     required_classes = [
         ".flex", ".grid", ".hud-corners", ".touch-scroll-bracket",
         ".telemetry-indicator", ".sound-visualizer", ".anamorphic-flare",
-        ".cinema-vignette", ".custom-select-wrapper"
+        ".cinema-vignette", ".custom-select-wrapper", ".gamer-profile-modal",
+        ".gamer-banner", ".avatar-frame", ".radar-sweep-beam", ".cinematic-embers-layer"
     ]
     for rc in required_classes:
         if rc not in combined_css:

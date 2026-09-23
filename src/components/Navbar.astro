@@ -105,6 +105,6 @@
   });
 
   document.getElementById('profileOpenBtn')?.addEventListener('click', () => {
-    window.dispatchEvent(new CustomEvent('open-player-profile', { detail: { id: 1 } }));
+    window.dispatchEvent(new CustomEvent('open-player-profile', { detail: { isMyProfile: true } }));
   });
 </script>

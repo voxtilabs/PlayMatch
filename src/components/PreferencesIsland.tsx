@@ -3,19 +3,28 @@ import React, { useState, useEffect, useTransition, useCallback } from 'react';
 interface GameItem {
   id: string;
   name: string;
+  category: string;
   role: string;
   rank: string;
 }
 
 const AVAILABLE_GAMES: GameItem[] = [
-  { id: 'valorant', name: 'VALORANT', role: 'Iniciador / Sova', rank: 'Ascendente 2' },
-  { id: 'lol', name: 'League of Legends', role: 'Soporte / Utilidad', rank: 'Esmeralda 1' },
-  { id: 'cs2', name: 'Counter-Strike 2', role: 'Entry Fragger / Rifler', rank: '15,800 CS' },
-  { id: 'rocket_league', name: 'Rocket League', role: 'Rotación 2v2 / Aéreo', rank: 'Campeón 2' }
+  { id: 'valorant', name: 'VALORANT', category: 'Tactical FPS', role: 'Iniciador / Sova', rank: 'Ascendente 2' },
+  { id: 'lol', name: 'League of Legends', category: 'MOBA', role: 'Soporte / Utilidad', rank: 'Esmeralda 1' },
+  { id: 'cs2', name: 'Counter-Strike 2', category: 'Tactical FPS', role: 'Entry Fragger / Rifler', rank: '15,800 CS' },
+  { id: 'deadlock', name: 'Deadlock', category: 'Hero MOBA', role: 'Infernus / Solo Lane', rank: 'Tier Ascendant' },
+  { id: 'apex', name: 'Apex Legends', category: 'Battle Royale', role: 'Recon / Bloodhound', rank: 'Master' },
+  { id: 'fortnite', name: 'Fortnite', category: 'Battle Royale', role: 'Zero Build / IGL', rank: 'Unreal' },
+  { id: 'overwatch2', name: 'Overwatch 2', category: 'Hero Shooter', role: 'Tank / Sigma & D.Va', rank: 'Diamante 1' },
+  { id: 'warzone', name: 'CoD: Warzone', category: 'Battle Royale', role: 'Sniper & Rotation', rank: 'Top 250' },
+  { id: 'rocket_league', name: 'Rocket League', category: 'Vehicular', role: 'Rotación 2v2 / Aéreo', rank: 'Campeón 2' },
+  { id: 'r6', name: 'Rainbow Six Siege', category: 'Tactical CQC', role: 'Anchor / Smoke', rank: 'Platino 1' },
+  { id: 'dota2', name: 'Dota 2', category: 'MOBA', role: 'Pos 1 Hard Carry', rank: 'Divine 3' },
+  { id: 'helldivers2', name: 'Helldivers 2', category: 'Co-op PvE', role: 'Heavy Support Gunner', rank: 'Dificultad 9' }
 ];
 
 function PreferencesIslandComponent() {
-  const [preferences, setPreferences] = useState<string[]>(['valorant', 'lol']);
+  const [preferences, setPreferences] = useState<string[]>(['valorant', 'lol', 'deadlock']);
   const [, startTransition] = useTransition();
 
   useEffect(() => {
@@ -86,24 +95,24 @@ function PreferencesIslandComponent() {
         Configura tus títulos activos para calibrar el motor de compatibilidad (+16% de afinidad en tiempo real).
       </p>
 
-      <div className="flex flex-col gap-2.5">
+      <div className="flex flex-col gap-2 max-h-[380px] overflow-y-auto pr-1 touch-scroll-bracket">
         {AVAILABLE_GAMES.map(game => {
           const isSelected = preferences.includes(game.id);
           return (
             <div
               key={game.id}
               onClick={() => toggleGame(game.id)}
-              className={`p-3 rounded-2xl cursor-pointer select-none transition-transform duration-100 active:scale-[0.98] flex items-center justify-between gap-2 border ${
+              className={`p-2.5 sm:p-3 rounded-2xl cursor-pointer select-none transition-transform duration-100 active:scale-[0.98] flex items-center justify-between gap-2 border ${
                 isSelected
                   ? 'bg-[var(--bg-card)] shadow-[var(--neu-flat-xs)] border-[var(--border-glow)]'
                   : 'bg-[var(--bg-sunken)] shadow-[var(--neu-pressed-sm)] border-transparent hover:border-[var(--border-subtle)]'
               }`}
             >
-              <div className="flex items-center gap-3 min-w-0">
+              <div className="flex items-center gap-2.5 min-w-0">
                 <div
                   className={`w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-colors ${
                     isSelected
-                      ? 'bg-[var(--primary)] text-white shadow-[0_0_10px_rgba(61,90,254,0.6)]'
+                      ? 'bg-[var(--primary)] text-white shadow-[0_0_10px_rgba(255,94,58,0.5)]'
                       : 'bg-[var(--bg-sunken)] border border-[var(--border-field)] text-transparent'
                   }`}
                 >
@@ -113,7 +122,12 @@ function PreferencesIslandComponent() {
                 </div>
 
                 <div className="min-w-0">
-                  <div className="text-xs font-bold text-[var(--text-main)] truncate">{game.name}</div>
+                  <div className="flex items-center gap-1.5 truncate">
+                    <span className="text-xs font-bold text-[var(--text-main)] truncate">{game.name}</span>
+                    <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-[var(--bg-sunken)] text-[var(--text-faint)] border border-[var(--border-subtle)]">
+                      {game.category}
+                    </span>
+                  </div>
                   <div className="text-[11px] font-mono text-[var(--text-muted)] truncate">
                     {game.role} · {game.rank}
                   </div>
