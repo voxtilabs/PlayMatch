@@ -1,30 +1,36 @@
 /* ==========================================================================
-   PlayMatch — Cinematic High-Performance Style System
-   VoxTi Labs · Astro + React Islands · GPU-Accelerated · Low RAM
+   PlayMatch — High-End Cinematic HUD & Style System
+   VoxTi Labs · Astro 4 + React Islands · Ultra Responsive · Zero Emojis
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root, [data-mode="noche"] {
-  --bg-deep: #06080D;
-  --bg-surface: #0B0F19;
-  --bg-card: #0F1524;
-  --bg-card-hover: #131B2E;
-  --bg-sunken: #070A11;
-  --bg-modal: #0D1321;
+  --bg-deep: #05070C;
+  --bg-surface: #090D18;
+  --bg-card: #0E1424;
+  --bg-card-hover: #131A2E;
+  --bg-sunken: #060911;
+  --bg-modal: #0B101D;
 
-  --border-subtle: rgba(255, 255, 255, 0.07);
-  --border-glow: rgba(61, 90, 254, 0.35);
-  --border-field: rgba(255, 255, 255, 0.11);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(61, 90, 254, 0.4);
+  --border-field: rgba(255, 255, 255, 0.12);
 
-  --text-main: #F2F5FB;
-  --text-body: #B0BCCE;
-  --text-muted: #6E7D96;
-  --text-faint: #434E63;
+  --text-main: #F4F7FC;
+  --text-body: #B2BFD4;
+  --text-muted: #6B7B96;
+  --text-faint: #3E4B61;
 
   /* Colores Láser Cinematográficos */
   --primary: #3D5AFE;
-  --primary-glow: rgba(61, 90, 254, 0.4);
+  --primary-hover: #536DFE;
+  --primary-glow: rgba(61, 90, 254, 0.45);
+  
   --accent-mint: #00F5A0;
   --accent-mint-soft: rgba(0, 245, 160, 0.12);
   --accent-violet: #8B5CF6;
@@ -34,33 +40,35 @@
   --accent-red: #FF4757;
 
   /* Sombras Neumórficas Táctiles Cinematográficas */
-  --neu-flat: 8px 8px 20px #040508, -8px -8px 20px #141C30;
-  --neu-flat-sm: 4px 4px 12px #040508, -4px -4px 12px #151E33;
-  --neu-flat-xs: 2px 2px 6px #040508, -2px -2px 6px #162038;
-  --neu-pressed: inset 4px 4px 9px #040508, inset -4px -4px 9px #16213A;
-  --neu-pressed-sm: inset 2px 2px 5px #040508, inset -2px -2px 5px #17233E;
-  --neu-floating: 16px 16px 36px #030406, -14px -14px 34px #18233C;
+  --neu-flat: 8px 8px 22px #030407, -8px -8px 22px #131A2E;
+  --neu-flat-sm: 4px 4px 12px #030407, -4px -4px 12px #141C31;
+  --neu-flat-xs: 2px 2px 6px #020305, -2px -2px 6px #151D34;
+  --neu-pressed: inset 4px 4px 9px #030407, inset -4px -4px 9px #162038;
+  --neu-pressed-sm: inset 2px 2px 5px #030407, inset -2px -2px 5px #17223C;
+  --neu-floating: 16px 16px 40px #020305, -14px -14px 36px #18233D;
 }
 
 [data-mode="dia"] {
-  --bg-deep: #E7ECF4;
-  --bg-surface: #ECF1F9;
-  --bg-card: #EAF0F8;
-  --bg-card-hover: #EEF3FA;
-  --bg-sunken: #DDE4EF;
-  --bg-modal: #ECF1F9;
+  --bg-deep: #E6ECF5;
+  --bg-surface: #EBF1FA;
+  --bg-card: #E9EFF8;
+  --bg-card-hover: #EDF3FC;
+  --bg-sunken: #DCE4F0;
+  --bg-modal: #EBF1FA;
 
   --border-subtle: rgba(255, 255, 255, 0.85);
   --border-glow: rgba(51, 84, 244, 0.35);
-  --border-field: #C8D2E2;
+  --border-field: #C6D1E2;
 
-  --text-main: #111624;
-  --text-body: #3B4556;
-  --text-muted: #64738C;
-  --text-faint: #92A0B7;
+  --text-main: #101522;
+  --text-body: #3A4557;
+  --text-muted: #62728D;
+  --text-faint: #90A0B8;
 
   --primary: #3354F4;
+  --primary-hover: #2243E4;
   --primary-glow: rgba(51, 84, 244, 0.3);
+  
   --accent-mint: #00BFA5;
   --accent-mint-soft: rgba(0, 191, 165, 0.12);
   --accent-violet: #7C4DFF;
@@ -69,15 +77,15 @@
   --accent-amber-soft: rgba(255, 145, 0, 0.12);
   --accent-red: #F53B57;
 
-  --neu-flat: 8px 8px 18px #C4CEDF, -8px -8px 18px #FFFFFF;
-  --neu-flat-sm: 4px 4px 11px #C7D1E2, -4px -4px 11px #FFFFFF;
-  --neu-flat-xs: 2px 2px 7px #CCD6E6, -2px -2px 7px #FFFFFF;
+  --neu-flat: 8px 8px 18px #C2CDDF, -8px -8px 18px #FFFFFF;
+  --neu-flat-sm: 4px 4px 11px #C5D0E2, -4px -4px 11px #FFFFFF;
+  --neu-flat-xs: 2px 2px 7px #CAD5E6, -2px -2px 7px #FFFFFF;
   --neu-pressed: inset 4px 4px 9px #CCD6E6, inset -4px -4px 9px #FFFFFF;
   --neu-pressed-sm: inset 2px 2px 5px #CCD6E6, inset -2px -2px 5px #FFFFFF;
-  --neu-floating: 14px 14px 32px #B8C4D6, -14px -14px 32px #FFFFFF;
+  --neu-floating: 14px 14px 32px #B6C3D6, -14px -14px 32px #FFFFFF;
 }
 
-/* Reset Básico */
+/* Reset y Contención Global */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -87,6 +95,8 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -95,19 +105,23 @@ body {
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   min-height: 100vh;
+  max-width: 100vw;
   overflow-x: hidden;
   position: relative;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Outfit', sans-serif;
   color: var(--text-main);
   letter-spacing: -0.025em;
-  line-height: 1.25;
+  line-height: 1.2;
 }
 
-/* Capas Cinematográficas de Fondo (GPU-Accelerated) */
+/* ==========================================================================
+   Capas Cinematográficas Atmosféricas (GPU-Accelerated)
+   ========================================================================== */
+
 .cinema-viewport-layers {
   position: fixed;
   inset: 0;
@@ -115,122 +129,203 @@ h1, h2, h3, h4 {
   z-index: 0;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
+  max-width: 100vw;
 }
 
-/* Viñeta Cinematográfica (Oscurecimiento Periférico) */
+/* Viñeta Cinematográfica (Aspecto CinemaScope) */
 .cinema-vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 40%, transparent 45%, rgba(4, 6, 10, 0.75) 100%);
-  opacity: 0.85;
+  background: radial-gradient(ellipse at 50% 35%, transparent 40%, rgba(3, 4, 7, 0.82) 100%);
+  opacity: 0.88;
 }
 
-/* Malla Táctica de Telemetría (Scanlines / Grid) */
+/* Malla Táctica de Telemetría */
 .cinema-tactical-grid {
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 48px 48px;
-  opacity: 0.7;
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.65;
 }
 
-/* Destello Anamórfico de Luz Cinematográfica */
+/* Haz de Luz Anamórfica */
 .anamorphic-flare {
   position: absolute;
-  top: 15%;
+  top: 14%;
   left: 50%;
-  transform: translate(-50%, -50%) scaleX(1.8);
-  width: 70vw;
+  transform: translate(-50%, -50%) scaleX(1.6);
+  width: 75vw;
   height: 2px;
-  background: linear-gradient(90deg, transparent 0%, rgba(61, 90, 254, 0.6) 35%, rgba(0, 245, 160, 0.8) 50%, rgba(139, 92, 246, 0.6) 65%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(61, 90, 254, 0.5) 30%, rgba(0, 245, 160, 0.75) 50%, rgba(139, 92, 246, 0.5) 70%, transparent 100%);
   filter: blur(2px);
-  opacity: 0.45;
+  opacity: 0.5;
   animation: flareBreathe 9s ease-in-out infinite alternate;
 }
 
 .anamorphic-glow-orb {
   position: absolute;
-  width: 48vw;
-  height: 48vw;
-  max-width: 600px;
-  max-height: 600px;
   border-radius: 50%;
-  filter: blur(100px);
+  filter: blur(110px);
   pointer-events: none;
   transform: translate3d(0, 0, 0);
   will-change: transform;
 }
 
 .orb-primary {
-  top: -12%;
-  left: 20%;
-  background: rgba(61, 90, 254, 0.15);
-  animation: floatOrb 26s ease-in-out infinite alternate;
+  width: 45vw;
+  height: 45vw;
+  max-width: 600px;
+  max-height: 600px;
+  top: -10%;
+  left: 15%;
+  background: rgba(61, 90, 254, 0.16);
+  animation: floatOrb 24s ease-in-out infinite alternate;
 }
 
 .orb-violet {
-  top: 38%;
-  right: -8%;
-  background: rgba(139, 92, 246, 0.12);
-  animation: floatOrb 30s ease-in-out infinite alternate-reverse;
+  width: 40vw;
+  height: 40vw;
+  max-width: 520px;
+  max-height: 520px;
+  top: 36%;
+  right: -5%;
+  background: rgba(139, 92, 246, 0.13);
+  animation: floatOrb 28s ease-in-out infinite alternate-reverse;
 }
 
 .orb-mint {
-  bottom: -15%;
-  left: 15%;
+  width: 35vw;
+  height: 35vw;
+  max-width: 450px;
+  max-height: 450px;
+  bottom: -12%;
+  left: 12%;
   background: rgba(0, 245, 160, 0.09);
-  animation: floatOrb 24s ease-in-out infinite alternate;
+  animation: floatOrb 22s ease-in-out infinite alternate;
 }
 
 @keyframes floatOrb {
   0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(50px, 60px, 0) scale(1.08); }
-  100% { transform: translate3d(-35px, 40px, 0) scale(0.96); }
+  50% { transform: translate3d(40px, 50px, 0) scale(1.06); }
+  100% { transform: translate3d(-30px, 35px, 0) scale(0.96); }
 }
 
 @keyframes flareBreathe {
-  0% { opacity: 0.3; transform: translate(-50%, -50%) scaleX(1.6); }
-  100% { opacity: 0.65; transform: translate(-50%, -50%) scaleX(2.2); }
+  0% { opacity: 0.35; transform: translate(-50%, -50%) scaleX(1.4); }
+  100% { opacity: 0.7; transform: translate(-50%, -50%) scaleX(2.0); }
 }
 
-/* Contenedor Principal */
+/* ==========================================================================
+   Contenedor Principal & Layout Responsivo
+   ========================================================================== */
+
 .app-container {
   width: 100%;
-  max-width: 1240px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
   position: relative;
   z-index: 1;
 }
 
-/* Barra de Navegación */
+@media (min-width: 640px) {
+  .app-container {
+    padding: 0 1.75rem;
+  }
+}
+
+/* ==========================================================================
+   Barra de Navegación HUD
+   ========================================================================== */
+
 .nav-hud {
   position: sticky;
   top: 0;
-  z-index: 90;
-  background: rgba(7, 9, 14, 0.88);
+  z-index: 100;
+  background: rgba(6, 8, 14, 0.88);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid var(--border-subtle);
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 .nav-hud-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 74px;
+  height: 72px;
+  gap: 1rem;
 }
 
-/* Botones Neumórficos Cinematográficos */
+/* ==========================================================================
+   Paneles y Tarjetas HUD Cinematográficas
+   ========================================================================== */
+
+.hud-card {
+  position: relative;
+  background: var(--bg-card);
+  box-shadow: var(--neu-flat);
+  border: 1px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: 1.5rem;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+  overflow: hidden;
+}
+
+.hud-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--neu-floating);
+  border-color: rgba(61, 90, 254, 0.35);
+}
+
+/* Marcas Tácticas en las Esquinas (HUD Reticle Corners) */
+.hud-corners {
+  position: relative;
+}
+
+.hud-corners::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--accent-mint);
+  border-left: 2px solid var(--accent-mint);
+  border-top-left-radius: 12px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.hud-corners::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid var(--primary);
+  border-right: 2px solid var(--primary);
+  border-bottom-right-radius: 12px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Botones Neumórficos Táctiles de Alta Calidad
+   ========================================================================== */
+
 .neu-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  padding: 0.68rem 1.45rem;
+  padding: 0.7rem 1.45rem;
+  min-height: 44px;
   border-radius: 14px;
   background: var(--bg-card);
   box-shadow: var(--neu-flat-sm);
@@ -243,6 +338,7 @@ h1, h2, h3, h4 {
   transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease, border-color 0.18s ease;
   user-select: none;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .neu-btn svg {
@@ -250,12 +346,13 @@ h1, h2, h3, h4 {
   height: 17px;
   stroke: currentColor;
   stroke-width: 2.2;
+  flex-shrink: 0;
 }
 
 .neu-btn:hover {
   transform: translateY(-2px);
   box-shadow: var(--neu-flat);
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
 .neu-btn:active {
@@ -264,32 +361,34 @@ h1, h2, h3, h4 {
 }
 
 .neu-btn-primary {
-  background: linear-gradient(135deg, #3B5DFF, #2544E6);
+  background: linear-gradient(135deg, #3B5DFF, #2243E4);
   color: #FFFFFF;
   border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 18px rgba(37, 68, 230, 0.4), var(--neu-flat-xs);
+  box-shadow: 0 4px 18px rgba(34, 67, 228, 0.45), var(--neu-flat-xs);
 }
 
 .neu-btn-primary:hover {
-  box-shadow: 0 6px 24px rgba(37, 68, 230, 0.55), var(--neu-flat-sm);
+  box-shadow: 0 6px 26px rgba(34, 67, 228, 0.6), var(--neu-flat-sm);
 }
 
 .neu-btn-mint {
   background: linear-gradient(135deg, #00F5A0, #00BFA5);
-  color: #07090E;
+  color: #05070C;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 18px rgba(0, 245, 160, 0.35);
+  box-shadow: 0 4px 18px rgba(0, 245, 160, 0.4);
 }
 
 .neu-btn-sm {
+  min-height: 38px;
   padding: 0.45rem 1rem;
-  border-radius: 11px;
-  font-size: 0.8rem;
+  border-radius: 12px;
+  font-size: 0.82rem;
 }
 
 .neu-icon-btn {
   width: 42px;
   height: 42px;
+  min-width: 42px;
   border-radius: 13px;
   background: var(--bg-card);
   box-shadow: var(--neu-flat-sm);
@@ -317,7 +416,10 @@ h1, h2, h3, h4 {
   height: 18px;
 }
 
-/* Custom Select Neumórfico */
+/* ==========================================================================
+   Selectores Neumórficos Customizados (Comboboxes)
+   ========================================================================== */
+
 .custom-select-wrapper {
   position: relative;
   width: 100%;
@@ -331,7 +433,7 @@ h1, h2, h3, h4 {
   transform: translateY(-50%);
   width: 10px;
   height: 6px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236E7D96' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236B7B96' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
   pointer-events: none;
@@ -374,7 +476,10 @@ h1, h2, h3, h4 {
   padding: 10px;
 }
 
-/* Pills & Tags */
+/* ==========================================================================
+   Pills, Badges e Indicadores de Telemetría
+   ========================================================================== */
+
 .neu-pill-tag {
   display: inline-flex;
   align-items: center;
@@ -387,11 +492,13 @@ h1, h2, h3, h4 {
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--text-body);
+  white-space: nowrap;
 }
 
 .neu-pill-tag svg {
   width: 12px;
   height: 12px;
+  flex-shrink: 0;
 }
 
 .neu-pill-tag.rank-accent {
@@ -405,7 +512,6 @@ h1, h2, h3, h4 {
   color: var(--accent-amber);
 }
 
-/* Telemetría Live Indicator */
 .telemetry-indicator {
   display: inline-flex;
   align-items: center;
@@ -418,11 +524,13 @@ h1, h2, h3, h4 {
   font-size: 0.78rem;
   font-family: 'JetBrains Mono', monospace;
   color: var(--text-main);
+  white-space: nowrap;
 }
 
 .indicator-pulse-dot {
   width: 8px;
   height: 8px;
+  min-width: 8px;
   border-radius: 50%;
   background: var(--accent-mint);
   box-shadow: 0 0 8px var(--accent-mint);
@@ -431,21 +539,50 @@ h1, h2, h3, h4 {
 
 @keyframes pulseLight {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.85); }
+  50% { opacity: 0.45; transform: scale(0.85); }
 }
 
-/* Modales Cinematográficos */
+/* Sound Visualizer Bars */
+.sound-visualizer {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+.sound-visualizer .bar {
+  width: 2px;
+  border-radius: 1px;
+  background: var(--accent-mint);
+  animation: soundBar 1.2s ease-in-out infinite alternate;
+}
+
+.sound-visualizer .bar:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+.sound-visualizer .bar:nth-child(2) { height: 85%; animation-delay: 0.3s; }
+.sound-visualizer .bar:nth-child(3) { height: 60%; animation-delay: 0.15s; }
+.sound-visualizer .bar:nth-child(4) { height: 100%; animation-delay: 0.4s; }
+.sound-visualizer .bar:nth-child(5) { height: 50%; animation-delay: 0.25s; }
+
+@keyframes soundBar {
+  0% { transform: scaleY(0.3); opacity: 0.4; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   Modales Cinematográficos
+   ========================================================================== */
+
 .neu-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(4, 6, 11, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(3, 5, 9, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   z-index: 999;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  padding: 1rem;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease;
@@ -458,16 +595,22 @@ h1, h2, h3, h4 {
 
 .neu-modal-card {
   width: 100%;
-  max-width: 580px;
+  max-width: 540px;
   background: var(--bg-modal);
-  box-shadow: var(--neu-floating), 0 0 40px rgba(0, 0, 0, 0.6);
-  border-radius: 24px;
+  box-shadow: var(--neu-floating), 0 0 50px rgba(0, 0, 0, 0.75);
+  border-radius: 26px;
   border: 1px solid var(--border-subtle);
-  padding: 2rem;
+  padding: 1.5rem;
   transform: translateY(20px) scale(0.97);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  max-height: 90vh;
+  max-height: 92vh;
   overflow-y: auto;
+}
+
+@media (min-width: 640px) {
+  .neu-modal-card {
+    padding: 2rem;
+  }
 }
 
 .neu-modal-backdrop.open .neu-modal-card {
@@ -477,15 +620,16 @@ h1, h2, h3, h4 {
 /* Toast */
 .cine-toast {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  max-width: calc(100vw - 3rem);
   background: var(--bg-card);
   color: var(--text-main);
-  padding: 0.95rem 1.5rem;
+  padding: 0.95rem 1.45rem;
   border-radius: 16px;
   font-size: 0.88rem;
   font-weight: 700;
-  box-shadow: var(--neu-floating), 0 0 20px rgba(61, 90, 254, 0.2);
+  box-shadow: var(--neu-floating), 0 0 24px rgba(61, 90, 254, 0.3);
   border: 1px solid var(--border-subtle);
   z-index: 99999;
   transform: translateY(20px);
@@ -498,9 +642,27 @@ h1, h2, h3, h4 {
   opacity: 1;
 }
 
-/* Responsividad */
-@media (max-width: 980px) {
-  .dashboard-grid-layout {
-    grid-template-columns: 1fr !important;
-  }
+/* ==========================================================================
+   Scrollbar Táctil para Llaves de Torneo en Móviles
+   ========================================================================== */
+
+.touch-scroll-bracket {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(61, 90, 254, 0.4) transparent;
+}
+
+.touch-scroll-bracket::-webkit-scrollbar {
+  height: 6px;
+}
+
+.touch-scroll-bracket::-webkit-scrollbar-track {
+  background: var(--bg-sunken);
+  border-radius: 3px;
+}
+
+.touch-scroll-bracket::-webkit-scrollbar-thumb {
+  background: rgba(61, 90, 254, 0.4);
+  border-radius: 3px;
 }

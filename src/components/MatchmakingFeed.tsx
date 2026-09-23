@@ -186,25 +186,26 @@ export default function MatchmakingFeed() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8 items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-[340px_1fr] gap-8 items-start w-full">
       
       {/* Columna Izquierda: Mis Juegos de Preferencia + Filtros Tácticos */}
-      <aside className="flex flex-col gap-6 lg:sticky lg:top-24">
+      <aside className="flex flex-col gap-6 lg:sticky lg:top-24 w-full">
         
         {/* Panel de Juegos de Preferencia */}
         <PreferencesIsland />
 
-        <div className="bg-[var(--bg-card)] shadow-[var(--neu-flat)] rounded-3xl border border-[var(--border-subtle)] p-6 flex flex-col gap-4">
+        {/* Panel de Filtros Secundarios */}
+        <div className="bg-[var(--bg-card)] shadow-[var(--neu-flat)] rounded-3xl border border-[var(--border-subtle)] p-5 sm:p-6 flex flex-col gap-4 hud-corners w-full">
           <div className="flex items-center justify-between">
-            <h3 className="text-base font-bold text-[var(--text-main)] flex items-center gap-2">
-              <svg className="w-4 h-4 text-[var(--primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <h3 className="text-sm sm:text-base font-bold text-[var(--text-main)] flex items-center gap-2">
+              <svg className="w-4 h-4 text-[var(--primary)] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
               </svg>
               Filtros de Búsqueda
             </h3>
             <button
               onClick={resetFilters}
-              className="text-[11px] font-bold text-[var(--text-muted)] hover:text-[var(--text-main)] px-2 py-1 rounded-lg bg-[var(--bg-sunken)] border border-[var(--border-subtle)]"
+              className="text-[11px] font-bold text-[var(--text-muted)] hover:text-[var(--text-main)] px-2.5 py-1 rounded-lg bg-[var(--bg-sunken)] border border-[var(--border-subtle)] transition-colors"
             >
               Limpiar
             </button>
@@ -276,11 +277,11 @@ export default function MatchmakingFeed() {
       </aside>
 
       {/* Columna Derecha: Feed Principal */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 w-full min-w-0">
         
-        {/* Barra Superior con Chips de Títulos */}
-        <div className="bg-[var(--bg-card)] shadow-[var(--neu-flat-sm)] rounded-2xl border border-[var(--border-subtle)] p-3 sm:p-4 flex items-center justify-between flex-wrap gap-3">
-          <div className="flex items-center gap-2 flex-wrap">
+        {/* Barra Superior con Chips de Títulos (Scrolleable en mobile) */}
+        <div className="bg-[var(--bg-card)] shadow-[var(--neu-flat-sm)] rounded-2xl border border-[var(--border-subtle)] p-3 sm:p-4 flex items-center justify-between flex-wrap gap-3 w-full">
+          <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-1 sm:pb-0 touch-scroll-bracket">
             {[
               { id: 'all', label: 'Todos los títulos' },
               { id: 'valorant', label: 'VALORANT' },
@@ -291,7 +292,7 @@ export default function MatchmakingFeed() {
               <button
                 key={tab.id}
                 onClick={() => setSelectedGame(tab.id)}
-                className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 border ${
+                className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 border flex-shrink-0 whitespace-nowrap ${
                   selectedGame === tab.id
                     ? 'bg-[var(--bg-sunken)] text-[var(--primary)] shadow-[var(--neu-pressed-sm)] border-[var(--border-glow)]'
                     : 'bg-[var(--bg-card)] text-[var(--text-muted)] hover:text-[var(--text-main)] shadow-[var(--neu-flat-xs)] border-transparent'
@@ -302,14 +303,14 @@ export default function MatchmakingFeed() {
             ))}
           </div>
 
-          <span className="telemetry-indicator text-xs">
+          <span className="telemetry-indicator text-xs ml-auto">
             <span className="indicator-pulse-dot"></span>
-            <span>{filteredPlayers.length} compañeros</span>
+            <span>{filteredPlayers.length} disponibles</span>
           </span>
         </div>
 
         {/* Tarjetas de Jugadores */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
           {filteredPlayers.map(player => {
             const affinity = calculateCompatibility(player);
             const isPreferred = userPreferences.includes(player.game);
@@ -317,21 +318,21 @@ export default function MatchmakingFeed() {
             return (
               <article
                 key={player.id}
-                className="bg-[var(--bg-card)] shadow-[var(--neu-flat)] rounded-3xl border border-[var(--border-subtle)] p-5 flex flex-col justify-between gap-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-[var(--neu-floating)]"
+                className="bg-[var(--bg-card)] shadow-[var(--neu-flat)] rounded-3xl border border-[var(--border-subtle)] p-5 flex flex-col justify-between gap-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-[var(--neu-floating)] hud-corners w-full"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-[var(--bg-card)] shadow-[var(--neu-flat-sm)] border border-[var(--border-subtle)] flex items-center justify-center font-['Outfit'] font-black text-lg text-[var(--accent-violet)] relative">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-12 h-12 rounded-2xl bg-[var(--bg-card)] shadow-[var(--neu-flat-sm)] border border-[var(--border-subtle)] flex items-center justify-center font-['Outfit'] font-black text-lg text-[var(--accent-violet)] relative flex-shrink-0">
                       {player.avatarText}
                       <span className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-[var(--accent-mint)] border-2 border-[var(--bg-card)]"></span>
                     </div>
-                    <div>
-                      <h4 className="font-bold text-sm text-[var(--text-main)]">{player.name}</h4>
-                      <div className="font-mono text-xs text-[var(--text-muted)]">{player.gamertag}</div>
+                    <div className="min-w-0">
+                      <h4 className="font-bold text-sm text-[var(--text-main)] truncate">{player.name}</h4>
+                      <div className="font-mono text-xs text-[var(--text-muted)] truncate">{player.gamertag}</div>
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-end gap-1">
+                  <div className="flex flex-col items-end gap-1 flex-shrink-0">
                     <div className={`px-2.5 py-1 rounded-full font-mono text-xs font-bold flex items-center gap-1.5 shadow-[var(--neu-pressed-sm)] bg-[var(--bg-sunken)] ${
                       isPreferred ? 'text-[var(--accent-mint)] border border-[var(--accent-mint)]/30' : 'text-[var(--primary)]'
                     }`}>
@@ -341,7 +342,7 @@ export default function MatchmakingFeed() {
                       {affinity}%
                     </div>
                     <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
-                      {isPreferred ? 'Match Prioritario' : 'Afinidad'}
+                      {isPreferred ? 'Prioritario' : 'Afinidad'}
                     </span>
                   </div>
                 </div>
@@ -366,8 +367,8 @@ export default function MatchmakingFeed() {
 
                 {/* Foot meta */}
                 <div className="flex items-center justify-between text-xs text-[var(--text-muted)] font-mono">
-                  <span>{player.scheduleText}</span>
-                  <span>Vic: {player.winRate}</span>
+                  <span className="truncate mr-2">{player.scheduleText}</span>
+                  <span className="flex-shrink-0">Vic: {player.winRate}</span>
                 </div>
 
                 {/* Botones de Acción */}

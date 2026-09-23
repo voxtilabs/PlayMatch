@@ -1,17 +1,17 @@
 ---
-// ArchitectureSection.astro — Fundamentos de Ingeniería y Anteproyecto
+// ArchitectureSection.astro — Fundamentos de Ingeniería y Anteproyecto Duoc UC
 ---
 
-<section class="py-16 border-t border-[var(--border-subtle)]" id="aboutSection">
+<section class="py-14 sm:py-18 border-t border-[var(--border-subtle)]" id="aboutSection">
   <div class="app-container">
-    <div class="max-w-3xl mx-auto text-center mb-12">
-      <span class="inline-block px-4 py-1.5 rounded-full bg-[var(--bg-sunken)] border border-[var(--border-subtle)] text-xs font-mono font-bold text-[var(--primary)] mb-4 shadow-[var(--neu-pressed-sm)]">
+    <div class="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
+      <span class="inline-block px-3.5 sm:px-4 py-1.5 rounded-full bg-[var(--bg-sunken)] border border-[var(--border-subtle)] text-[11px] sm:text-xs font-mono font-bold text-[var(--primary)] mb-4 shadow-[var(--neu-pressed-sm)]">
         DUOC UC SAN JOAQUÍN · APT122 CAPSTONE 18 SEMANAS
       </span>
       <h2 class="text-2xl sm:text-3xl font-black text-[var(--text-main)] mb-3">
         Fundamentos de Ingeniería de PlayMatch
       </h2>
-      <p class="text-sm text-[var(--text-body)] leading-relaxed">
+      <p class="text-xs sm:text-sm text-[var(--text-body)] leading-relaxed">
         Desarrollo orientado a transformar la convivencia social en los videojuegos y la organización de torneos competitivos mediante arquitectura distribuida, buenas prácticas de datos y optimización de latencia.
       </p>
     </div>
@@ -19,7 +19,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       
       {/* Pilar 1 */}
-      <div class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col gap-3">
+      <div class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col gap-3 hud-corners">
         <div class="w-10 h-10 rounded-xl bg-[var(--bg-card)] shadow-[var(--neu-flat-sm)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--accent-mint)]">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -27,12 +27,12 @@
         </div>
         <h4 class="text-base font-bold text-[var(--text-main)]">Sistema de Convivencia</h4>
         <p class="text-xs text-[var(--text-body)] leading-relaxed">
-          Métrica de Karma ponderada que incentiva y premia la deportividad, aislando conductas tóxicas de las salas comunitarias.
+          Métrica de Karma ponderada que incentiva y premia la deportividad, aislando conductas no deseadas de las salas comunitarias.
         </p>
       </div>
 
       {/* Pilar 2 */}
-      <div class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col gap-3">
+      <div class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col gap-3 hud-corners">
         <div class="w-10 h-10 rounded-xl bg-[var(--bg-card)] shadow-[var(--neu-flat-sm)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--primary)]">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
@@ -45,7 +45,7 @@
       </div>
 
       {/* Pilar 3 */}
-      <div class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col gap-3">
+      <div class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col gap-3 hud-corners">
         <div class="w-10 h-10 rounded-xl bg-[var(--bg-card)] shadow-[var(--neu-flat-sm)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--accent-amber)]">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="8 21 12 17 16 21"></polyline>

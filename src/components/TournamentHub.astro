@@ -1,22 +1,22 @@
 ---
-// TournamentHub.astro — Hub de Torneos Oficiales
+// TournamentHub.astro — Hub de Torneos Oficiales Cinematográfico
 ---
 
 <section class="py-12 border-t border-[var(--border-subtle)]" id="tourneysSection">
   <div class="app-container">
     
-    <!-- Banner de Inscripción -->
-    <div class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 sm:p-8 mb-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <!-- Banner de Inscripción Táctico -->
+    <div class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 sm:p-8 mb-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hud-corners">
       <div class="max-w-xl">
         <h3 class="text-xl sm:text-2xl font-black text-[var(--text-main)] mb-2">
           Competencias Comunitarias &amp; Torneos Amateur
         </h3>
-        <p class="text-sm text-[var(--text-body)] leading-relaxed">
+        <p class="text-xs sm:text-sm text-[var(--text-body)] leading-relaxed">
           Inscripciones centralizadas, validación de alineaciones y generación automática de llaves de eliminación directa en servidores de baja latencia.
         </p>
       </div>
 
-      <button class="neu-btn neu-btn-primary" onclick="alert('Formulario de registro de escuadras abierto para la Copa Santiago VALORANT.')">
+      <button class="neu-btn neu-btn-primary w-full sm:w-auto" onclick="window.dispatchEvent(new CustomEvent('show-toast', { detail: { message: 'Inscripción abierta para la Copa Santiago VALORANT. Contacta al soporte.' } }))">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="8 21 12 17 16 21"></polyline>
           <line x1="12" y1="17" x2="12" y2="21"></line>
@@ -35,10 +35,10 @@
         <p class="text-xs text-[var(--text-muted)]">Monitoreo y seguimiento de llaves en servidores de baja latencia.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
         {/* Torneo 1 */}
-        <article class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col justify-between gap-5 transition-transform hover:-translate-y-1">
+        <article class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col justify-between gap-5 transition-transform hover:-translate-y-1 hud-corners">
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
               <span class="neu-pill-tag rank-accent text-xs">VALORANT</span>
@@ -61,7 +61,7 @@
             </ul>
           </div>
           <div class="flex gap-2 pt-2 border-t border-[var(--border-subtle)]">
-            <button class="neu-btn neu-btn-primary neu-btn-sm text-xs flex-1" onclick="alert('Inscripción registrada para Copa Santiago VALORANT.')">
+            <button class="neu-btn neu-btn-primary neu-btn-sm text-xs flex-1" onclick="window.dispatchEvent(new CustomEvent('show-toast', { detail: { message: 'Inscripción seleccionada: Copa Santiago VALORANT.' } }))">
               Inscripción
             </button>
             <a href="#bracketTree" class="neu-btn neu-btn-sm text-xs">Ver Llave</a>
@@ -69,7 +69,7 @@
         </article>
 
         {/* Torneo 2 */}
-        <article class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col justify-between gap-5 transition-transform hover:-translate-y-1">
+        <article class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col justify-between gap-5 transition-transform hover:-translate-y-1 hud-corners">
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
               <span class="neu-pill-tag rank-accent text-xs">LEAGUE OF LEGENDS</span>
@@ -92,7 +92,7 @@
             </ul>
           </div>
           <div class="flex gap-2 pt-2 border-t border-[var(--border-subtle)]">
-            <button class="neu-btn neu-btn-primary neu-btn-sm text-xs flex-1" onclick="alert('Inscripción registrada para Grieta LAS.')">
+            <button class="neu-btn neu-btn-primary neu-btn-sm text-xs flex-1" onclick="window.dispatchEvent(new CustomEvent('show-toast', { detail: { message: 'Inscripción seleccionada: Grieta LAS.' } }))">
               Inscripción
             </button>
             <a href="#bracketTree" class="neu-btn neu-btn-sm text-xs">Ver Llave</a>
@@ -100,11 +100,11 @@
         </article>
 
         {/* Torneo 3 */}
-        <article class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col justify-between gap-5 transition-transform hover:-translate-y-1">
+        <article class="bg-[var(--bg-card)] shadow-[var(--neu-flat)] border border-[var(--border-subtle)] rounded-3xl p-6 flex flex-col justify-between gap-5 transition-transform hover:-translate-y-1 hud-corners">
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
               <span class="neu-pill-tag rank-accent text-xs">COUNTER-STRIKE 2</span>
-              <span class="neu-pill-tag text-xs text-[var(--accent-amber)]">Inscripciones Próximas</span>
+              <span class="neu-pill-tag text-xs text-[var(--accent-amber)]">Próximamente</span>
             </div>
             <h4 class="text-base font-bold text-[var(--text-main)] mb-2">Premier CS2 Cono Sur — Season 1</h4>
             <p class="text-xs text-[var(--text-body)] leading-relaxed mb-4">
@@ -123,7 +123,7 @@
             </ul>
           </div>
           <div class="flex gap-2 pt-2 border-t border-[var(--border-subtle)]">
-            <button class="neu-btn neu-btn-primary neu-btn-sm text-xs flex-1" onclick="alert('Inscripción registrada para Premier CS2.')">
+            <button class="neu-btn neu-btn-primary neu-btn-sm text-xs flex-1" onclick="window.dispatchEvent(new CustomEvent('show-toast', { detail: { message: 'Inscripción seleccionada: Premier CS2.' } }))">
               Inscripción
             </button>
             <a href="#bracketTree" class="neu-btn neu-btn-sm text-xs">Ver Llave</a>
