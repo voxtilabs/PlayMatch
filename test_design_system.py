@@ -47,7 +47,9 @@ def test_compiled_css():
         ".flex", ".grid", ".hud-corners", ".touch-scroll-bracket",
         ".telemetry-indicator", ".sound-visualizer", ".anamorphic-flare",
         ".cinema-vignette", ".custom-select-wrapper", ".gamer-profile-modal",
-        ".gamer-banner", ".avatar-frame", ".radar-sweep-beam", ".cinematic-embers-layer"
+        ".gamer-banner", ".avatar-frame", ".radar-sweep-beam", ".cinematic-embers-layer",
+        ".auth-portal-backdrop", ".auth-portal-card", ".auth-visual-panel",
+        ".auth-checkbox", ".password-req-pill"
     ]
     for rc in required_classes:
         if rc not in combined_css:

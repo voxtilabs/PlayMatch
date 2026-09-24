@@ -14,53 +14,57 @@ import LobbyModal from '../components/LobbyModal';
 import KarmaModal from '../components/KarmaModal';
 import ProfileModal from '../components/ProfileModal';
 import ToastNotifier from '../components/ToastNotifier';
+import AuthGate from '../components/AuthGate';
 ---
 
 <Layout title="PlayMatch — Matchmaking Táctico & Torneos Amateur">
   
-  <!-- Barra de Navegación HUD -->
-  <Navbar />
+  <AuthGate client:load>
+    <!-- Barra de Navegación HUD -->
+    <Navbar />
 
-  <!-- Hero Cinematográfico -->
-  <HeroCinematic />
+    <!-- Hero Cinematográfico -->
+    <HeroCinematic />
 
-  <!-- Sección Principal: Dashboard Táctico (2 Columnas con Islas React) -->
-  <main class="app-container pb-16" id="playersSection">
-    
-    <div class="mb-6 flex items-center justify-between">
-      <div>
-        <h2 class="text-xl sm:text-2xl font-black text-[var(--text-main)]">
-          Compañeros Disponibles por Índice de Afinidad
-        </h2>
-        <p class="text-xs text-[var(--text-muted)]">
-          Ponderación heurística basada en rango competitivo, sincronía de horarios y conducta comprobada.
-        </p>
+    <!-- Sección Principal: Dashboard Táctico (2 Columnas con Islas React) -->
+    <main class="app-container pb-16" id="playersSection">
+      
+      <div class="mb-6 flex items-center justify-between">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-black text-[var(--text-main)]">
+            Compañeros Disponibles por Índice de Afinidad
+          </h2>
+          <p class="text-xs text-[var(--text-muted)]">
+            Ponderación heurística basada en rango competitivo, sincronía de horarios y conducta comprobada.
+          </p>
+        </div>
       </div>
+
+      <!-- Dashboard Táctico de 2 Columnas (Matchmaking + Preferencias + Filtros) -->
+      <MatchmakingFeed client:load />
+
+    </main>
+
+    <!-- Hub de Torneos & Llaves de Eliminación -->
+    <TournamentHub />
+    
+    <div class="app-container pb-16">
+      <TournamentBracket client:visible />
     </div>
 
-    <!-- Dashboard Táctico de 2 Columnas (Matchmaking + Preferencias + Filtros) -->
-    <MatchmakingFeed client:load />
+    <!-- Sección de Ingeniería y Anteproyecto Duoc UC -->
+    <ArchitectureSection />
 
-  </main>
+    <!-- Pie de Página -->
+    <Footer />
 
-  <!-- Hub de Torneos & Llaves de Eliminación -->
-  <TournamentHub />
-  
-  <div class="app-container pb-16">
-    <TournamentBracket client:visible />
-  </div>
+    <!-- Islas React de Modales y Notificaciones (Hidratadas con client:idle) -->
+    <RadarModal client:idle />
+    <LobbyModal client:idle />
+    <KarmaModal client:idle />
+    <ProfileModal client:idle />
+  </AuthGate>
 
-  <!-- Sección de Ingeniería y Anteproyecto Duoc UC -->
-  <ArchitectureSection />
-
-  <!-- Pie de Página -->
-  <Footer />
-
-  <!-- Islas React de Modales y Notificaciones (Hidratadas con client:idle) -->
-  <RadarModal client:idle />
-  <LobbyModal client:idle />
-  <KarmaModal client:idle />
-  <ProfileModal client:idle />
   <ToastNotifier client:idle />
 
 </Layout>
