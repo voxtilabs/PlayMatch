@@ -15,23 +15,23 @@
       <div>
         <div class="text-base sm:text-lg font-black tracking-tight text-[var(--text-main)] font-['Outfit'] flex items-center gap-2">
           Play<span class="text-[var(--primary)]">Match</span>
-          <span class="text-[9px] sm:text-[10px] tracking-wider px-1.5 py-0.5 rounded font-mono font-bold bg-[var(--bg-sunken)] border border-[var(--border-subtle)] text-[var(--accent-mint)]">
+          <span class="text-[9px] sm:text-[10px] tracking-wider px-1.5 py-0.5 rounded font-gamer font-bold bg-[var(--bg-sunken)] border border-[var(--border-subtle)] text-[var(--accent-mint)]">
             VOXTI LABS
           </span>
         </div>
       </div>
     </a>
 
-    <!-- Pestañas de Navegación HUD (Visibles desde pantallas medianas) -->
+    <!-- Pestañas de Navegación HUD (Conmutador de Vistas Separadas) -->
     <nav class="hidden md:flex items-center gap-1.5 bg-[var(--bg-sunken)] p-1.5 rounded-2xl shadow-[var(--neu-pressed-sm)] border border-[var(--border-subtle)]">
-      <a href="#playersSection" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 text-[var(--text-main)] bg-[var(--bg-card)] shadow-[var(--neu-flat-xs)]">
+      <button type="button" data-view-nav="perfiles" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 text-[var(--text-main)] bg-[var(--bg-card)] shadow-[var(--neu-flat-xs)]">
         <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
           <circle cx="9" cy="7" r="4"></circle>
         </svg>
-        Compañeros
-      </a>
-      <a href="#tourneysSection" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 text-[var(--text-muted)] hover:text-[var(--text-main)]">
+        Compañeros &amp; Perfiles
+      </button>
+      <button type="button" data-view-nav="torneos" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 text-[var(--text-muted)] hover:text-[var(--text-main)]">
         <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <polyline points="8 21 12 17 16 21"></polyline>
           <line x1="12" y1="17" x2="12" y2="21"></line>
@@ -40,15 +40,15 @@
           <rect x="7" y="2" width="10" height="11" rx="2"></rect>
         </svg>
         Torneos &amp; Llaves
-      </a>
-      <a href="#aboutSection" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 text-[var(--text-muted)] hover:text-[var(--text-main)]">
+      </button>
+      <button type="button" data-view-nav="arquitectura" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-2 text-[var(--text-muted)] hover:text-[var(--text-main)]">
         <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="12" cy="12" r="10"></circle>
           <line x1="12" y1="16" x2="12" y2="12"></line>
           <line x1="12" y1="8" x2="12.01" y2="8"></line>
         </svg>
         Arquitectura
-      </a>
+      </button>
     </nav>
 
     <!-- Indicadores de Telemetría Táctica & Acciones -->
@@ -119,5 +119,34 @@
 
   document.getElementById('logoutBtn')?.addEventListener('click', () => {
     window.dispatchEvent(new CustomEvent('logout-user'));
+  });
+
+  // Conmutador de Vistas desde la Barra de Navegación
+  const navButtons = document.querySelectorAll('[data-view-nav]');
+  function updateNavActive(targetView) {
+    navButtons.forEach(btn => {
+      const isTarget = btn.getAttribute('data-view-nav') === targetView;
+      if (isTarget) {
+        btn.classList.add('text-[var(--text-main)]', 'bg-[var(--bg-card)]', 'shadow-[var(--neu-flat-xs)]');
+        btn.classList.remove('text-[var(--text-muted)]');
+      } else {
+        btn.classList.remove('text-[var(--text-main)]', 'bg-[var(--bg-card)]', 'shadow-[var(--neu-flat-xs)]');
+        btn.classList.add('text-[var(--text-muted)]');
+      }
+    });
+  }
+
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetView = btn.getAttribute('data-view-nav');
+      if (targetView) {
+        window.dispatchEvent(new CustomEvent('pm-switch-view', { detail: { view: targetView } }));
+        updateNavActive(targetView);
+      }
+    });
+  });
+
+  window.addEventListener('pm-view-changed', (e) => {
+    if (e.detail?.view) updateNavActive(e.detail.view);
   });
 </script>

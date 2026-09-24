@@ -49,7 +49,8 @@ def test_compiled_css():
         ".cinema-vignette", ".custom-select-wrapper", ".gamer-profile-modal",
         ".gamer-banner", ".avatar-frame", ".radar-sweep-beam", ".cinematic-embers-layer",
         ".auth-portal-backdrop", ".auth-portal-card", ".auth-visual-panel",
-        ".auth-checkbox", ".password-req-pill"
+        ".auth-checkbox", ".password-req-pill", ".font-gamer", ".tactical-view-tab",
+        ".cinema-video-bg", ".cinema-video-overlay"
     ]
     for rc in required_classes:
         if rc not in combined_css:

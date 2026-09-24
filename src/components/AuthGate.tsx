@@ -294,49 +294,54 @@ export default function AuthGate({ children }: { children?: React.ReactNode }) {
               {!isRegisterMode ? (
                 <form onSubmit={handleLoginSubmit} className="flex flex-col gap-4">
                   
-                  {/* Usuario o Email */}
+                  {/* Usuario o Email con Icono Táctico Exterior */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] flex items-center justify-between">
                       <span>Usuario o Correo Electrónico</span>
                     </label>
-                    <div className="relative">
+                    <div className="flex items-center gap-2">
+                      <div className="w-10 h-10 rounded-xl bg-[var(--bg-sunken)] border border-[var(--border-subtle)] flex items-center justify-center flex-shrink-0 text-[var(--primary)] shadow-[var(--neu-pressed-sm)]" title="Identificador">
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                          <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                      </div>
                       <input
                         type="text"
                         value={loginIdentifier}
                         onChange={e => setLoginIdentifier(e.target.value)}
                         placeholder="NachoViper#LAS o tu correo"
-                        className="neu-input text-xs pl-10"
+                        className="neu-input text-xs px-3.5 py-2.5 flex-1"
                         autoFocus
                       />
-                      <svg className="w-4 h-4 text-[var(--text-muted)] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                      </svg>
                     </div>
                   </div>
 
-                  {/* Contraseña */}
+                  {/* Contraseña con Icono Táctico Exterior e Interruptor Exterior */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] flex items-center justify-between">
                       <span>Contraseña</span>
                     </label>
-                    <div className="relative">
+                    <div className="flex items-center gap-2">
+                      <div className="w-10 h-10 rounded-xl bg-[var(--bg-sunken)] border border-[var(--border-subtle)] flex items-center justify-center flex-shrink-0 text-[var(--primary)] shadow-[var(--neu-pressed-sm)]" title="Seguridad">
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                      </div>
                       <input
                         type={showPassword ? 'text' : 'password'}
                         value={loginPassword}
                         onChange={e => setLoginPassword(e.target.value)}
                         placeholder="••••••••••••"
-                        className="neu-input text-xs pl-10 pr-10"
+                        className="neu-input text-xs px-3.5 py-2.5 flex-1"
                       />
-                      <svg className="w-4 h-4 text-[var(--text-muted)] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                      </svg>
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] hover:text-white transition-colors"
+                        className="w-10 h-10 rounded-xl bg-[var(--bg-sunken)] border border-[var(--border-subtle)] flex items-center justify-center flex-shrink-0 text-[var(--text-muted)] hover:text-white transition-colors shadow-[var(--neu-pressed-sm)]"
                         aria-label="Alternar visibilidad de contraseña"
+                        title={showPassword ? "Ocultar contraseña" : "Ver contraseña"}
                       >
                         {showPassword ? (
                           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -378,7 +383,7 @@ export default function AuthGate({ children }: { children?: React.ReactNode }) {
                     <button
                       type="button"
                       onClick={() => showToast('Para restablecer contraseña contacta al oficial de sala VOXTI LABS.')}
-                      className="text-xs font-mono text-[var(--primary)] hover:underline"
+                      className="text-xs font-semibold text-[var(--primary)] hover:underline"
                     >
                       ¿Olvidaste tu clave?
                     </button>
@@ -408,67 +413,74 @@ export default function AuthGate({ children }: { children?: React.ReactNode }) {
                 /* FORMULARIO DE REGISTRO / CREAR CUENTA */
                 <form onSubmit={handleRegisterSubmit} className="flex flex-col gap-3.5">
                   
-                  {/* Nombre de Usuario (Gamertag) */}
+                  {/* Nombre de Usuario (Gamertag) con Icono Exterior */}
                   <div className="flex flex-col gap-1">
                     <label className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
                       Nombre de Usuario / Gamertag
                     </label>
-                    <div className="relative">
+                    <div className="flex items-center gap-2">
+                      <div className="w-10 h-10 rounded-xl bg-[var(--bg-sunken)] border border-[var(--border-subtle)] flex items-center justify-center flex-shrink-0 text-[var(--primary)] shadow-[var(--neu-pressed-sm)]" title="Gamertag">
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                      </div>
                       <input
                         type="text"
                         value={regGamertag}
                         onChange={e => setRegGamertag(e.target.value)}
                         placeholder="Ej: ValkyrieAce"
-                        className="neu-input text-xs pl-10"
+                        className="neu-input text-xs px-3.5 py-2.5 flex-1"
                         autoFocus
                       />
-                      <svg className="w-4 h-4 text-[var(--text-muted)] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                      </svg>
                     </div>
                   </div>
 
-                  {/* Correo Electrónico */}
+                  {/* Correo Electrónico con Icono Exterior */}
                   <div className="flex flex-col gap-1">
                     <label className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
                       Correo Electrónico
                     </label>
-                    <div className="relative">
+                    <div className="flex items-center gap-2">
+                      <div className="w-10 h-10 rounded-xl bg-[var(--bg-sunken)] border border-[var(--border-subtle)] flex items-center justify-center flex-shrink-0 text-[var(--primary)] shadow-[var(--neu-pressed-sm)]" title="Correo">
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                          <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                      </div>
                       <input
                         type="email"
                         value={regEmail}
                         onChange={e => setRegEmail(e.target.value)}
                         placeholder="operador@gmail.com"
-                        className="neu-input text-xs pl-10"
+                        className="neu-input text-xs px-3.5 py-2.5 flex-1"
                       />
-                      <svg className="w-4 h-4 text-[var(--text-muted)] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                      </svg>
                     </div>
                   </div>
 
-                  {/* Contraseña con Requisitos Estrictos */}
+                  {/* Contraseña con Requisitos Estrictos e Iconos Exteriores */}
                   <div className="flex flex-col gap-1">
                     <label className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)] flex items-center justify-between">
                       <span>Contraseña de Seguridad</span>
                     </label>
-                    <div className="relative">
+                    <div className="flex items-center gap-2">
+                      <div className="w-10 h-10 rounded-xl bg-[var(--bg-sunken)] border border-[var(--border-subtle)] flex items-center justify-center flex-shrink-0 text-[var(--primary)] shadow-[var(--neu-pressed-sm)]" title="Seguridad">
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                      </div>
                       <input
                         type={showPassword ? 'text' : 'password'}
                         value={regPassword}
                         onChange={e => setRegPassword(e.target.value)}
                         placeholder="Crea tu clave segura..."
-                        className="neu-input text-xs pl-10 pr-10"
+                        className="neu-input text-xs px-3.5 py-2.5 flex-1"
                       />
-                      <svg className="w-4 h-4 text-[var(--text-muted)] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                      </svg>
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] hover:text-white transition-colors"
+                        className="w-10 h-10 rounded-xl bg-[var(--bg-sunken)] border border-[var(--border-subtle)] flex items-center justify-center flex-shrink-0 text-[var(--text-muted)] hover:text-white transition-colors shadow-[var(--neu-pressed-sm)]"
+                        title={showPassword ? "Ocultar contraseña" : "Ver contraseña"}
                       >
                         {showPassword ? (
                           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -509,22 +521,24 @@ export default function AuthGate({ children }: { children?: React.ReactNode }) {
                     </div>
                   </div>
 
-                  {/* Confirmar Contraseña */}
+                  {/* Confirmar Contraseña con Icono Exterior */}
                   <div className="flex flex-col gap-1">
                     <label className="text-[11px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
                       Confirmar Contraseña
                     </label>
-                    <div className="relative">
+                    <div className="flex items-center gap-2">
+                      <div className="w-10 h-10 rounded-xl bg-[var(--bg-sunken)] border border-[var(--border-subtle)] flex items-center justify-center flex-shrink-0 text-[var(--primary)] shadow-[var(--neu-pressed-sm)]" title="Confirmación">
+                        <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                      </div>
                       <input
                         type={showPassword ? 'text' : 'password'}
                         value={regConfirmPassword}
                         onChange={e => setRegConfirmPassword(e.target.value)}
                         placeholder="Repite tu contraseña..."
-                        className="neu-input text-xs pl-10"
+                        className="neu-input text-xs px-3.5 py-2.5 flex-1"
                       />
-                      <svg className="w-4 h-4 text-[var(--text-muted)] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
                     </div>
                   </div>
 

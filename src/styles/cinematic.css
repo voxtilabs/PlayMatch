@@ -3,22 +3,22 @@
    VoxTi Labs · Astro 4 + React Islands · Ultra Responsive · Zero Emojis
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root, [data-mode="noche"] {
-  --bg-deep: #08090C;
-  --bg-surface: #0E1017;
-  --bg-card: #141722;
-  --bg-card-hover: #1B2030;
-  --bg-sunken: #0A0C12;
-  --bg-modal: #121520;
+  --bg-deep: #07080A;
+  --bg-surface: #0C0E14;
+  --bg-card: #12141C;
+  --bg-card-hover: #191C26;
+  --bg-sunken: #090A0E;
+  --bg-modal: #10121A;
 
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-glow: rgba(255, 94, 58, 0.4);
+  --border-glow: rgba(255, 42, 77, 0.4);
   --border-field: rgba(255, 255, 255, 0.12);
 
   --text-main: #F6F8FC;
@@ -26,10 +26,10 @@
   --text-muted: #718096;
   --text-faint: #424D5E;
 
-  /* Colores Cinematográficos Cálidos y Electrizantes (Cero Azul Lavado) */
-  --primary: #FF5E3A;
-  --primary-hover: #FF7854;
-  --primary-glow: rgba(255, 94, 58, 0.45);
+  /* Colores Cinematográficos Rojo Carmesí (Cero Azul Lavado, Cero Naranja) */
+  --primary: #FF2A4D;
+  --primary-hover: #FF4767;
+  --primary-glow: rgba(255, 42, 77, 0.45);
   
   --accent-mint: #00F59B;
   --accent-mint-soft: rgba(0, 245, 155, 0.12);
@@ -39,16 +39,16 @@
   --accent-amber-soft: rgba(245, 158, 11, 0.14);
   --accent-gold: #FBBF24;
   --accent-gold-soft: rgba(251, 191, 36, 0.14);
-  --accent-crimson: #FF2E54;
-  --accent-red: #FF4757;
+  --accent-crimson: #E50914;
+  --accent-red: #FF2A4D;
 
-  /* Sombras Neumórficas Táctiles Obsidiana */
-  --neu-flat: 8px 8px 22px #040508, -8px -8px 22px #181C2A;
-  --neu-flat-sm: 4px 4px 12px #040508, -4px -4px 12px #191E2D;
-  --neu-flat-xs: 2px 2px 6px #030406, -2px -2px 6px #1A1F30;
-  --neu-pressed: inset 4px 4px 9px #040508, inset -4px -4px 9px #1A2032;
-  --neu-pressed-sm: inset 2px 2px 5px #040508, inset -2px -2px 5px #1B2135;
-  --neu-floating: 16px 16px 42px #020305, -14px -14px 38px #1B2236;
+  /* Sombras Neumórficas Táctiles Obsidiana con Micro-Resplandor Carmesí */
+  --neu-flat: 8px 8px 22px #040507, -8px -8px 22px #161924;
+  --neu-flat-sm: 4px 4px 12px #040507, -4px -4px 12px #171A26;
+  --neu-flat-xs: 2px 2px 6px #030405, -2px -2px 6px #181B28;
+  --neu-pressed: inset 4px 4px 9px #040507, inset -4px -4px 9px #171A27;
+  --neu-pressed-sm: inset 2px 2px 5px #040507, inset -2px -2px 5px #181B29;
+  --neu-floating: 16px 16px 42px #020204, -14px -14px 38px #181B29;
 }
 
 [data-mode="dia"] {
@@ -60,7 +60,7 @@
   --bg-modal: #FFFFFF;
 
   --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-glow: rgba(255, 94, 58, 0.35);
+  --border-glow: rgba(220, 38, 38, 0.35);
   --border-field: #D1D7E2;
 
   --text-main: #0F172A;
@@ -68,9 +68,9 @@
   --text-muted: #64748B;
   --text-faint: #94A3B8;
 
-  --primary: #EA580C;
-  --primary-hover: #C2410C;
-  --primary-glow: rgba(234, 88, 12, 0.3);
+  --primary: #DC2626;
+  --primary-hover: #B91C1C;
+  --primary-glow: rgba(220, 38, 38, 0.3);
   
   --accent-mint: #059669;
   --accent-mint-soft: rgba(5, 150, 105, 0.12);
@@ -126,6 +126,11 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
 }
 
+.font-gamer {
+  font-family: 'Rajdhani', 'Outfit', sans-serif;
+  letter-spacing: 0.03em;
+}
+
 /* ==========================================================================
    Capas Cinematográficas Atmosféricas (GPU-Accelerated)
    ========================================================================== */
@@ -140,6 +145,42 @@ h1, h2, h3, h4, h5, h6 {
   contain: strict;
 }
 
+/* Fondo de Cinemática de Video Gamer en Movimiento (Aceleración GPU) */
+.cinema-video-bg-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  contain: strict;
+  z-index: 0;
+}
+
+.cinema-video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  opacity: 0.38;
+  filter: brightness(0.42) contrast(1.15) saturate(1.1);
+  pointer-events: none;
+}
+
+.cinema-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 50% 25%, rgba(255, 42, 77, 0.14) 0%, transparent 65%),
+    linear-gradient(180deg, rgba(7, 8, 10, 0.76) 0%, rgba(7, 8, 10, 0.52) 40%, rgba(7, 8, 10, 0.95) 100%);
+  pointer-events: none;
+}
+
 /* Viñeta Cinematográfica (Aspecto CinemaScope) */
 .cinema-vignette {
   position: absolute;
@@ -147,6 +188,7 @@ h1, h2, h3, h4, h5, h6 {
   background: radial-gradient(ellipse at 50% 35%, transparent 40%, rgba(3, 4, 7, 0.82) 100%);
   opacity: 0.88;
   contain: strict;
+  z-index: 1;
 }
 
 /* Malla Táctica de Telemetría (Estática con Pulso de Opacidad 100% GPU) */
@@ -154,13 +196,14 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(to right, rgba(255, 94, 58, 0.035) 1px, transparent 1px),
+    linear-gradient(to right, rgba(255, 42, 77, 0.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
   background-size: 48px 48px;
   opacity: 0.65;
   pointer-events: none;
   contain: strict;
   animation: gridBreathe 10s ease-in-out infinite alternate;
+  z-index: 1;
 }
 
 @keyframes gridBreathe {
@@ -177,12 +220,13 @@ h1, h2, h3, h4, h5, h6 {
   height: 520px;
   transform: translate(-50%, -50%) rotate(0deg);
   border-radius: 50%;
-  background: conic-gradient(from 0deg at 50% 50%, rgba(255, 94, 58, 0.08) 0deg, transparent 45deg, transparent 360deg);
-  border: 1px solid rgba(255, 94, 58, 0.08);
+  background: conic-gradient(from 0deg at 50% 50%, rgba(255, 42, 77, 0.09) 0deg, transparent 45deg, transparent 360deg);
+  border: 1px solid rgba(255, 42, 77, 0.09);
   pointer-events: none;
   animation: radarRotate 22s linear infinite;
   contain: strict;
   will-change: transform;
+  z-index: 1;
 }
 
 @keyframes radarRotate {
@@ -231,7 +275,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Haz de Luz Anamórfica Cálida */
+/* Haz de Luz Anamórfica Cálida Carmesí */
 .anamorphic-flare {
   position: absolute;
   top: 14%;
@@ -239,10 +283,11 @@ h1, h2, h3, h4, h5, h6 {
   transform: translate(-50%, -50%) scaleX(1.6);
   width: 75vw;
   height: 2px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 94, 58, 0.5) 25%, rgba(251, 191, 36, 0.75) 50%, rgba(0, 245, 155, 0.6) 75%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 42, 77, 0.55) 25%, rgba(251, 191, 36, 0.75) 50%, rgba(229, 9, 20, 0.6) 75%, transparent 100%);
   opacity: 0.55;
   animation: flareBreathe 9s ease-in-out infinite alternate;
   pointer-events: none;
+  z-index: 1;
 }
 
 /* Orbes de Iluminación por Gradiente Radial NATIVO (Zero Gaussian Blur CPU/GPU Overhead) */
@@ -252,27 +297,28 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
   transform: translate3d(0, 0, 0);
   contain: strict;
+  z-index: 1;
 }
 
-.orb-solar, .orb-primary {
+.orb-solar, .orb-primary, .orb-crimson {
   width: 48vw;
   height: 48vw;
   max-width: 620px;
   max-height: 620px;
   top: -12%;
   left: 12%;
-  background: radial-gradient(circle closest-side, rgba(255, 94, 58, 0.16) 0%, rgba(255, 94, 58, 0.05) 55%, transparent 80%);
+  background: radial-gradient(circle closest-side, rgba(255, 42, 77, 0.18) 0%, rgba(255, 42, 77, 0.05) 55%, transparent 80%);
   animation: floatOrb 24s ease-in-out infinite alternate;
 }
 
-.orb-violet {
+.orb-violet, .orb-blood {
   width: 42vw;
   height: 42vw;
   max-width: 530px;
   max-height: 530px;
   top: 34%;
   right: -6%;
-  background: radial-gradient(circle closest-side, rgba(168, 85, 247, 0.13) 0%, rgba(168, 85, 247, 0.04) 55%, transparent 80%);
+  background: radial-gradient(circle closest-side, rgba(229, 9, 20, 0.14) 0%, rgba(229, 9, 20, 0.04) 55%, transparent 80%);
   animation: floatOrb 28s ease-in-out infinite alternate-reverse;
 }
 
@@ -296,6 +342,41 @@ h1, h2, h3, h4, h5, h6 {
 @keyframes flareBreathe {
   0% { opacity: 0.35; transform: translate(-50%, -50%) scaleX(1.4); }
   100% { opacity: 0.75; transform: translate(-50%, -50%) scaleX(2.0); }
+}
+
+/* Selector de Vistas Tácticas (Perfiles vs Torneos vs Arquitectura) */
+.tactical-view-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 1rem;
+  font-family: 'Rajdhani', 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg-sunken);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--neu-pressed-sm);
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tactical-view-tab:hover {
+  color: var(--text-main);
+  border-color: rgba(255, 42, 77, 0.35);
+  transform: translateY(-1px);
+}
+
+.tactical-view-tab.active {
+  color: #FFFFFF;
+  background: linear-gradient(135deg, rgba(255, 42, 77, 0.22) 0%, rgba(229, 9, 20, 0.08) 100%), var(--bg-card);
+  border-color: var(--primary);
+  box-shadow: var(--neu-flat-xs), 0 0 16px rgba(255, 42, 77, 0.35);
 }
 
 /* ==========================================================================
@@ -986,7 +1067,7 @@ h1, h2, h3, h4, h5, h6 {
 .auth-checkbox.checked {
   background: var(--primary);
   border-color: var(--primary);
-  box-shadow: 0 0 10px rgba(255, 94, 58, 0.45);
+  box-shadow: 0 0 10px rgba(255, 42, 77, 0.45);
   color: #FFFFFF;
 }
 
@@ -996,9 +1077,10 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.35rem;
   padding: 0.25rem 0.65rem;
   border-radius: 8px;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Rajdhani', 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: 0.02em;
   background: var(--bg-sunken);
   border: 1px solid var(--border-subtle);
   color: var(--text-muted);

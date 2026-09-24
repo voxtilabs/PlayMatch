@@ -26,34 +26,77 @@ import AuthGate from '../components/AuthGate';
     <!-- Hero Cinematográfico -->
     <HeroCinematic />
 
-    <!-- Sección Principal: Dashboard Táctico (2 Columnas con Islas React) -->
-    <main class="app-container pb-16" id="playersSection">
-      
-      <div class="mb-6 flex items-center justify-between">
-        <div>
-          <h2 class="text-xl sm:text-2xl font-black text-[var(--text-main)]">
-            Compañeros Disponibles por Índice de Afinidad
-          </h2>
-          <p class="text-xs text-[var(--text-muted)]">
-            Ponderación heurística basada en rango competitivo, sincronía de horarios y conducta comprobada.
-          </p>
-        </div>
+    <!-- Conmutador Táctico HUD de Vistas Principales (Perfiles vs Torneos vs Arquitectura) -->
+    <section class="app-container mb-8">
+      <div class="flex items-center justify-center sm:justify-start gap-2 sm:gap-3 p-1.5 bg-[var(--bg-sunken)] rounded-2xl border border-[var(--border-subtle)] shadow-[var(--neu-pressed-sm)] max-w-fit mx-auto sm:mx-0 overflow-x-auto">
+        <button type="button" class="tactical-view-tab active" data-view-target="perfiles" id="viewBtnPerfiles">
+          <svg class="w-4 h-4 text-[var(--primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+          </svg>
+          <span>Operadores &amp; Perfiles</span>
+        </button>
+
+        <button type="button" class="tactical-view-tab" data-view-target="torneos" id="viewBtnTorneos">
+          <svg class="w-4 h-4 text-[var(--accent-gold)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <polyline points="8 21 12 17 16 21"></polyline>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+            <path d="M7 4H4a2 2 0 0 0-2 2v2a5 5 0 0 0 5 5h1"></path>
+            <path d="M17 4h3a2 2 0 0 1 2 2v2a5 5 0 0 1-5 5h-1"></path>
+            <rect x="7" y="2" width="10" height="11" rx="2"></rect>
+          </svg>
+          <span>Torneos &amp; Brackets</span>
+        </button>
+
+        <button type="button" class="tactical-view-tab" data-view-target="arquitectura" id="viewBtnArquitectura">
+          <svg class="w-4 h-4 text-[var(--accent-mint)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <span>Arquitectura Técnica</span>
+        </button>
       </div>
+    </section>
 
-      <!-- Dashboard Táctico de 2 Columnas (Matchmaking + Preferencias + Filtros) -->
-      <MatchmakingFeed client:load />
+    <!-- ==========================================
+         VISTA 1: FEED DE PERFILES & MATCHMAKING
+         ========================================== -->
+    <div id="viewPanelPerfiles" class="dashboard-panel transition-opacity duration-300">
+      <main class="app-container pb-16" id="playersSection">
+        <div class="mb-6 flex items-center justify-between">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-black text-[var(--text-main)]">
+              Compañeros Disponibles por Índice de Afinidad
+            </h2>
+            <p class="text-xs text-[var(--text-muted)]">
+              Ponderación heurística basada en rango competitivo, sincronía de horarios y conducta comprobada.
+            </p>
+          </div>
+        </div>
 
-    </main>
-
-    <!-- Hub de Torneos & Llaves de Eliminación -->
-    <TournamentHub />
-    
-    <div class="app-container pb-16">
-      <TournamentBracket client:visible />
+        <MatchmakingFeed client:load />
+      </main>
     </div>
 
-    <!-- Sección de Ingeniería y Anteproyecto Duoc UC -->
-    <ArchitectureSection />
+    <!-- ==========================================
+         VISTA 2: TORNEOS & COMPETENCIAS AMATEUR
+         ========================================== -->
+    <div id="viewPanelTorneos" class="dashboard-panel hidden transition-opacity duration-300">
+      <TournamentHub />
+      <div class="app-container pb-16" id="tourneysSection">
+        <TournamentBracket client:visible />
+      </div>
+    </div>
+
+    <!-- ==========================================
+         VISTA 3: INGENIERÍA & ANTEPROYECTO DUOC UC
+         ========================================== -->
+    <div id="viewPanelArquitectura" class="dashboard-panel hidden transition-opacity duration-300">
+      <div id="aboutSection">
+        <ArchitectureSection />
+      </div>
+    </div>
 
     <!-- Pie de Página -->
     <Footer />
@@ -66,5 +109,74 @@ import AuthGate from '../components/AuthGate';
   </AuthGate>
 
   <ToastNotifier client:idle />
+
+  <!-- Script Controlador de Vistas Desacopladas -->
+  <script is:inline>
+    (function() {
+      const panels = {
+        perfiles: document.getElementById('viewPanelPerfiles'),
+        torneos: document.getElementById('viewPanelTorneos'),
+        arquitectura: document.getElementById('viewPanelArquitectura')
+      };
+
+      const tabs = document.querySelectorAll('[data-view-target]');
+
+      function activateView(target) {
+        if (!panels[target]) target = 'perfiles';
+
+        // Alternar visibilidad de paneles con clase hidden
+        Object.keys(panels).forEach(key => {
+          if (panels[key]) {
+            if (key === target) {
+              panels[key].classList.remove('hidden');
+            } else {
+              panels[key].classList.add('hidden');
+            }
+          }
+        });
+
+        // Alternar estado activo en las pestañas HUD
+        tabs.forEach(tab => {
+          if (tab.getAttribute('data-view-target') === target) {
+            tab.classList.add('active');
+          } else {
+            tab.classList.remove('active');
+          }
+        });
+
+        // Notificar al Navbar
+        window.dispatchEvent(new CustomEvent('pm-view-changed', { detail: { view: target } }));
+
+        // Desplazar suavemente a la cabecera del contenido
+        const topAnchor = document.querySelector('[data-view-target]');
+        if (topAnchor && window.scrollY > 300) {
+          topAnchor.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+
+      // Event listeners para las pestañas HUD
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.getAttribute('data-view-target');
+          if (target) activateView(target);
+        });
+      });
+
+      // Escuchar eventos desde el Navbar o enlaces externos
+      window.addEventListener('pm-switch-view', (e) => {
+        if (e.detail?.view) activateView(e.detail.view);
+      });
+
+      // Leer hash inicial si existe (#torneos, #perfiles, #arquitectura)
+      const hash = window.location.hash.replace('#', '');
+      if (hash === 'tourneysSection' || hash === 'torneos') {
+        activateView('torneos');
+      } else if (hash === 'aboutSection' || hash === 'arquitectura') {
+        activateView('arquitectura');
+      } else {
+        activateView('perfiles');
+      }
+    })();
+  </script>
 
 </Layout>
